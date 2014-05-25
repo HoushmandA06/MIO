@@ -1,0 +1,515 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0F0D5AF2193231DE002443F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F0D5AF1193231DE002443F8 /* Foundation.framework */; };
+		0F0D5AF4193231DE002443F8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F0D5AF3193231DE002443F8 /* CoreGraphics.framework */; };
+		0F0D5AF6193231DE002443F8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F0D5AF5193231DE002443F8 /* UIKit.framework */; };
+		0F0D5AFC193231DE002443F8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5AFA193231DE002443F8 /* InfoPlist.strings */; };
+		0F0D5AFE193231DE002443F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D5AFD193231DE002443F8 /* main.m */; };
+		0F0D5B02193231DE002443F8 /* MIOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D5B01193231DE002443F8 /* MIOAppDelegate.m */; };
+		0F0D5B04193231DE002443F8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5B03193231DE002443F8 /* Images.xcassets */; };
+		0F0D5B0B193231DE002443F8 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F0D5B0A193231DE002443F8 /* XCTest.framework */; };
+		0F0D5B0C193231DE002443F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F0D5AF1193231DE002443F8 /* Foundation.framework */; };
+		0F0D5B0D193231DE002443F8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F0D5AF5193231DE002443F8 /* UIKit.framework */; };
+		0F0D5B15193231DE002443F8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5B13193231DE002443F8 /* InfoPlist.strings */; };
+		0F0D5B17193231DE002443F8 /* MIOTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D5B16193231DE002443F8 /* MIOTests.m */; };
+		0F0D5B2A19323224002443F8 /* MIOLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D5B2119323224002443F8 /* MIOLoginVC.m */; };
+		0F0D5B2B19323224002443F8 /* MIOSignUpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D5B2319323224002443F8 /* MIOSignUpVC.m */; };
+		0F0D5B2C19323224002443F8 /* MIOWelcomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D5B2519323224002443F8 /* MIOWelcomeVC.m */; };
+		0F0D5B2D19323224002443F8 /* MIOStartNewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D5B2719323224002443F8 /* MIOStartNewVC.m */; };
+		0F0D5B2E19323224002443F8 /* MIONavVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D5B2919323224002443F8 /* MIONavVC.m */; };
+		0F0D5B3219323279002443F8 /* currentuser.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5B2F19323279002443F8 /* currentuser.png */; };
+		0F0D5B3319323279002443F8 /* newuser.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5B3019323279002443F8 /* newuser.png */; };
+		0F0D5B3419323279002443F8 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5B3119323279002443F8 /* image.png */; };
+		0F0D5B391932328B002443F8 /* folder.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5B351932328B002443F8 /* folder.png */; };
+		0F0D5B3A1932328B002443F8 /* new.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5B361932328B002443F8 /* new.png */; };
+		0F0D5B3B1932328B002443F8 /* movein.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5B371932328B002443F8 /* movein.png */; };
+		0F0D5B3C1932328B002443F8 /* moveout.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5B381932328B002443F8 /* moveout.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0F0D5B0E193231DE002443F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0F0D5AE6193231DE002443F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0F0D5AED193231DE002443F8;
+			remoteInfo = MIO;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0F0D5AEE193231DE002443F8 /* MIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F0D5AF1193231DE002443F8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		0F0D5AF3193231DE002443F8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		0F0D5AF5193231DE002443F8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0F0D5AF9193231DE002443F8 /* MIO-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MIO-Info.plist"; sourceTree = "<group>"; };
+		0F0D5AFB193231DE002443F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0F0D5AFD193231DE002443F8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0F0D5AFF193231DE002443F8 /* MIO-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MIO-Prefix.pch"; sourceTree = "<group>"; };
+		0F0D5B00193231DE002443F8 /* MIOAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIOAppDelegate.h; sourceTree = "<group>"; };
+		0F0D5B01193231DE002443F8 /* MIOAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIOAppDelegate.m; sourceTree = "<group>"; };
+		0F0D5B03193231DE002443F8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		0F0D5B09193231DE002443F8 /* MIOTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MIOTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F0D5B0A193231DE002443F8 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		0F0D5B12193231DE002443F8 /* MIOTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MIOTests-Info.plist"; sourceTree = "<group>"; };
+		0F0D5B14193231DE002443F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0F0D5B16193231DE002443F8 /* MIOTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIOTests.m; sourceTree = "<group>"; };
+		0F0D5B2019323224002443F8 /* MIOLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIOLoginVC.h; sourceTree = "<group>"; };
+		0F0D5B2119323224002443F8 /* MIOLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIOLoginVC.m; sourceTree = "<group>"; };
+		0F0D5B2219323224002443F8 /* MIOSignUpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIOSignUpVC.h; sourceTree = "<group>"; };
+		0F0D5B2319323224002443F8 /* MIOSignUpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIOSignUpVC.m; sourceTree = "<group>"; };
+		0F0D5B2419323224002443F8 /* MIOWelcomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIOWelcomeVC.h; sourceTree = "<group>"; };
+		0F0D5B2519323224002443F8 /* MIOWelcomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIOWelcomeVC.m; sourceTree = "<group>"; };
+		0F0D5B2619323224002443F8 /* MIOStartNewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIOStartNewVC.h; sourceTree = "<group>"; };
+		0F0D5B2719323224002443F8 /* MIOStartNewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIOStartNewVC.m; sourceTree = "<group>"; };
+		0F0D5B2819323224002443F8 /* MIONavVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIONavVC.h; sourceTree = "<group>"; };
+		0F0D5B2919323224002443F8 /* MIONavVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIONavVC.m; sourceTree = "<group>"; };
+		0F0D5B2F19323279002443F8 /* currentuser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = currentuser.png; sourceTree = "<group>"; };
+		0F0D5B3019323279002443F8 /* newuser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newuser.png; sourceTree = "<group>"; };
+		0F0D5B3119323279002443F8 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
+		0F0D5B351932328B002443F8 /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder.png; sourceTree = "<group>"; };
+		0F0D5B361932328B002443F8 /* new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new.png; sourceTree = "<group>"; };
+		0F0D5B371932328B002443F8 /* movein.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movein.png; sourceTree = "<group>"; };
+		0F0D5B381932328B002443F8 /* moveout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moveout.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0F0D5AEB193231DE002443F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F0D5AF4193231DE002443F8 /* CoreGraphics.framework in Frameworks */,
+				0F0D5AF6193231DE002443F8 /* UIKit.framework in Frameworks */,
+				0F0D5AF2193231DE002443F8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F0D5B06193231DE002443F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F0D5B0B193231DE002443F8 /* XCTest.framework in Frameworks */,
+				0F0D5B0D193231DE002443F8 /* UIKit.framework in Frameworks */,
+				0F0D5B0C193231DE002443F8 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0F0D5AE5193231DE002443F8 = {
+			isa = PBXGroup;
+			children = (
+				0F0D5AF7193231DE002443F8 /* MIO */,
+				0F0D5B10193231DE002443F8 /* MIOTests */,
+				0F0D5AF0193231DE002443F8 /* Frameworks */,
+				0F0D5AEF193231DE002443F8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0F0D5AEF193231DE002443F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0F0D5AEE193231DE002443F8 /* MIO.app */,
+				0F0D5B09193231DE002443F8 /* MIOTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0F0D5AF0193231DE002443F8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0F0D5AF1193231DE002443F8 /* Foundation.framework */,
+				0F0D5AF3193231DE002443F8 /* CoreGraphics.framework */,
+				0F0D5AF5193231DE002443F8 /* UIKit.framework */,
+				0F0D5B0A193231DE002443F8 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0F0D5AF7193231DE002443F8 /* MIO */ = {
+			isa = PBXGroup;
+			children = (
+				0F0D5B00193231DE002443F8 /* MIOAppDelegate.h */,
+				0F0D5B01193231DE002443F8 /* MIOAppDelegate.m */,
+				0F0D5B2019323224002443F8 /* MIOLoginVC.h */,
+				0F0D5B2119323224002443F8 /* MIOLoginVC.m */,
+				0F0D5B2219323224002443F8 /* MIOSignUpVC.h */,
+				0F0D5B2319323224002443F8 /* MIOSignUpVC.m */,
+				0F0D5B2419323224002443F8 /* MIOWelcomeVC.h */,
+				0F0D5B2519323224002443F8 /* MIOWelcomeVC.m */,
+				0F0D5B2619323224002443F8 /* MIOStartNewVC.h */,
+				0F0D5B2719323224002443F8 /* MIOStartNewVC.m */,
+				0F0D5B2819323224002443F8 /* MIONavVC.h */,
+				0F0D5B2919323224002443F8 /* MIONavVC.m */,
+				0F0D5B03193231DE002443F8 /* Images.xcassets */,
+				0F0D5AF8193231DE002443F8 /* Supporting Files */,
+			);
+			path = MIO;
+			sourceTree = "<group>";
+		};
+		0F0D5AF8193231DE002443F8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0F0D5B351932328B002443F8 /* folder.png */,
+				0F0D5B361932328B002443F8 /* new.png */,
+				0F0D5B371932328B002443F8 /* movein.png */,
+				0F0D5B381932328B002443F8 /* moveout.png */,
+				0F0D5B2F19323279002443F8 /* currentuser.png */,
+				0F0D5B3019323279002443F8 /* newuser.png */,
+				0F0D5B3119323279002443F8 /* image.png */,
+				0F0D5AF9193231DE002443F8 /* MIO-Info.plist */,
+				0F0D5AFA193231DE002443F8 /* InfoPlist.strings */,
+				0F0D5AFD193231DE002443F8 /* main.m */,
+				0F0D5AFF193231DE002443F8 /* MIO-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0F0D5B10193231DE002443F8 /* MIOTests */ = {
+			isa = PBXGroup;
+			children = (
+				0F0D5B16193231DE002443F8 /* MIOTests.m */,
+				0F0D5B11193231DE002443F8 /* Supporting Files */,
+			);
+			path = MIOTests;
+			sourceTree = "<group>";
+		};
+		0F0D5B11193231DE002443F8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0F0D5B12193231DE002443F8 /* MIOTests-Info.plist */,
+				0F0D5B13193231DE002443F8 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0F0D5AED193231DE002443F8 /* MIO */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0F0D5B1A193231DE002443F8 /* Build configuration list for PBXNativeTarget "MIO" */;
+			buildPhases = (
+				0F0D5AEA193231DE002443F8 /* Sources */,
+				0F0D5AEB193231DE002443F8 /* Frameworks */,
+				0F0D5AEC193231DE002443F8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MIO;
+			productName = MIO;
+			productReference = 0F0D5AEE193231DE002443F8 /* MIO.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0F0D5B08193231DE002443F8 /* MIOTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0F0D5B1D193231DE002443F8 /* Build configuration list for PBXNativeTarget "MIOTests" */;
+			buildPhases = (
+				0F0D5B05193231DE002443F8 /* Sources */,
+				0F0D5B06193231DE002443F8 /* Frameworks */,
+				0F0D5B07193231DE002443F8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0F0D5B0F193231DE002443F8 /* PBXTargetDependency */,
+			);
+			name = MIOTests;
+			productName = MIOTests;
+			productReference = 0F0D5B09193231DE002443F8 /* MIOTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0F0D5AE6193231DE002443F8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MIO;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Ali Houshmand";
+				TargetAttributes = {
+					0F0D5B08193231DE002443F8 = {
+						TestTargetID = 0F0D5AED193231DE002443F8;
+					};
+				};
+			};
+			buildConfigurationList = 0F0D5AE9193231DE002443F8 /* Build configuration list for PBXProject "MIO" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0F0D5AE5193231DE002443F8;
+			productRefGroup = 0F0D5AEF193231DE002443F8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0F0D5AED193231DE002443F8 /* MIO */,
+				0F0D5B08193231DE002443F8 /* MIOTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0F0D5AEC193231DE002443F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F0D5AFC193231DE002443F8 /* InfoPlist.strings in Resources */,
+				0F0D5B3A1932328B002443F8 /* new.png in Resources */,
+				0F0D5B04193231DE002443F8 /* Images.xcassets in Resources */,
+				0F0D5B3C1932328B002443F8 /* moveout.png in Resources */,
+				0F0D5B3B1932328B002443F8 /* movein.png in Resources */,
+				0F0D5B3219323279002443F8 /* currentuser.png in Resources */,
+				0F0D5B3319323279002443F8 /* newuser.png in Resources */,
+				0F0D5B3419323279002443F8 /* image.png in Resources */,
+				0F0D5B391932328B002443F8 /* folder.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F0D5B07193231DE002443F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F0D5B15193231DE002443F8 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0F0D5AEA193231DE002443F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F0D5B2E19323224002443F8 /* MIONavVC.m in Sources */,
+				0F0D5B2B19323224002443F8 /* MIOSignUpVC.m in Sources */,
+				0F0D5B2C19323224002443F8 /* MIOWelcomeVC.m in Sources */,
+				0F0D5B2A19323224002443F8 /* MIOLoginVC.m in Sources */,
+				0F0D5B02193231DE002443F8 /* MIOAppDelegate.m in Sources */,
+				0F0D5B2D19323224002443F8 /* MIOStartNewVC.m in Sources */,
+				0F0D5AFE193231DE002443F8 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0F0D5B05193231DE002443F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0F0D5B17193231DE002443F8 /* MIOTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0F0D5B0F193231DE002443F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0F0D5AED193231DE002443F8 /* MIO */;
+			targetProxy = 0F0D5B0E193231DE002443F8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0F0D5AFA193231DE002443F8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0F0D5AFB193231DE002443F8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		0F0D5B13193231DE002443F8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0F0D5B14193231DE002443F8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0F0D5B18193231DE002443F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		0F0D5B19193231DE002443F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0F0D5B1B193231DE002443F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MIO/MIO-Prefix.pch";
+				INFOPLIST_FILE = "MIO/MIO-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		0F0D5B1C193231DE002443F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MIO/MIO-Prefix.pch";
+				INFOPLIST_FILE = "MIO/MIO-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		0F0D5B1E193231DE002443F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MIO.app/MIO";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MIO/MIO-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "MIOTests/MIOTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		0F0D5B1F193231DE002443F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MIO.app/MIO";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MIO/MIO-Prefix.pch";
+				INFOPLIST_FILE = "MIOTests/MIOTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0F0D5AE9193231DE002443F8 /* Build configuration list for PBXProject "MIO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F0D5B18193231DE002443F8 /* Debug */,
+				0F0D5B19193231DE002443F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0F0D5B1A193231DE002443F8 /* Build configuration list for PBXNativeTarget "MIO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F0D5B1B193231DE002443F8 /* Debug */,
+				0F0D5B1C193231DE002443F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0F0D5B1D193231DE002443F8 /* Build configuration list for PBXNativeTarget "MIOTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F0D5B1E193231DE002443F8 /* Debug */,
+				0F0D5B1F193231DE002443F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0F0D5AE6193231DE002443F8 /* Project object */;
+}
