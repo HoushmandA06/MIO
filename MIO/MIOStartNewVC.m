@@ -8,7 +8,7 @@
 
 #import "MIOStartNewVC.h"
 
-@interface MIOStartNewVC () <UITextViewDelegate>
+@interface MIOStartNewVC () <UITextFieldDelegate>
 
 @end
 
@@ -19,6 +19,9 @@
     UIButton * moveOut;
     
     UIBarButtonItem * back;
+    
+    NSArray * fieldNames;
+    NSMutableArray * fields;
     
     
     
@@ -35,9 +38,6 @@
  
     self.navigationItem.leftBarButtonItem = back;
         
-        
-
-
     }
     return self;
 }
@@ -51,17 +51,43 @@
 }
 
 
-
-
-
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     ///// ADMIN SECTION       
-  
+ //   UILabel * adminTitle = [UILabel alloc] initWithFrame:CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
     
+    
+    fieldNames = @[@"Resident", @"Phone", @"Email", @"Property",@"Unit #"];
+    
+    fields = [@[]mutableCopy];
+    
+    
+    for (NSString * name in fieldNames)
+    {
+        NSInteger index = [fieldNames indexOfObject:name];
+    
+        
+        UITextField * textField = [[UITextField alloc] initWithFrame:CGRectMake(100,(index * 70)+200,568,60)];
+        textField.backgroundColor = [UIColor colorWithWhite:0.90 alpha:1.0];
+        textField.layer.cornerRadius = 10;
+        textField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a set amt right of the textfield
+        textField.leftViewMode = UITextFieldViewModeAlways;
+        textField.placeholder = name;
+        textField.autocorrectionType = FALSE;
+        textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        textField.delegate = self;
+        [textField.layer setBorderColor: [[UIColor lightGrayColor] CGColor]];
+        [textField.layer setBorderWidth: 2.0];
+        
+        [textField resignFirstResponder]; //this is what makes keyboard go away
+        
+        [fields addObject:textField];
+        
+        [self.view addSubview:textField];
+        
+    }
 
     
     
@@ -80,6 +106,12 @@
     [self.view addSubview:moveOut];
 
  }
+
+
+
+
+
+
 
 
 
@@ -108,13 +140,12 @@
 
 
 
-- (BOOL)textViewShouldReturn:(UITextView *)textView   //now any textField will allow resign keyboard
+-(BOOL)textFieldShouldReturn:(UITextField *)textField   //now any textField will allow resign keyboard
 {
-    [textView resignFirstResponder];
+    [textField resignFirstResponder];
+ 
     return YES;
 }
-
-
 /*
 #pragma mark - Navigation
 
