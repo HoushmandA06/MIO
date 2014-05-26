@@ -31,6 +31,8 @@
 		0F0D5B3A1932328B002443F8 /* new.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5B361932328B002443F8 /* new.png */; };
 		0F0D5B3B1932328B002443F8 /* movein.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5B371932328B002443F8 /* movein.png */; };
 		0F0D5B3C1932328B002443F8 /* moveout.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5B381932328B002443F8 /* moveout.png */; };
+		0F2C101C1933C8D200CD3CE4 /* exclamation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2C101A1933C8D200CD3CE4 /* exclamation.png */; };
+		0F2C101D1933C8D200CD3CE4 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2C101B1933C8D200CD3CE4 /* check.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,8 @@
 		0F0D5B361932328B002443F8 /* new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new.png; sourceTree = "<group>"; };
 		0F0D5B371932328B002443F8 /* movein.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movein.png; sourceTree = "<group>"; };
 		0F0D5B381932328B002443F8 /* moveout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moveout.png; sourceTree = "<group>"; };
+		0F2C101A1933C8D200CD3CE4 /* exclamation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exclamation.png; sourceTree = "<group>"; };
+		0F2C101B1933C8D200CD3CE4 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +161,8 @@
 		0F0D5AF8193231DE002443F8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0F2C101A1933C8D200CD3CE4 /* exclamation.png */,
+				0F2C101B1933C8D200CD3CE4 /* check.png */,
 				0F0D5B351932328B002443F8 /* folder.png */,
 				0F0D5B361932328B002443F8 /* new.png */,
 				0F0D5B371932328B002443F8 /* movein.png */,
@@ -270,7 +276,9 @@
 				0F0D5B3A1932328B002443F8 /* new.png in Resources */,
 				0F0D5B04193231DE002443F8 /* Images.xcassets in Resources */,
 				0F0D5B3C1932328B002443F8 /* moveout.png in Resources */,
+				0F2C101D1933C8D200CD3CE4 /* check.png in Resources */,
 				0F0D5B3B1932328B002443F8 /* movein.png in Resources */,
+				0F2C101C1933C8D200CD3CE4 /* exclamation.png in Resources */,
 				0F0D5B3219323279002443F8 /* currentuser.png in Resources */,
 				0F0D5B3319323279002443F8 /* newuser.png in Resources */,
 				0F0D5B3419323279002443F8 /* image.png in Resources */,

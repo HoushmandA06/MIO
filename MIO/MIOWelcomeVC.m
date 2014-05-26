@@ -20,6 +20,8 @@
     UIButton * startNew;
     UIButton * editSaved;
     UIBarButtonItem * back;
+    UILabel * welcomeTitle;
+    
     
 }
 
@@ -30,7 +32,7 @@
  
         self.view.backgroundColor = BLUE_COLOR;
 
-        UILabel * welcomeTitle = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-150, 100, 300, 50)];
+        welcomeTitle = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-150, 100, 300, 50)];
         welcomeTitle.font = [UIFont fontWithName:@"Helvetica" size:50];
         welcomeTitle.text = @"Welcome";
         welcomeTitle.textAlignment = NSTextAlignmentCenter;
@@ -67,10 +69,24 @@
     [editSaved setImage:[UIImage imageNamed:@"folder"] forState:UIControlStateNormal];
     [editSaved addTarget:self action:@selector(launchEditSaved) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:editSaved];
-    
-    
- 
 }
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
+        welcomeTitle.alpha = 0;
+        
+        
+    [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        
+        welcomeTitle.alpha = 1;
+            
+        } completion:nil];
+    } completion:nil];
+    
+}
+
 
 -(void)launchStartNew
 {

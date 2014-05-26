@@ -132,6 +132,25 @@
     
 }
 
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    
+    if (textField==pwConfirm) {
+        
+        if ([pwField.text isEqualToString:pwConfirm.text]) {
+            NSLog(@"password fields are equal");
+            
+        }
+        else{
+            NSLog(@"password fields are not equal prompt user to enter correct values");
+            
+            
+            
+        }
+    }
+}
+
+
+
 -(void)submit
 {
     //// NEED TO CONNECT TO PARSE

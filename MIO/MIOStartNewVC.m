@@ -40,8 +40,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
       
-  self.view.backgroundColor = BLUE_COLOR;
-  // self.view.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = BLUE_COLOR;
+    //self.view.backgroundColor = [UIColor clearColor];
 
     back = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backToWelcome)];
     saveData = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveData)];
@@ -145,7 +145,7 @@
     [submit setTitleColor:[UIColor greenColor] forState:UIControlStateSelected];
     [submit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [submit.layer setBorderColor: [[UIColor lightGrayColor] CGColor]];
-    [submit.layer setBorderWidth: 2.0];
+    [submit.layer setBorderWidth: 1.0];
     [submit addTarget:self action:@selector(selected:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:submit];
     
@@ -182,6 +182,7 @@
         
     } else if(segment.selectedSegmentIndex == 1){
         moveDateLabel.text = @"Move-Out Date";
+    
         
     }
     
@@ -194,6 +195,10 @@
 {
     
     [sender setSelected:!sender.selected];
+    
+    //// PRESENT A TVC
+    //// THAT TVC WILL PUSH A COLLECTION VIEW IF CAMERA USED TO TAKE PIC (PUSH/POP)
+
     
 }
 
