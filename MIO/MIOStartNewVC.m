@@ -14,13 +14,14 @@
 
 @implementation MIOStartNewVC
 {
-    UIButton * moveIn;
+ 
     
-    UIButton * moveOut;
+    UIButton * submit;
     
     UISegmentedControl * segmentedControl;
     
     UIBarButtonItem * back;
+    UIBarButtonItem * saveData;
     
     NSArray * fieldNames;
     NSArray * keyboardTypes;
@@ -39,22 +40,18 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
       
-    self.view.backgroundColor = BLUE_COLOR;
+  self.view.backgroundColor = BLUE_COLOR;
+  // self.view.backgroundColor = [UIColor clearColor];
 
     back = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backToWelcome)];
- 
+    saveData = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveData)];
+        
     self.navigationItem.leftBarButtonItem = back;
+    self.navigationItem.rightBarButtonItem = saveData;
+        
         
     }
     return self;
-}
-
--(void)backToWelcome
-{
-    
-    [self.navigationController dismissViewControllerAnimated:NO completion:^{
-    }];
-    
 }
 
 
@@ -73,8 +70,7 @@
     fieldNames = @[@"Resident", @"Phone", @"Email", @"Property",@"Unit #"];
  
 
-    keyboardTypes = @[@(UIKeyboardTypeDefault),@(UIKeyboardTypePhonePad),@(UIKeyboardTypeEmailAddress),@(UIKeyboardTypeNamePhonePad),@(UIKeyboardTypeNumbersAndPunctuation)];
-    
+//    keyboardTypes = @[@(UIKeyboardTypeDefault),@(UIKeyboardTypePhonePad),@(UIKeyboardTypeEmailAddress),@(UIKeyboardTypeNamePhonePad),@(UIKeyboardTypeNumbersAndPunctuation)];
 
     
     fields = [@[]mutableCopy];
@@ -133,13 +129,50 @@
     
     ///// MOVEIN OR MOVEOUT
     segmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Move-In", @"Move-Out", nil]];
-    segmentedControl.frame = CGRectMake(100, 570, 250, 50);
+    segmentedControl.frame = CGRectMake(100, 570, 250, 75);
+
     segmentedControl.selectedSegmentIndex = 0;
     segmentedControl.tintColor = GREEN_COLOR;
     [segmentedControl addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
     [self.view addSubview:segmentedControl];
+    
+    
+    ///// SUBMIT BUTTON
+    submit = [[UIButton alloc] initWithFrame:CGRectMake(100,900,568,60)];
+    submit.backgroundColor = BLUE_COLOR;
+    submit.layer.cornerRadius = 10;
+    [submit setTitle:@"Submit" forState:UIControlStateNormal];
+    [submit setTitleColor:[UIColor greenColor] forState:UIControlStateSelected];
+    [submit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [submit.layer setBorderColor: [[UIColor lightGrayColor] CGColor]];
+    [submit.layer setBorderWidth: 2.0];
+    [submit addTarget:self action:@selector(selected:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:submit];
+    
+    
+}
 
- }
+-(void)moveInOutDate
+{
+    moveDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+45, 520, 200, 60)];
+    moveDateLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
+    moveDateLabel.textAlignment = NSTextAlignmentLeft;
+    moveDateLabel.text = @"Move-In Date";
+
+    moveDateLabel.textColor = [UIColor colorWithWhite:0.90 alpha:.90];
+    [self.view addSubview:moveDateLabel];
+    
+    ///// DATE PICKER
+    moveDate = [[UIDatePicker alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+45, 570, 240, 60)];
+    moveDate.datePickerMode = UIDatePickerModeDate;
+    moveDate.backgroundColor = [UIColor clearColor];
+    moveDate.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    moveDate.layer.borderWidth = 1;
+    moveDate.layer.cornerRadius = 10;
+    
+    [self.view addSubview:moveDate];
+}
+
 
 - (void)valueChanged:(UISegmentedControl *)segment
 {
@@ -153,28 +186,8 @@
     }
     
     NSLog(@"%d",segmentedControl.selectedSegmentIndex);
-    
-    
 }
 
--(void)moveInOutDate
-{
-    moveDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+45, 520, 568, 60)];
-    moveDateLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
-    moveDateLabel.textAlignment = NSTextAlignmentLeft;
-    moveDateLabel.textColor = [UIColor colorWithWhite:0.90 alpha:.90];
-    [self.view addSubview:moveDateLabel];
-
-    ///// DATE PICKER
-    moveDate = [[UIDatePicker alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+45, 570, 240, 60)];
-    moveDate.datePickerMode = UIDatePickerModeDate;
-    moveDate.backgroundColor = [UIColor clearColor];
-    moveDate.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    moveDate.layer.borderWidth = 2;
-    moveDate.layer.cornerRadius = 10;
-    
-    [self.view addSubview:moveDate];
-}
 
 
 -(void)selected:(UIButton *)sender
@@ -182,17 +195,22 @@
     
     [sender setSelected:!sender.selected];
     
-    
-    if (moveIn.selected)
-    {   moveDateLabel.text = @"Move-In Date";
-        moveOut.selected = NO;
-    } else if (moveOut.selected)
-    {   moveDateLabel.text = @"Move-Out Date";
-        moveIn.selected = NO;
-    }
-
 }
 
+
+-(void)backToWelcome
+{
+    
+    [self.navigationController dismissViewControllerAnimated:NO completion:^{
+    }];
+    
+}
+
+-(void)saveData
+{
+
+    NSLog(@"Save Data Selected");
+}
 
 
 - (void)didReceiveMemoryWarning
@@ -210,15 +228,6 @@
  
     return YES;
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

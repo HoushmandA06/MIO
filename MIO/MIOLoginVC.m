@@ -85,7 +85,7 @@
     [newUser setImage:[UIImage imageNamed:@"newuser.png"] forState:UIControlStateNormal];
     newUser.backgroundColor = [UIColor clearColor];
     newUser.layer.cornerRadius = 40;
-  //  [newUser addTarget:self action:@selector(newUserSignUp) forControlEvents:UIControlEventTouchUpInside];
+    [newUser addTarget:self action:@selector(newUserSignUp) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:newUser];
         
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapScreen)]; //added this to getrid of keyboard with a touch on frame outside of the above items
@@ -95,6 +95,22 @@
 
     }
     return self;
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
+        logInTitle.alpha = 0;
+        
+        
+        [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+            
+            logInTitle.alpha = 1;
+            
+        } completion:nil];
+    } completion:nil];
+    
 }
 
 -(void)signIn
@@ -113,16 +129,22 @@
     
     [self presentViewController:newNavVC animated:NO completion:^{
     }];
-    
-    
-    
-    
-    
+
 }
 
 -(void)newUserSignUp
 {
+    MIOSignUpVC * newUserSignUp = [[MIOSignUpVC alloc] initWithNibName:nil bundle:nil];
     
+    MIONavVC * nc = [[MIONavVC alloc] initWithRootViewController:newUserSignUp];
+    
+    nc.navigationBar.barTintColor = BLUE_COLOR;
+    nc.navigationBar.translucent = NO;
+    
+    [self presentViewController:nc animated:YES completion:^{
+    }];
+    
+    // will switch views
     
 }
 
@@ -131,10 +153,6 @@
     [pwField resignFirstResponder];
     [nameField resignFirstResponder];
     
-    //    [UIView animateWithDuration:0.2 animations:^{
-    //        newForm.frame = CGRectMake(0,0, 320, self.view.frame.size.height);
-    //
-    //    }];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField   //now any textField will allow resign keyboard

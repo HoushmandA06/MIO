@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MIOSignUpVC : UIViewController
+@interface MIOSignUpVC : UIViewController <UITextFieldDelegate>
 
 @end
