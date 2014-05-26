@@ -124,9 +124,7 @@
         textField.delegate = self;
         [textField.layer setBorderColor: [[UIColor lightGrayColor] CGColor]];
         [textField.layer setBorderWidth: 2.0];
-        
         [textField resignFirstResponder]; //this is what makes keyboard go away
-        
         [fields addObject:textField];
         [self.view addSubview:textField];
     }
@@ -134,29 +132,10 @@
     [self moveInOutDate];
     
     ///// MOVEIN OR MOVEOUT
-    
-    moveIn = [[UIButton alloc] initWithFrame:CGRectMake(100,600,150,50)];
-    moveIn.backgroundColor = [UIColor lightGrayColor];
-    moveIn.layer.cornerRadius = 10;
-    [moveIn setTitle:@"Move-In" forState:UIControlStateNormal];
-    [moveIn setTitleColor:[UIColor greenColor] forState:UIControlStateSelected];
-    [moveIn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [moveIn addTarget:self action:@selector(selected:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:moveIn];
-    
-    moveOut = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+100,600,150,50)];
-    moveOut.backgroundColor = [UIColor lightGrayColor];
-    moveOut.layer.cornerRadius = 10;
-    [moveOut setTitle:@"Move-Out" forState:UIControlStateNormal];
-    [moveOut setTitleColor:[UIColor greenColor] forState:UIControlStateSelected];
-    [moveOut setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [moveOut addTarget:self action:@selector(selected:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:moveOut];
-    
     segmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Move-In", @"Move-Out", nil]];
-    segmentedControl.frame = CGRectMake(100, 700, 250, 50);
+    segmentedControl.frame = CGRectMake(100, 570, 250, 50);
     segmentedControl.selectedSegmentIndex = 0;
-    segmentedControl.tintColor = [UIColor blackColor];
+    segmentedControl.tintColor = GREEN_COLOR;
     [segmentedControl addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
     [self.view addSubview:segmentedControl];
 
@@ -173,19 +152,21 @@
         
     }
     
+    NSLog(@"%d",segmentedControl.selectedSegmentIndex);
+    
     
 }
 
 -(void)moveInOutDate
 {
-    moveDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(500, 130, 568, 60)];
-    moveDateLabel.font = [UIFont fontWithName:@"Helvetica" size:20];
+    moveDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+45, 520, 568, 60)];
+    moveDateLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
     moveDateLabel.textAlignment = NSTextAlignmentLeft;
-    moveDateLabel.textColor = [UIColor colorWithWhite:0.95 alpha:1.0];
+    moveDateLabel.textColor = [UIColor colorWithWhite:0.90 alpha:.90];
     [self.view addSubview:moveDateLabel];
 
     ///// DATE PICKER
-    moveDate = [[UIDatePicker alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2, 570, 240, 60)];
+    moveDate = [[UIDatePicker alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+45, 570, 240, 60)];
     moveDate.datePickerMode = UIDatePickerModeDate;
     moveDate.backgroundColor = [UIColor clearColor];
     moveDate.layer.borderColor = [UIColor lightGrayColor].CGColor;
