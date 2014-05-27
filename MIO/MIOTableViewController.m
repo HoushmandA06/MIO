@@ -18,6 +18,10 @@
     UIBarButtonItem * back;
     UIBarButtonItem * saveData;
     
+    NSMutableArray *items;
+    int num;
+    
+    
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -50,39 +54,51 @@
     NSLog(@"Save Data Selected");
 }
 
-
+- (void)insertRowsAtIndexPaths:(NSArray *)indexPaths withRowAnimation: (UITableViewRowAnimation)animation;
+{
+    
+    
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    MIOTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell"];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    if(cell == nil)
+    {
+        cell = [[MIOTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        
+    }
+    
+    //// IS THIS OK?
+    items = [[NSMutableArray alloc] initWithObjects:cell, cell, nil];
+    
+    
+    num = 6;
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+ 
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-     // Return the number of sections.
-    return 13;
+    return 14;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
      // Return the number of rows in the section.
     
+    return [items count];
     
-    return 6;
 }
 
 
@@ -108,7 +124,6 @@
         case 0:
             headerLabel.text = @"Front Entrance";
             break;
-            
         case 1:
             headerLabel.text = @"Living Room";
             break;
@@ -121,38 +136,32 @@
         case 4:
             headerLabel.text = @"Bathroom #2";
             break;
-            
         case 5:
             headerLabel.text = @"Bedroom #1";
             break;
-            
         case 6:
+            headerLabel.text = @"Bedroom #2";
+            break;
+        case 7:
             headerLabel.text = @"Bedroom #3";
             break;
-            
-        case 7:
+        case 8:
             headerLabel.text = @"Rear Entrance";
             break;
-            
-        case 8:
-            headerLabel.text = @"Air Conditioning System";
-            break;
-            
         case 9:
+            headerLabel.text = @"Air Conditioning";
+            break;
+        case 10:
             headerLabel.text = @"Heating System";
             break;
-            
-        case 10:
+        case 11:
             headerLabel.text = @"Patio";
             break;
-            
-        case 11:
+        case 12:
             headerLabel.text = @"Balcony";
             break;
-            
-        case 12:
+        case 13:
             headerLabel.text = @"Storage Room";
-            
         default:break;
 
         // need to handle NEW CARPET, WASHER DRYER, KEYS ISSUED WITH YES / NO SEGMENTED CONTROL
@@ -165,22 +174,62 @@
     segmentWorkOrder.tintColor = GREEN_COLOR;
     //[segmentWorkOrder addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
     
-    UIButton * addRow = [[UIButton alloc] initWithFrame:CGRectMake(640, 5, 100, 40)];
-    [addRow setTitle:@"+ Row" forState:UIControlStateNormal];
+
+    UIButton * addRow = [[UIButton alloc] initWithFrame:CGRectMake(615, 10, 30, 30)];
+    addRow.layer.cornerRadius = 15;
+    [addRow setTitle:@"+" forState:UIControlStateNormal];
+    [addRow addTarget:self action:@selector(addItemToArray) forControlEvents:UIControlEventTouchUpInside];
+    addRow.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
+    addRow.layer.borderColor = [UIColor whiteColor].CGColor;
+    addRow.titleLabel.textAlignment = NSTextAlignmentCenter;
+    addRow.showsTouchWhenHighlighted = YES;
+    addRow.layer.borderWidth = 1;
     addRow.titleLabel.textColor = [UIColor whiteColor];
     
+    UIButton * delRow = [[UIButton alloc] initWithFrame:CGRectMake(710, 10, 30, 30)];
+    delRow.layer.cornerRadius = 15;
+    [delRow setTitle:@"-" forState:UIControlStateNormal];
+    delRow.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
+    [delRow addTarget:self action:@selector(delItemToArray) forControlEvents:UIControlEventTouchUpInside];
+    delRow.layer.borderColor = [UIColor whiteColor].CGColor;
+    delRow.showsTouchWhenHighlighted = YES;
+    delRow.layer.borderWidth = 1;
+    delRow.titleLabel.textColor = [UIColor whiteColor];
     
-    // create the parent view that will hold header Label
-    UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 600, 50)];
+     UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 600, 50)];
     customView.backgroundColor = BLUE_COLOR
     [customView addSubview:headerLabel];
     [customView addSubview:segmentWorkOrder];
     [customView addSubview:addRow];
+    [customView addSubview:delRow];
     return customView;
-    
-    
+
 }
 
+
+
+-(void)addItemToArray
+{
+    
+    MIOTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell"];
+    
+    if(cell == nil)
+    {
+        cell = [[MIOTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    }
+    num++;
+    [items addObject:cell];
+    [self.tableView reloadData];
+    
+    // [self.tableView reloadData];
+    // [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:_messages.count - 1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+}
+
+- (void)delItemToArray {
+    num--;
+    [items removeLastObject];
+    [self.tableView reloadData];
+}
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -192,10 +241,9 @@
         cell = [[MIOTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         
     }
-    
+ 
     cell.row = indexPath.row;
     cell.section = indexPath.section;
-    
     return cell;
 }
 
@@ -209,8 +257,8 @@
 }
 */
 
+
 /*
-// Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -222,6 +270,7 @@
 }
 */
 
+ 
 /*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
@@ -238,15 +287,6 @@
 }
 */
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -31,6 +31,7 @@
         comment.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a set amt right of the textfield
         comment.leftViewMode = UITextFieldViewModeAlways;
         comment.autocorrectionType = FALSE;
+        comment.delegate = self;
         [self.contentView addSubview:comment];
         
         cost = [[UITextField alloc] initWithFrame:CGRectMake(580,1,100,40)];
@@ -40,6 +41,7 @@
         cost.leftViewMode = UITextFieldViewModeAlways;
         cost.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
         cost.autocorrectionType = FALSE;
+        comment.delegate = self;
         [self.contentView addSubview:cost];
         
         camera = [[UIButton alloc] initWithFrame:CGRectMake(710, 0, 40, 40)];
@@ -66,6 +68,13 @@
     
     
     
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField   //now any textField will allow resign keyboard
+{
+    [textField resignFirstResponder];
+    
+    return YES;
 }
 
 

@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MIOTableViewCell : UITableViewCell
+@interface MIOTableViewCell : UITableViewCell <UITextFieldDelegate>
+
 
 @property (nonatomic) NSDictionary * commentItem;
 
