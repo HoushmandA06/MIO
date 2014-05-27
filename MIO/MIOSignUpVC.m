@@ -144,7 +144,6 @@
             NSLog(@"password fields are not equal prompt user to enter correct values");
             
             
-            
         }
     }
 }

@@ -7,6 +7,8 @@
 //
 
 #import "MIOStartNewVC.h"
+#import "MIOTableViewController.h"
+#import "MIONavVC.h"
 
 @interface MIOStartNewVC () <UITextFieldDelegate>
 
@@ -183,7 +185,6 @@
     } else if(segment.selectedSegmentIndex == 1){
         moveDateLabel.text = @"Move-Out Date";
     
-        
     }
     
     NSLog(@"%d",segmentedControl.selectedSegmentIndex);
@@ -197,6 +198,16 @@
     [sender setSelected:!sender.selected];
     
     //// PRESENT A TVC
+    MIOTableViewController  * tableVC = [[MIOTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    MIONavVC * newNavVC = [[MIONavVC alloc] initWithRootViewController:tableVC];
+    
+    [self presentViewController:newNavVC animated:NO completion:^{
+    }];
+    
+    
+    
+ 
     //// THAT TVC WILL PUSH A COLLECTION VIEW IF CAMERA USED TO TAKE PIC (PUSH/POP)
 
     

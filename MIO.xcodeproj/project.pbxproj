@@ -33,6 +33,9 @@
 		0F0D5B3C1932328B002443F8 /* moveout.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5B381932328B002443F8 /* moveout.png */; };
 		0F2C101C1933C8D200CD3CE4 /* exclamation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2C101A1933C8D200CD3CE4 /* exclamation.png */; };
 		0F2C101D1933C8D200CD3CE4 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2C101B1933C8D200CD3CE4 /* check.png */; };
+		0F2C10201934AEB300CD3CE4 /* MIOTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C101F1934AEB300CD3CE4 /* MIOTableViewController.m */; };
+		0F2C10231934AED100CD3CE4 /* MIOTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C10221934AED100CD3CE4 /* MIOTableViewCell.m */; };
+		0F2C10251934D6AE00CD3CE4 /* camera4040.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2C10241934D6AE00CD3CE4 /* camera4040.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +84,11 @@
 		0F0D5B381932328B002443F8 /* moveout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moveout.png; sourceTree = "<group>"; };
 		0F2C101A1933C8D200CD3CE4 /* exclamation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exclamation.png; sourceTree = "<group>"; };
 		0F2C101B1933C8D200CD3CE4 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		0F2C101E1934AEB300CD3CE4 /* MIOTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIOTableViewController.h; sourceTree = "<group>"; };
+		0F2C101F1934AEB300CD3CE4 /* MIOTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIOTableViewController.m; sourceTree = "<group>"; };
+		0F2C10211934AED100CD3CE4 /* MIOTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIOTableViewCell.h; sourceTree = "<group>"; };
+		0F2C10221934AED100CD3CE4 /* MIOTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIOTableViewCell.m; sourceTree = "<group>"; };
+		0F2C10241934D6AE00CD3CE4 /* camera4040.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera4040.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +158,10 @@
 				0F0D5B2519323224002443F8 /* MIOWelcomeVC.m */,
 				0F0D5B2619323224002443F8 /* MIOStartNewVC.h */,
 				0F0D5B2719323224002443F8 /* MIOStartNewVC.m */,
+				0F2C101E1934AEB300CD3CE4 /* MIOTableViewController.h */,
+				0F2C101F1934AEB300CD3CE4 /* MIOTableViewController.m */,
+				0F2C10211934AED100CD3CE4 /* MIOTableViewCell.h */,
+				0F2C10221934AED100CD3CE4 /* MIOTableViewCell.m */,
 				0F0D5B2819323224002443F8 /* MIONavVC.h */,
 				0F0D5B2919323224002443F8 /* MIONavVC.m */,
 				0F0D5B03193231DE002443F8 /* Images.xcassets */,
@@ -161,6 +173,7 @@
 		0F0D5AF8193231DE002443F8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0F2C10241934D6AE00CD3CE4 /* camera4040.png */,
 				0F2C101A1933C8D200CD3CE4 /* exclamation.png */,
 				0F2C101B1933C8D200CD3CE4 /* check.png */,
 				0F0D5B351932328B002443F8 /* folder.png */,
@@ -282,6 +295,7 @@
 				0F0D5B3219323279002443F8 /* currentuser.png in Resources */,
 				0F0D5B3319323279002443F8 /* newuser.png in Resources */,
 				0F0D5B3419323279002443F8 /* image.png in Resources */,
+				0F2C10251934D6AE00CD3CE4 /* camera4040.png in Resources */,
 				0F0D5B391932328B002443F8 /* folder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,11 +317,13 @@
 			files = (
 				0F0D5B2E19323224002443F8 /* MIONavVC.m in Sources */,
 				0F0D5B2B19323224002443F8 /* MIOSignUpVC.m in Sources */,
+				0F2C10231934AED100CD3CE4 /* MIOTableViewCell.m in Sources */,
 				0F0D5B2C19323224002443F8 /* MIOWelcomeVC.m in Sources */,
 				0F0D5B2A19323224002443F8 /* MIOLoginVC.m in Sources */,
 				0F0D5B02193231DE002443F8 /* MIOAppDelegate.m in Sources */,
 				0F0D5B2D19323224002443F8 /* MIOStartNewVC.m in Sources */,
 				0F0D5AFE193231DE002443F8 /* main.m in Sources */,
+				0F2C10201934AEB300CD3CE4 /* MIOTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
