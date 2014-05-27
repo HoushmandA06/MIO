@@ -165,12 +165,19 @@
     segmentWorkOrder.tintColor = GREEN_COLOR;
     //[segmentWorkOrder addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
     
+    UIButton * addRow = [[UIButton alloc] initWithFrame:CGRectMake(640, 5, 100, 40)];
+    [addRow setTitle:@"+ Row" forState:UIControlStateNormal];
+    addRow.titleLabel.textColor = [UIColor whiteColor];
+    
+    
     // create the parent view that will hold header Label
     UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 600, 50)];
     customView.backgroundColor = BLUE_COLOR
     [customView addSubview:headerLabel];
     [customView addSubview:segmentWorkOrder];
+    [customView addSubview:addRow];
     return customView;
+    
     
 }
 
