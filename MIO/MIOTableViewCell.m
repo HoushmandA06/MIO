@@ -7,6 +7,8 @@
 //
 
 #import "MIOTableViewCell.h"
+#import "MIOCameraVC.h"
+
 
 @implementation MIOTableViewCell
 {
@@ -17,6 +19,9 @@
     UIButton * camera;
     
     UISegmentedControl * workOrder;
+    
+    
+        //// WILL NEED A UIBUTTON TO PUSH A COLLECTION VIEW IF CAMERA USED TO TAKE PIC (PUSH/POP)
     
 }
 
@@ -41,7 +46,7 @@
         cost.leftViewMode = UITextFieldViewModeAlways;
         cost.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
         cost.autocorrectionType = FALSE;
-        comment.delegate = self;
+        cost.delegate = self;
         [self.contentView addSubview:cost];
         
         camera = [[UIButton alloc] initWithFrame:CGRectMake(710, 0, 40, 40)];
@@ -49,9 +54,7 @@
         [camera setImage:[UIImage imageNamed:@"camera4040"] forState:UIControlStateNormal];
         
         [self.contentView addSubview:camera];
-        
-    
-        
+                
     }
     return self;
 }
@@ -64,14 +67,52 @@
     
     NSLog(@"%d %d",self.row,self.section);
     
+    [self.delegate pushVC];
+        
     // pass position for image picker view to save value
     
+}
+
+- (void)setRow:(int)row
+{
+    _row = row;
     
+    // update comment.text = somthing based on _row / _section
     
+//    NSString * sectionKey = [data allKeys][self.section];
+//    
+//    NSArray * rows = data[sectionKey];
+//    
+//    NSDictionary * rowData = rows[row];
+//    
+//    
+//    comment.text = rowData[@"comment"];
+//    cost.text = rowData[@"cost"];
+}
+
+- (void)setSection:(int)section
+{
+    
+    _section = section;
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField   //now any textField will allow resign keyboard
 {
+    // save comment.text to something based on self.row / self.section
+    
+//    NSString * sectionKey = [data allKeys][self.section];
+//    
+//    NSMutableArray * rows = data[sectionKey];
+//    
+//    [rows removeObjectAtIndex:self.row];
+//    
+//    NSMutableDictionary * rowData = rows[self.row];
+//    
+//    // needs to be parse or singleton
+//    rowData[@"comment"] = comment.text;
+//    rowData[@"cost"] = cost.text;
+    
+    
     [textField resignFirstResponder];
     
     return YES;

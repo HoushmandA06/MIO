@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MIOTableViewCell.h"
 
-@interface MIOTableViewController : UITableViewController
+@interface MIOTableViewController : UITableViewController <MIOTableViewCellDelegate>
+
 
 @end

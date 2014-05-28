@@ -8,12 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol MIOTableViewCellDelegate;
+
 @interface MIOTableViewCell : UITableViewCell <UITextFieldDelegate>
+
+@property (nonatomic,assign) id<MIOTableViewCellDelegate> delegate;
 
 
 @property (nonatomic) NSDictionary * commentItem;
 
 @property (nonatomic) int row;
 @property (nonatomic) int section;
+
+@end
+
+@protocol MIOTableViewCellDelegate <NSObject>
+
+-(void)pushVC;
+
 
 @end

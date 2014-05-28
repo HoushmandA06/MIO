@@ -187,7 +187,7 @@
     
     }
     
-    NSLog(@"%d",segmentedControl.selectedSegmentIndex);
+    NSLog(@"%ld",(long)segmentedControl.selectedSegmentIndex);
 }
 
 
@@ -208,7 +208,7 @@
     
     
  
-    //// THAT TVC WILL PUSH A COLLECTION VIEW IF CAMERA USED TO TAKE PIC (PUSH/POP)
+
 
     
 }
