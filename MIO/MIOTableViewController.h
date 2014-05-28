@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MIOTableViewCell.h"
 
-@interface MIOTableViewController : UITableViewController <MIOTableViewCellDelegate>
+@interface MIOTableViewController : UITableViewController <MIOTableViewCellDelegate, UIImagePickerControllerDelegate>
 
 
 @end

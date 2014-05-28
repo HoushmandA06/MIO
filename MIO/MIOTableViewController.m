@@ -10,7 +10,7 @@
 #import "MIOTableViewCell.h"
 #import "MIOCameraVC.h"
 
-@interface MIOTableViewController () 
+@interface MIOTableViewController () <UIImagePickerControllerDelegate>
 
 @end
 
@@ -241,10 +241,24 @@
 -(void)pushVC
 {
 
-    MIOCameraVC * cameraVC = [[MIOCameraVC alloc] initWithNibName:nil bundle:nil];
+    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
     
-    [self.navigationController pushViewController:cameraVC animated:NO];
+    picker.delegate = self;
+    picker.allowsEditing = YES; // gives you preview of chosen photo
+    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+
     
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+
+    
+    
+    
+//    
+//    MIOCameraVC * cameraVC = [[MIOCameraVC alloc] initWithNibName:nil bundle:nil];
+//    
+//    [self.navigationController pushViewController:cameraVC animated:NO];
+//    
     NSLog(@"Pushed on camera touch");
     
 }
