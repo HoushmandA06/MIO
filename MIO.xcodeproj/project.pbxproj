@@ -37,6 +37,7 @@
 		0F2C10231934AED100CD3CE4 /* MIOTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C10221934AED100CD3CE4 /* MIOTableViewCell.m */; };
 		0F2C10251934D6AE00CD3CE4 /* camera4040.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2C10241934D6AE00CD3CE4 /* camera4040.png */; };
 		0F2C102C19369B4F00CD3CE4 /* MIOCameraVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C102B19369B4F00CD3CE4 /* MIOCameraVC.m */; };
+		0F2C102E1937653300CD3CE4 /* photos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2C102D1937653300CD3CE4 /* photos@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		0F2C10241934D6AE00CD3CE4 /* camera4040.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera4040.png; sourceTree = "<group>"; };
 		0F2C102A19369B4F00CD3CE4 /* MIOCameraVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIOCameraVC.h; sourceTree = "<group>"; };
 		0F2C102B19369B4F00CD3CE4 /* MIOCameraVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIOCameraVC.m; sourceTree = "<group>"; };
+		0F2C102D1937653300CD3CE4 /* photos@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photos@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 		0F0D5AF8193231DE002443F8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0F2C102D1937653300CD3CE4 /* photos@2x.png */,
 				0F2C10241934D6AE00CD3CE4 /* camera4040.png */,
 				0F2C101A1933C8D200CD3CE4 /* exclamation.png */,
 				0F2C101B1933C8D200CD3CE4 /* check.png */,
@@ -310,6 +313,7 @@
 				0F2C101C1933C8D200CD3CE4 /* exclamation.png in Resources */,
 				0F0D5B3219323279002443F8 /* currentuser.png in Resources */,
 				0F0D5B3319323279002443F8 /* newuser.png in Resources */,
+				0F2C102E1937653300CD3CE4 /* photos@2x.png in Resources */,
 				0F0D5B3419323279002443F8 /* image.png in Resources */,
 				0F2C10251934D6AE00CD3CE4 /* camera4040.png in Resources */,
 				0F0D5B391932328B002443F8 /* folder.png in Resources */,

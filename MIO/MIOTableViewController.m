@@ -19,6 +19,9 @@
     UIBarButtonItem * back;
     UIBarButtonItem * saveData;
     
+    UIBarButtonItem * photos;
+    UIBarButtonItem * submit;
+    
     NSMutableArray *sections;
     
     int numRow;
@@ -34,15 +37,19 @@
     back = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backToStartNew)];
     saveData = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveData)];
         
-        self.navigationItem.leftBarButtonItem = back;
-        self.navigationItem.rightBarButtonItem = saveData;
-    
+    self.navigationItem.leftBarButtonItem = back;
+    self.navigationItem.rightBarButtonItem = saveData;
+
+        
+        
         
         sections = [@[@2,@4,@4,@4,@4,@4,@4,@4,@2,@1,@1,@1,@1,@1] mutableCopy];  // adjust to set amount for 14 fields
         
     }
     return self;
 }
+
+
 
 -(void)backToStartNew
 {
@@ -62,8 +69,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     
+    
+    
+    photos = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"photos"] style:UIBarButtonItemStylePlain target:self action:@selector(tabSelected:)];
+    
+    //  photos = [[UIBarButtonItem alloc] initWithTitle:@"Colors" style:UIBarButtonItemStylePlain target:self action:@selector(tabSelected:)];
+    
+    submit = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:self action:@selector(tabSelected:)];
+    
+    UIBarButtonItem * flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    [self setToolbarItems:@[flexible, photos, flexible, submit, flexible]];
+    self.navigationController.toolbarHidden = NO;
+    
+    
+}
+
+-(void)tabSelected:(UIBarButtonItem *)sender
+{
+    NSLog(@"%d",sender.tag);
+    
+    //  colorsIsSelected = [sender.title isEqualToString:@"Colors"];
+    //  [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -76,7 +104,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    
 
     return [sections count];
 
