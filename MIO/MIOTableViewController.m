@@ -7,8 +7,8 @@
 //
 
 #import "MIOTableViewController.h"
-#import "MIOTableViewCell.h"
-#import "MIOCameraVC.h"
+#import "GLACollectionViewController.h"
+
 
 @interface MIOTableViewController () <UIImagePickerControllerDelegate>
 
@@ -40,10 +40,8 @@
     self.navigationItem.leftBarButtonItem = back;
     self.navigationItem.rightBarButtonItem = saveData;
 
-        
-        
-        
-        sections = [@[@2,@4,@4,@4,@4,@4,@4,@4,@2,@1,@1,@1,@1,@1] mutableCopy];  // adjust to set amount for 14 fields
+    sections = [@[@2,@4,@4,@4,@4,@4,@4,@4,@2,@1,@1,@1,@1,@1] mutableCopy];  // adjust to set amount for 14 fields
+
         
     }
     return self;
@@ -88,7 +86,21 @@
 
 -(void)tabSelected:(UIBarButtonItem *)sender
 {
-    NSLog(@"%d",sender.tag);
+   
+    if([sender isEqual:photos])
+    {
+        NSLog(@"photos selected");
+        
+        GLACollectionViewController * collectionVC = [[GLACollectionViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+        
+        [self.navigationController pushViewController:collectionVC animated:NO];
+        
+        
+    } else
+    {
+        NSLog(@"submit selected");
+    }
+
     
     //  colorsIsSelected = [sender.title isEqualToString:@"Colors"];
     //  [self.tableView reloadData];
@@ -229,15 +241,6 @@
 -(void)addItemToArray:(UIButton *)sender
 {
     
-//    MIOTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell"];
-//    
-//    if(cell == nil)
-//    {
-//        cell = [[MIOTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-//    }
-//    numRow++;
-//    
-//    [items addObject:cell];
     
     int rowCount = [sections[sender.tag] intValue];
     
@@ -274,18 +277,8 @@
     picker.allowsEditing = YES; // gives you preview of chosen photo
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
 
-    
-    
     [self presentViewController:picker animated:YES completion:NULL];
-
     
-    
-    
-//    
-//    MIOCameraVC * cameraVC = [[MIOCameraVC alloc] initWithNibName:nil bundle:nil];
-//    
-//    [self.navigationController pushViewController:cameraVC animated:NO];
-//    
     NSLog(@"Pushed on camera touch");
     
 }

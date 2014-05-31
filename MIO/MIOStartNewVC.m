@@ -197,20 +197,14 @@
     
     [sender setSelected:!sender.selected];
     
-    //// PRESENT A TVC
+    
     MIOTableViewController  * tableVC = [[MIOTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
     MIONavVC * newNavVC = [[MIONavVC alloc] initWithRootViewController:tableVC];
     
     [self presentViewController:newNavVC animated:NO completion:^{
     }];
-    
-    
-    
- 
 
-
-    
 }
 
 

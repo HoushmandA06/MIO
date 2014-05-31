@@ -7,8 +7,7 @@
 //
 
 #import "MIOTableViewCell.h"
-#import "MIOCameraVC.h"
-
+ 
 
 @implementation MIOTableViewCell
 {
@@ -21,8 +20,7 @@
     UISegmentedControl * workOrder;
     
     
-        //// WILL NEED A UIBUTTON TO PUSH A COLLECTION VIEW IF CAMERA USED TO TAKE PIC (PUSH/POP)
-    
+     
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

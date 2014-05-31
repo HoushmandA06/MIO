@@ -36,8 +36,9 @@
 		0F2C10201934AEB300CD3CE4 /* MIOTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C101F1934AEB300CD3CE4 /* MIOTableViewController.m */; };
 		0F2C10231934AED100CD3CE4 /* MIOTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C10221934AED100CD3CE4 /* MIOTableViewCell.m */; };
 		0F2C10251934D6AE00CD3CE4 /* camera4040.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2C10241934D6AE00CD3CE4 /* camera4040.png */; };
-		0F2C102C19369B4F00CD3CE4 /* MIOCameraVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C102B19369B4F00CD3CE4 /* MIOCameraVC.m */; };
 		0F2C102E1937653300CD3CE4 /* photos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2C102D1937653300CD3CE4 /* photos@2x.png */; };
+		0F2C10BE1938D33700CD3CE4 /* GLAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C10BB1938D33700CD3CE4 /* GLAViewController.m */; };
+		0F2C10BF1938D33700CD3CE4 /* GLACollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C10BD1938D33700CD3CE4 /* GLACollectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,9 +92,11 @@
 		0F2C10211934AED100CD3CE4 /* MIOTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIOTableViewCell.h; sourceTree = "<group>"; };
 		0F2C10221934AED100CD3CE4 /* MIOTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIOTableViewCell.m; sourceTree = "<group>"; };
 		0F2C10241934D6AE00CD3CE4 /* camera4040.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera4040.png; sourceTree = "<group>"; };
-		0F2C102A19369B4F00CD3CE4 /* MIOCameraVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIOCameraVC.h; sourceTree = "<group>"; };
-		0F2C102B19369B4F00CD3CE4 /* MIOCameraVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIOCameraVC.m; sourceTree = "<group>"; };
 		0F2C102D1937653300CD3CE4 /* photos@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photos@2x.png"; sourceTree = "<group>"; };
+		0F2C10BA1938D33700CD3CE4 /* GLAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLAViewController.h; sourceTree = "<group>"; };
+		0F2C10BB1938D33700CD3CE4 /* GLAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLAViewController.m; sourceTree = "<group>"; };
+		0F2C10BC1938D33700CD3CE4 /* GLACollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLACollectionViewController.h; sourceTree = "<group>"; };
+		0F2C10BD1938D33700CD3CE4 /* GLACollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLACollectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,7 +172,7 @@
 				0F2C10221934AED100CD3CE4 /* MIOTableViewCell.m */,
 				0F0D5B2819323224002443F8 /* MIONavVC.h */,
 				0F0D5B2919323224002443F8 /* MIONavVC.m */,
-				0F2C1029193697EC00CD3CE4 /* CameraFiles */,
+				0F2C1029193697EC00CD3CE4 /* Collection View */,
 				0F0D5B03193231DE002443F8 /* Images.xcassets */,
 				0F0D5AF8193231DE002443F8 /* Supporting Files */,
 			);
@@ -216,13 +219,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		0F2C1029193697EC00CD3CE4 /* CameraFiles */ = {
+		0F2C1029193697EC00CD3CE4 /* Collection View */ = {
 			isa = PBXGroup;
 			children = (
-				0F2C102A19369B4F00CD3CE4 /* MIOCameraVC.h */,
-				0F2C102B19369B4F00CD3CE4 /* MIOCameraVC.m */,
+				0F2C10BA1938D33700CD3CE4 /* GLAViewController.h */,
+				0F2C10BB1938D33700CD3CE4 /* GLAViewController.m */,
+				0F2C10BC1938D33700CD3CE4 /* GLACollectionViewController.h */,
+				0F2C10BD1938D33700CD3CE4 /* GLACollectionViewController.m */,
 			);
-			name = CameraFiles;
+			name = "Collection View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,9 +347,10 @@
 				0F0D5B2A19323224002443F8 /* MIOLoginVC.m in Sources */,
 				0F0D5B02193231DE002443F8 /* MIOAppDelegate.m in Sources */,
 				0F0D5B2D19323224002443F8 /* MIOStartNewVC.m in Sources */,
-				0F2C102C19369B4F00CD3CE4 /* MIOCameraVC.m in Sources */,
 				0F0D5AFE193231DE002443F8 /* main.m in Sources */,
+				0F2C10BE1938D33700CD3CE4 /* GLAViewController.m in Sources */,
 				0F2C10201934AEB300CD3CE4 /* MIOTableViewController.m in Sources */,
+				0F2C10BF1938D33700CD3CE4 /* GLACollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
