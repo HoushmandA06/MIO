@@ -10,6 +10,8 @@
 	<string>MIO</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>30055E3E-FD96-44DD-90B3-13B3D406A9A6</key>
+		<string>https://github.com/HoushmandA06/iOS-Class-Project.git</string>
 		<key>581BD411-6DA4-4E58-9E46-B6C974F2DC2F</key>
 		<string>https://github.com/HoushmandA06/MIO.git</string>
 	</dict>
@@ -17,6 +19,8 @@
 	<string>MIO.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>30055E3E-FD96-44DD-90B3-13B3D406A9A6</key>
+		<string>../../../TheIronYard/iOS-Class-Project</string>
 		<key>581BD411-6DA4-4E58-9E46-B6C974F2DC2F</key>
 		<string>../..</string>
 	</dict>
@@ -28,6 +32,14 @@
 	<string>581BD411-6DA4-4E58-9E46-B6C974F2DC2F</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>30055E3E-FD96-44DD-90B3-13B3D406A9A6</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iOS-Class-Project</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

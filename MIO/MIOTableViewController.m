@@ -7,10 +7,11 @@
 //
 
 #import "MIOTableViewController.h"
-#import "GLACollectionViewController.h"
+#import "GLACollectionViewController.h" // collection view for photos
+#import "DLAViewController.h"  // draw app, will proxy for signature page
 
 
-@interface MIOTableViewController () <UIImagePickerControllerDelegate>
+@interface MIOTableViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @end
 
@@ -93,12 +94,18 @@
         
         GLACollectionViewController * collectionVC = [[GLACollectionViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
         
+
         [self.navigationController pushViewController:collectionVC animated:NO];
         
         
     } else
     {
         NSLog(@"submit selected");
+        
+        DLAViewController * signatureVC = [[DLAViewController alloc] initWithNibName:nil bundle:nil];
+        
+        [self.navigationController pushViewController:signatureVC animated:NO];
+
     }
 
     
@@ -276,12 +283,22 @@
     picker.delegate = self;
     picker.allowsEditing = YES; // gives you preview of chosen photo
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-
     [self presentViewController:picker animated:YES completion:NULL];
     
     NSLog(@"Pushed on camera touch");
-    
 }
+
+//- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+//{
+//    UIImage *image = (UIImage *) [info objectForKey:
+//                                  UIImagePickerControllerOriginalImage];
+//    [self dismissViewControllerAnimated:YES completion:^{
+//        
+//    //need to added image to singleton
+//        
+//    }];
+//    
+//}
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -291,7 +308,6 @@
     if(cell == nil)
     {
         cell = [[MIOTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        
     }
  
     cell.row = indexPath.row;

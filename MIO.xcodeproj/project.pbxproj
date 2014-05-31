@@ -39,6 +39,15 @@
 		0F2C102E1937653300CD3CE4 /* photos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2C102D1937653300CD3CE4 /* photos@2x.png */; };
 		0F2C10BE1938D33700CD3CE4 /* GLAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C10BB1938D33700CD3CE4 /* GLAViewController.m */; };
 		0F2C10BF1938D33700CD3CE4 /* GLACollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C10BD1938D33700CD3CE4 /* GLACollectionViewController.m */; };
+		0F2C10C3193A307300CD3CE4 /* MIOSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C10C2193A307300CD3CE4 /* MIOSingleton.m */; };
+		0F2C10C6193A4BDD00CD3CE4 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2C10C5193A4BDD00CD3CE4 /* AssetsLibrary.framework */; };
+		0F2C10C9193A4FCB00CD3CE4 /* MIOCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C10C8193A4FCB00CD3CE4 /* MIOCollectionViewCell.m */; };
+		0F2C10D1193A6DCE00CD3CE4 /* DLAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C10CC193A6DCE00CD3CE4 /* DLAViewController.m */; };
+		0F2C10D2193A6DCE00CD3CE4 /* DLAStageLines.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C10CE193A6DCE00CD3CE4 /* DLAStageLines.m */; };
+		0F2C10D3193A6DCE00CD3CE4 /* DLAStageScribble.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C10D0193A6DCE00CD3CE4 /* DLAStageScribble.m */; };
+		0F2C10D7193A6DEB00CD3CE4 /* Toggle.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2C10D4193A6DEB00CD3CE4 /* Toggle.png */; };
+		0F2C10D8193A6DEB00CD3CE4 /* arrow_undo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2C10D5193A6DEB00CD3CE4 /* arrow_undo.png */; };
+		0F2C10D9193A6DEB00CD3CE4 /* Delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2C10D6193A6DEB00CD3CE4 /* Delete.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +106,20 @@
 		0F2C10BB1938D33700CD3CE4 /* GLAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLAViewController.m; sourceTree = "<group>"; };
 		0F2C10BC1938D33700CD3CE4 /* GLACollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLACollectionViewController.h; sourceTree = "<group>"; };
 		0F2C10BD1938D33700CD3CE4 /* GLACollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLACollectionViewController.m; sourceTree = "<group>"; };
+		0F2C10C1193A307300CD3CE4 /* MIOSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIOSingleton.h; sourceTree = "<group>"; };
+		0F2C10C2193A307300CD3CE4 /* MIOSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIOSingleton.m; sourceTree = "<group>"; };
+		0F2C10C5193A4BDD00CD3CE4 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		0F2C10C7193A4FCB00CD3CE4 /* MIOCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIOCollectionViewCell.h; sourceTree = "<group>"; };
+		0F2C10C8193A4FCB00CD3CE4 /* MIOCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIOCollectionViewCell.m; sourceTree = "<group>"; };
+		0F2C10CB193A6DCE00CD3CE4 /* DLAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DLAViewController.h; path = "../../TheIronYard/iOS-Class-Project/DrawLinesApp/DLAViewController.h"; sourceTree = "<group>"; };
+		0F2C10CC193A6DCE00CD3CE4 /* DLAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DLAViewController.m; path = "../../TheIronYard/iOS-Class-Project/DrawLinesApp/DLAViewController.m"; sourceTree = "<group>"; };
+		0F2C10CD193A6DCE00CD3CE4 /* DLAStageLines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DLAStageLines.h; path = "../../TheIronYard/iOS-Class-Project/DrawLinesApp/DLAStageLines.h"; sourceTree = "<group>"; };
+		0F2C10CE193A6DCE00CD3CE4 /* DLAStageLines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DLAStageLines.m; path = "../../TheIronYard/iOS-Class-Project/DrawLinesApp/DLAStageLines.m"; sourceTree = "<group>"; };
+		0F2C10CF193A6DCE00CD3CE4 /* DLAStageScribble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DLAStageScribble.h; path = "../../TheIronYard/iOS-Class-Project/DrawLinesApp/DLAStageScribble.h"; sourceTree = "<group>"; };
+		0F2C10D0193A6DCE00CD3CE4 /* DLAStageScribble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DLAStageScribble.m; path = "../../TheIronYard/iOS-Class-Project/DrawLinesApp/DLAStageScribble.m"; sourceTree = "<group>"; };
+		0F2C10D4193A6DEB00CD3CE4 /* Toggle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Toggle.png; sourceTree = "<group>"; };
+		0F2C10D5193A6DEB00CD3CE4 /* arrow_undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_undo.png; sourceTree = "<group>"; };
+		0F2C10D6193A6DEB00CD3CE4 /* Delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Delete.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F2C10C6193A4BDD00CD3CE4 /* AssetsLibrary.framework in Frameworks */,
 				0F0D5AF4193231DE002443F8 /* CoreGraphics.framework in Frameworks */,
 				0F0D5AF6193231DE002443F8 /* UIKit.framework in Frameworks */,
 				0F0D5AF2193231DE002443F8 /* Foundation.framework in Frameworks */,
@@ -145,6 +169,7 @@
 		0F0D5AF0193231DE002443F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0F2C10C5193A4BDD00CD3CE4 /* AssetsLibrary.framework */,
 				0F0D5AF1193231DE002443F8 /* Foundation.framework */,
 				0F0D5AF3193231DE002443F8 /* CoreGraphics.framework */,
 				0F0D5AF5193231DE002443F8 /* UIKit.framework */,
@@ -172,7 +197,9 @@
 				0F2C10221934AED100CD3CE4 /* MIOTableViewCell.m */,
 				0F0D5B2819323224002443F8 /* MIONavVC.h */,
 				0F0D5B2919323224002443F8 /* MIONavVC.m */,
+				0F2C10C4193A307700CD3CE4 /* Singleton */,
 				0F2C1029193697EC00CD3CE4 /* Collection View */,
+				0F2C10C0193A235700CD3CE4 /* Signature */,
 				0F0D5B03193231DE002443F8 /* Images.xcassets */,
 				0F0D5AF8193231DE002443F8 /* Supporting Files */,
 			);
@@ -226,8 +253,35 @@
 				0F2C10BB1938D33700CD3CE4 /* GLAViewController.m */,
 				0F2C10BC1938D33700CD3CE4 /* GLACollectionViewController.h */,
 				0F2C10BD1938D33700CD3CE4 /* GLACollectionViewController.m */,
+				0F2C10C7193A4FCB00CD3CE4 /* MIOCollectionViewCell.h */,
+				0F2C10C8193A4FCB00CD3CE4 /* MIOCollectionViewCell.m */,
 			);
 			name = "Collection View";
+			sourceTree = "<group>";
+		};
+		0F2C10C0193A235700CD3CE4 /* Signature */ = {
+			isa = PBXGroup;
+			children = (
+				0F2C10CB193A6DCE00CD3CE4 /* DLAViewController.h */,
+				0F2C10CC193A6DCE00CD3CE4 /* DLAViewController.m */,
+				0F2C10CD193A6DCE00CD3CE4 /* DLAStageLines.h */,
+				0F2C10CE193A6DCE00CD3CE4 /* DLAStageLines.m */,
+				0F2C10CF193A6DCE00CD3CE4 /* DLAStageScribble.h */,
+				0F2C10D0193A6DCE00CD3CE4 /* DLAStageScribble.m */,
+				0F2C10D4193A6DEB00CD3CE4 /* Toggle.png */,
+				0F2C10D5193A6DEB00CD3CE4 /* arrow_undo.png */,
+				0F2C10D6193A6DEB00CD3CE4 /* Delete.png */,
+			);
+			name = Signature;
+			sourceTree = "<group>";
+		};
+		0F2C10C4193A307700CD3CE4 /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				0F2C10C1193A307300CD3CE4 /* MIOSingleton.h */,
+				0F2C10C2193A307300CD3CE4 /* MIOSingleton.m */,
+			);
+			name = Singleton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,17 +363,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F2C10D9193A6DEB00CD3CE4 /* Delete.png in Resources */,
 				0F0D5AFC193231DE002443F8 /* InfoPlist.strings in Resources */,
 				0F0D5B3A1932328B002443F8 /* new.png in Resources */,
 				0F0D5B04193231DE002443F8 /* Images.xcassets in Resources */,
 				0F0D5B3C1932328B002443F8 /* moveout.png in Resources */,
 				0F2C101D1933C8D200CD3CE4 /* check.png in Resources */,
 				0F0D5B3B1932328B002443F8 /* movein.png in Resources */,
+				0F2C10D8193A6DEB00CD3CE4 /* arrow_undo.png in Resources */,
 				0F2C101C1933C8D200CD3CE4 /* exclamation.png in Resources */,
 				0F0D5B3219323279002443F8 /* currentuser.png in Resources */,
 				0F0D5B3319323279002443F8 /* newuser.png in Resources */,
 				0F2C102E1937653300CD3CE4 /* photos@2x.png in Resources */,
 				0F0D5B3419323279002443F8 /* image.png in Resources */,
+				0F2C10D7193A6DEB00CD3CE4 /* Toggle.png in Resources */,
 				0F2C10251934D6AE00CD3CE4 /* camera4040.png in Resources */,
 				0F0D5B391932328B002443F8 /* folder.png in Resources */,
 			);
@@ -345,9 +402,14 @@
 				0F2C10231934AED100CD3CE4 /* MIOTableViewCell.m in Sources */,
 				0F0D5B2C19323224002443F8 /* MIOWelcomeVC.m in Sources */,
 				0F0D5B2A19323224002443F8 /* MIOLoginVC.m in Sources */,
+				0F2C10C9193A4FCB00CD3CE4 /* MIOCollectionViewCell.m in Sources */,
+				0F2C10D1193A6DCE00CD3CE4 /* DLAViewController.m in Sources */,
 				0F0D5B02193231DE002443F8 /* MIOAppDelegate.m in Sources */,
+				0F2C10D3193A6DCE00CD3CE4 /* DLAStageScribble.m in Sources */,
+				0F2C10D2193A6DCE00CD3CE4 /* DLAStageLines.m in Sources */,
 				0F0D5B2D19323224002443F8 /* MIOStartNewVC.m in Sources */,
 				0F0D5AFE193231DE002443F8 /* main.m in Sources */,
+				0F2C10C3193A307300CD3CE4 /* MIOSingleton.m in Sources */,
 				0F2C10BE1938D33700CD3CE4 /* GLAViewController.m in Sources */,
 				0F2C10201934AEB300CD3CE4 /* MIOTableViewController.m in Sources */,
 				0F2C10BF1938D33700CD3CE4 /* GLACollectionViewController.m in Sources */,

@@ -8,7 +8,7 @@
 
 #import "GLAViewController.h"
 
-@interface GLAViewController ()
+@interface GLAViewController () 
 
 @end
 
