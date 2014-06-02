@@ -7,6 +7,7 @@
 //
 
 #import "MIOTableViewCell.h"
+#import "MIOSingleton.h"
  
 
 @implementation MIOTableViewCell
@@ -17,10 +18,6 @@
     
     UIButton * camera;
     
-    UISegmentedControl * workOrder;
-    
-    
-     
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

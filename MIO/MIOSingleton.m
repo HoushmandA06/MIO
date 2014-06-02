@@ -11,7 +11,7 @@
 
 @interface MIOSingleton ()
 
-@property (nonatomic) NSMutableArray * listItems;
+@property (nonatomic) NSMutableArray * residentItems;
 
 @end
 
@@ -36,49 +36,86 @@
     if(self)
     {
         [self loadListItems];
+        
+        self.residentItems = [@[
+                           
+                           @{   @"pdfData":@"string",
+                                @"sigData":@"string",
+                                @"adminDetails":
+                                    [@{
+                                       @"name": @"string",
+                                       @"phone":@"string",
+                                       @"email":@"string",
+                                       @"property":@"string",
+                                       @"unit":@"string",
+                                       @"minMout":@YES,
+                                       @"date":@"string",
+                                       @"sectionLists":
+                                           [@{
+                                       
+                                              } mutableCopy]
+                                       } mutableCopy]
+                                }
+                           ] mutableCopy];
+        
+        
+        
+        NSArray * sectionNames = @[@"Front Entrance",@"Living Room",@"Kitchen",@"Bathroom #1",@"Bathroom #2",@"Bedroom #1",@"Bedroom #2",@"Bedroom #3",@"Rear Entrance",@"Air Conditioning",@"Heating Systems",@"Patio",@"Balcony",@"Storage Room"];
+        
+        for (NSString * sectionName in sectionNames)
+        {
+            self.residentItems[0][@"adminDetails"][@"sectionLists"][sectionName] = [@[] mutableCopy];
+            
+            for (int i; i < 2; i++)
+            {
+                NSMutableDictionary * commentDetails = [@{
+                                                          @"comment":@"string",
+                                                          @"cost":@"string",
+                                                          @"allClear":[NSNumber numberWithBool:YES],
+                                                          @"image":[@[]mutableCopy]
+                                                          } mutableCopy];
+                
+                [self.residentItems[0][@"adminDetails"][@"sectionLists"][sectionName] addObject:commentDetails];
+            }
+        }
+        
+        
+        
+        
     }
     return self;
 }
 
 
--(NSMutableArray *)listItems
-{
-    if(_listItems == nil)
-    {
-        _listItems = [@[] mutableCopy];        
-    }
-    return _listItems;
-}
-
 
 -(void)addListItem:(NSDictionary *)listItem
 {
-    [self.listItems addObject:listItem];
+    [self.residentItems addObject:listItem];
     [self saveData];
 }
 
 -(void)removeListItem:(NSDictionary *)listItem
 {
-    [self.listItems removeObjectIdenticalTo:listItem];
+    [self.residentItems removeObjectIdenticalTo:listItem];
     [self saveData];
 }
 
 -(void)removeListItemAtIndex:(NSInteger)index
 {
-    [self.listItems removeObjectAtIndex:index];
+    [self.residentItems removeObjectAtIndex:index];
     [self saveData];
 }
 
 
 -(NSArray *)allListItems
 {
-    return [self.listItems copy];
+    return [self.residentItems copy];
 }
 
 -(void)saveData  //saves the data
 {
     NSString *path = [self listArchivePath];
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.listItems]; //what we are archiving to, should be same as unarchive
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.residentItems]; //what we are archiving to, should be same as unarchive
     [data writeToFile:path options:NSDataWritingAtomic error:nil];
     
 }
@@ -96,7 +133,7 @@
     NSString *path = [self listArchivePath];
     if([[NSFileManager defaultManager] fileExistsAtPath:path])
     {
-        self.listItems = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+        self.residentItems = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
     }
 }
 

@@ -9,6 +9,7 @@
 #import "MIOTableViewController.h"
 #import "GLACollectionViewController.h" // collection view for photos
 #import "DLAViewController.h"  // draw app, will proxy for signature page
+#import "MIOSingleton.h"
 
 
 @interface MIOTableViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -27,6 +28,8 @@
     
     int numRow;
     
+    NSMutableArray * residentItems;
+    
     
 }
 
@@ -41,8 +44,84 @@
     self.navigationItem.leftBarButtonItem = back;
     self.navigationItem.rightBarButtonItem = saveData;
 
-    sections = [@[@2,@4,@4,@4,@4,@4,@4,@4,@2,@1,@1,@1,@1,@1] mutableCopy];  // adjust to set amount for 14 fields
+    sections = [@[@2,@2,@2,@2,@2,@2,@2,@2,@2,@2,@2,@2,@2,@2] mutableCopy];  // adjust to set amount for 14 fields
 
+        
+/*
+    residentItems = [@[
+  
+                     @{   @"pdfData":@"string",
+                          @"sigData":@"string",
+                          @"adminDetails":
+                          [@{
+                            @"name": @"string",
+                            @"phone":@"string",
+                            @"email":@"string",
+                            @"property":@"string",
+                            @"unit":@"string",
+                            @"minMout":@YES,
+                            @"date":@"string",
+                            @"sectionLists":
+                                         [@{
+//                                            @"frontEntrance": [@[
+//                                                                [@{
+//                                                                    @"comment":@"string",
+//                                                                    @"cost":@"string",
+//                                                                    @"allClear":[NSNumber numberWithBool:YES],
+//                                                                    @"image":[@[]mutableCopy]
+//                                                                    }
+//                                                                 mutableCopy],
+//                                                                [@{
+//                                                                    @"comment":@"string",
+//                                                                    @"cost":@"string",
+//                                                                    @"allClear":[NSNumber numberWithBool:YES],
+//                                                                    @"image":[@[]mutableCopy]
+//                                                                    }
+//                                                                 mutableCopy]
+//                                                                ] mutableCopy],
+//                                             @"livingRoom": [@[
+//                                                              [@{
+//                                                                 @"comment":@"string",
+//                                                                 @"cost":@"string",
+//                                                                 @"allClear":[NSNumber numberWithBool:YES],
+//                                                                 @"image":[@[]mutableCopy]
+//                                                                 }
+//                                                               mutableCopy],
+//                                                              [@{
+//                                                                 @"comment":@"string",
+//                                                                 @"cost":@"string",
+//                                                                 @"allClear":[NSNumber numberWithBool:YES],
+//                                                                 @"image":[@[]mutableCopy]
+//                                                                 }
+//                                                               mutableCopy]
+//                                                              ] mutableCopy],
+                                            } mutableCopy]
+                            } mutableCopy]
+                      }
+                     ] mutableCopy];
+        
+        
+        
+        NSArray * sectionNames = @[@"Front Entrance",@"Living Room",@"Kitchen",@"Bathroom #1"];
+        
+        for (NSString * sectionName in sectionNames)
+        {
+            residentItems[0][@"adminDetails"][@"sectionLists"][sectionName] = [@[] mutableCopy];
+            
+            for (int i; i < 2; i++)
+            {
+                NSMutableDictionary * commentDetails = [@{
+                                                          @"comment":@"string",
+                                                          @"cost":@"string",
+                                                          @"allClear":[NSNumber numberWithBool:YES],
+                                                          @"image":[@[]mutableCopy]
+                                                          } mutableCopy];
+                
+                [residentItems[0][@"adminDetails"][@"sectionLists"][sectionName] addObject:commentDetails];
+            }
+        }
+*/
+        
         
     }
     return self;
@@ -68,8 +147,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    
     
     photos = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"photos"] style:UIBarButtonItemStylePlain target:self action:@selector(tabSelected:)];
     
