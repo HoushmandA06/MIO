@@ -11,7 +11,7 @@
 @interface MIOSingleton : NSObject
 
 
-+(MIOSingleton *)sharedCollection;
++(MIOSingleton *)mainData;
 
 -(void)addListItem:(NSDictionary *)listItem;
 -(void)removeListItem:(NSDictionary *)listItem;

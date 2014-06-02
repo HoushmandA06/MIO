@@ -72,7 +72,7 @@
 {
     _row = row;
     
-    // update comment.text = somthing based on _row / _section
+      // update comment.text = somthing based on _row / _section
     
 //    NSString * sectionKey = [data allKeys][self.section];
 //    
@@ -93,7 +93,8 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField   //now any textField will allow resign keyboard
 {
-    // save comment.text to something based on self.row / self.section
+    
+      // save comment.text to something based on self.row / self.section
     
 //    NSString * sectionKey = [data allKeys][self.section];
 //    

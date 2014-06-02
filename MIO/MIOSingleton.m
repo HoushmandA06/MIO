@@ -17,7 +17,7 @@
 
 @implementation MIOSingleton
 
-+(MIOSingleton *)sharedCollection;
++(MIOSingleton *)mainData;
 
 {
     static dispatch_once_t create;

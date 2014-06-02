@@ -9,6 +9,7 @@
 #import "MIOStartNewVC.h"
 #import "MIOTableViewController.h"
 #import "MIONavVC.h"
+#import "MIOSingleton.h"
 
 @interface MIOStartNewVC () <UITextFieldDelegate>
 
@@ -166,6 +167,7 @@
     
     ///// DATE PICKER
     moveDate = [[UIDatePicker alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+45, 570, 240, 60)];
+    [moveDate addTarget:self action:@selector(updateDate:) forControlEvents:UIControlEventValueChanged];
     moveDate.datePickerMode = UIDatePickerModeDate;
     moveDate.backgroundColor = [UIColor clearColor];
     moveDate.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -174,6 +176,23 @@
     
     [self.view addSubview:moveDate];
 }
+
+
+-(void)updateDate:(id)sender
+{
+    NSDate *myDate = moveDate.date;
+    
+    NSDateFormatter * dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"MM-dd-YYYY"];
+    
+    NSString *displayVersion = [dateFormat stringFromDate:myDate];
+    
+    NSLog(@"%@",displayVersion);
+    NSLog(@"spun");
+
+}
+
+
 
 
 - (void)valueChanged:(UISegmentedControl *)segment
@@ -234,6 +253,16 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField   //now any textField will allow resign keyboard
 {
     [textField resignFirstResponder];
+    
+    for (textField in fields) {
+
+        
+        //  NSDictionary * listItem = [NSDictionary ]
+        //  [[MIOSingleton mainData] addListItem: ]
+
+    }
+    
+    
  
     return YES;
 }
