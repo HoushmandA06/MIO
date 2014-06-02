@@ -7,6 +7,10 @@
 //
 
 #import "MIOSignUpVC.h"
+#import "MIOWelcomeVC.h"
+#import "MIONavVC.h"
+#import <Parse/Parse.h>
+
 
 @interface MIOSignUpVC ()
 
@@ -23,7 +27,6 @@
     UITextField * pwConfirm;
     UITextField * email;
     
-
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -33,9 +36,6 @@
        
     self.view.backgroundColor = [UIColor whiteColor];
     
-    
-        
-        
     back = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backToLogIn)];
     self.navigationItem.leftBarButtonItem = back;
     back.tintColor = [UIColor whiteColor];
@@ -137,9 +137,13 @@
     if (textField==pwConfirm) {
         
         if ([pwField.text isEqualToString:pwConfirm.text]) {
+          
+    
             NSLog(@"password fields are equal");
             
         }
+       
+        
         else{
             NSLog(@"password fields are not equal prompt user to enter correct values");
             
@@ -153,11 +157,32 @@
 -(void)submit
 {
     //// NEED TO CONNECT TO PARSE
+    PFUser * user = [PFUser user];
+    user.username = nameField.text;
+    user.password = pwConfirm.text;
+    user.email = email.text;
     
+    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error == nil)
+        {
+            
+            MIOWelcomeVC  * welcomeVC = [[MIOWelcomeVC alloc] initWithNibName:nil bundle:nil];
+            
+            MIONavVC * newNavVC = [[MIONavVC alloc] initWithRootViewController:welcomeVC];
+            
+            [self presentViewController:newNavVC animated:NO completion:^{
+            }];
+         
+        } else {
+            
+            NSString * errorDescription = error.userInfo[@"error"];
+            
+            UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"Username Taken" message:errorDescription delegate:self cancelButtonTitle:@"Try Another USername" otherButtonTitles:nil];
+            [alertView show];
+        }
+    }];
     
     NSLog(@"Submit selected");
-    
-    
     
 }
 
@@ -167,7 +192,7 @@
     [pwField resignFirstResponder];
     [nameField resignFirstResponder];
     [pwConfirm resignFirstResponder];
-    [email resignFirstResponder];    
+    [email resignFirstResponder];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

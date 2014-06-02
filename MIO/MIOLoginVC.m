@@ -10,6 +10,7 @@
 #import "MIOSignUpVC.h"
 #import "MIOWelcomeVC.h"
 #import "MIONavVC.h"
+#import <Parse/Parse.h>
 //// WILL NEED TO ADD PARSE
 
 
@@ -124,20 +125,38 @@
 -(void)signIn
 {
     //// PARSE CODE FOR TESTING USER NAME AND PW WITH ALERT VIEW REQUIRED HERE
+    UIActivityIndicatorView *ai = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    ai.color = [UIColor whiteColor];
+    ai.frame = CGRectMake(160, 200, 75.0, 75.0);
+    [ai startAnimating];
+    [self.view addSubview:ai];   // can set to center by adding it to self.view.frame
     
-    
-    
-    
-    
-    //// NAVIGATION; TO BE ADDED TO PARSE LOGIN SUCCESS BLOCK
-    
-    MIOWelcomeVC  * welcomeVC = [[MIOWelcomeVC alloc] initWithNibName:nil bundle:nil];
-    
-    MIONavVC * newNavVC = [[MIONavVC alloc] initWithRootViewController:welcomeVC];
-    
-    [self presentViewController:newNavVC animated:NO completion:^{
-    }];
+    [PFUser  logInWithUsernameInBackground:nameField.text password:pwField.text block:^(PFUser *user, NSError *error)
+     
+     {
+         if (error == nil)
+         {
 
+             //// NAVIGATION; TO BE ADDED TO PARSE LOGIN SUCCESS BLOCK
+             
+             MIOWelcomeVC  * welcomeVC = [[MIOWelcomeVC alloc] initWithNibName:nil bundle:nil];
+             
+             MIONavVC * newNavVC = [[MIONavVC alloc] initWithRootViewController:welcomeVC];
+             
+             [self presentViewController:newNavVC animated:NO completion:^{
+             }];
+             
+         } else {
+             
+             pwField.text = nil;
+             
+             [ai removeFromSuperview];
+             NSString * errorDescription = error.userInfo[@"error"];
+             
+             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Username Taken" message:errorDescription delegate:self cancelButtonTitle:@"Try Another Username" otherButtonTitles:nil];  //need to customize per the specific error message
+             [alertView show];
+         }
+     }];
 }
 
 -(void)newUserSignUp

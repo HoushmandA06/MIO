@@ -18,7 +18,6 @@
 @implementation MIOStartNewVC
 {
  
-    
     UIButton * submit;
     
     UISegmentedControl * segmentedControl;

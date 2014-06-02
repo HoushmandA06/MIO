@@ -9,12 +9,20 @@
 #import "MIOAppDelegate.h"
 #import "MIOLoginVC.h"
 #import "MIOWelcomeVC.h"
+#import <Parse/Parse.h>
 
 @implementation MIOAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    [Parse setApplicationId:@"MVbaAT07puTu2miBmmt1rZKprFCNrMagEfyexmW1"
+                  clientKey:@"SPuuWONsvvQUGUpGuDOwamk4fMFeTBesOqOGV8GZ"];
+
+    [PFUser enableAutomaticUser];
+
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     self.window.rootViewController = [[MIOLoginVC alloc] initWithNibName:nil bundle:nil];
 
