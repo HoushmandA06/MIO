@@ -89,6 +89,9 @@
         textField.placeholder = name;
         textField.autocorrectionType = FALSE;
         
+        NSString * key = fieldNames[index];
+        textField.text = [[MIOSingleton mainData] currentResident][@"adminDetails"][key];
+        
     
         switch ([fieldNames indexOfObject:name])
         {
@@ -253,13 +256,25 @@
 {
     [textField resignFirstResponder];
     
-    for (textField in fields) {
-
-        
-        //  NSDictionary * listItem = [NSDictionary ]
-        //  [[MIOSingleton mainData] addListItem: ]
-
-    }
+    
+    int index = [fields indexOfObject:textField];
+    
+    NSString * key = fieldNames[index];
+    [[MIOSingleton mainData] currentResident][@"adminDetails"][key] = textField.text;
+    
+//    for (UITextField * tField in fields)
+//    {
+//        int index = [fields indexOfObject:tField];
+//
+//        if ([tField isEqual:textField])
+//        {
+//            
+//        }
+//        
+//        //  NSDictionary * listItem = [NSDictionary ]
+//        //  [[MIOSingleton mainData] addListItem: ]
+//
+//    }
     
     
  

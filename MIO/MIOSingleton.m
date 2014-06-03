@@ -13,6 +13,7 @@
 
 @property (nonatomic) NSMutableArray * residentItems;
 
+
 @end
 
 @implementation MIOSingleton
@@ -43,7 +44,7 @@
                                 @"sigData":@"string",
                                 @"adminDetails":
                                     [@{
-                                       @"name": @"string",
+                                       @"Resident": @"string",
                                        @"phone":@"string",
                                        @"email":@"string",
                                        @"property":@"string",
@@ -80,7 +81,7 @@
         }
         
         
-        
+        self.currentResident = self.residentItems[0];
         
     }
     return self;
@@ -88,9 +89,12 @@
 
 
 
--(void)addListItem:(NSDictionary *)listItem
+-(void)addResidentItem:(NSMutableDictionary *)residentItem
 {
-    [self.residentItems addObject:listItem];
+    [self.residentItems addObject:residentItem];
+    
+    self.currentResident = residentItem;
+    
     [self saveData];
 }
 

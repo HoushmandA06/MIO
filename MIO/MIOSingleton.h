@@ -10,6 +10,8 @@
 
 @interface MIOSingleton : NSObject
 
+@property (nonatomic) NSMutableDictionary * currentResident;
+
 
 +(MIOSingleton *)mainData;
 
@@ -18,6 +20,7 @@
 -(void)removeListItemAtIndex:(NSInteger)index;
 -(NSArray *)allListItems;
 
+//- (NSMutableDictionary *)currentResident;
 
 
 
