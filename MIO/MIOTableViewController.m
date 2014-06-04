@@ -10,6 +10,7 @@
 #import "GLACollectionViewController.h" // collection view for photos
 #import "DLAViewController.h"  // draw app, will proxy for signature page
 #import "MIOSingleton.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 
 
 @interface MIOTableViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -23,14 +24,11 @@
     
     UIBarButtonItem * photos;
     UIBarButtonItem * submit;
+    NSString * sectionName;
     
     NSMutableArray *sections;
     
     int numRow;
-    
-    NSMutableArray * residentItems;
-    
-    
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -46,83 +44,6 @@
 
     sections = [@[@2,@2,@2,@2,@2,@2,@2,@2,@2,@2,@2,@2,@2,@2] mutableCopy];  // adjust to set amount for 14 fields
 
-        
-/*
-    residentItems = [@[
-  
-                     @{   @"pdfData":@"string",
-                          @"sigData":@"string",
-                          @"adminDetails":
-                          [@{
-                            @"name": @"string",
-                            @"phone":@"string",
-                            @"email":@"string",
-                            @"property":@"string",
-                            @"unit":@"string",
-                            @"minMout":@YES,
-                            @"date":@"string",
-                            @"sectionLists":
-                                         [@{
-//                                            @"frontEntrance": [@[
-//                                                                [@{
-//                                                                    @"comment":@"string",
-//                                                                    @"cost":@"string",
-//                                                                    @"allClear":[NSNumber numberWithBool:YES],
-//                                                                    @"image":[@[]mutableCopy]
-//                                                                    }
-//                                                                 mutableCopy],
-//                                                                [@{
-//                                                                    @"comment":@"string",
-//                                                                    @"cost":@"string",
-//                                                                    @"allClear":[NSNumber numberWithBool:YES],
-//                                                                    @"image":[@[]mutableCopy]
-//                                                                    }
-//                                                                 mutableCopy]
-//                                                                ] mutableCopy],
-//                                             @"livingRoom": [@[
-//                                                              [@{
-//                                                                 @"comment":@"string",
-//                                                                 @"cost":@"string",
-//                                                                 @"allClear":[NSNumber numberWithBool:YES],
-//                                                                 @"image":[@[]mutableCopy]
-//                                                                 }
-//                                                               mutableCopy],
-//                                                              [@{
-//                                                                 @"comment":@"string",
-//                                                                 @"cost":@"string",
-//                                                                 @"allClear":[NSNumber numberWithBool:YES],
-//                                                                 @"image":[@[]mutableCopy]
-//                                                                 }
-//                                                               mutableCopy]
-//                                                              ] mutableCopy],
-                                            } mutableCopy]
-                            } mutableCopy]
-                      }
-                     ] mutableCopy];
-        
-        
-        
-        NSArray * sectionNames = @[@"Front Entrance",@"Living Room",@"Kitchen",@"Bathroom #1"];
-        
-        for (NSString * sectionName in sectionNames)
-        {
-            residentItems[0][@"adminDetails"][@"sectionLists"][sectionName] = [@[] mutableCopy];
-            
-            for (int i; i < 2; i++)
-            {
-                NSMutableDictionary * commentDetails = [@{
-                                                          @"comment":@"string",
-                                                          @"cost":@"string",
-                                                          @"allClear":[NSNumber numberWithBool:YES],
-                                                          @"image":[@[]mutableCopy]
-                                                          } mutableCopy];
-                
-                [residentItems[0][@"adminDetails"][@"sectionLists"][sectionName] addObject:commentDetails];
-            }
-        }
-*/
-        
-        
     }
     return self;
 }
@@ -207,10 +128,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    
+ 
+   // int rowCount1 = [[[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionName] allKeys] count];
+
+   // int rowCount2 = [[[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][[sections[section] intValue]] allKeys] count];
+
     int rowCount = [sections[section] intValue];
     
     return rowCount;
-
+    
+    
 }
 
 
@@ -327,9 +255,18 @@
     
     
     int rowCount = [sections[sender.tag] intValue];
-    
+    NSMutableDictionary * commentDetails = [@{
+                                              @"comment":@"",
+                                              @"cost":@"",
+                                              @"allClear":[NSNumber numberWithBool:YES],
+                                              @"image":[@[]mutableCopy]
+                                              } mutableCopy];
+
+    sectionName = [MIOSingleton mainData].sectionNames[sender.tag];
+   
+    [[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionName] addObject:commentDetails];
+
     sections[sender.tag] = @(rowCount + 1);
-    
     [self.tableView reloadData];
     
     
@@ -337,18 +274,12 @@
 
 - (void)delItemToArray:(UIButton *)sender
 {
-//    numRow--;
-//    [items removeLastObject];
-//    [self.tableView reloadData];
-    
-    // singleton add item to array
     
     int rowCount = [sections[sender.tag] intValue];
     
     sections[sender.tag] = @(rowCount - 1);
     
     [self.tableView reloadData];
-    
     
 }
 
@@ -365,17 +296,35 @@
     NSLog(@"Pushed on camera touch");
 }
 
-//- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-//{
-//    UIImage *image = (UIImage *) [info objectForKey:
-//                                  UIImagePickerControllerOriginalImage];
-//    [self dismissViewControllerAnimated:YES completion:^{
-//        
-//    //need to added image to singleton
-//        
-//    }];
-//    
-//}
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
+    UIImage *originalImage, *editedImage, *imageToSave;
+    
+    if (CFStringCompare ((CFStringRef) mediaType, kUTTypeImage, 0) == kCFCompareEqualTo)
+    
+    {
+        editedImage = (UIImage *) [info objectForKey: UIImagePickerControllerEditedImage];
+        originalImage = (UIImage *) [info objectForKey: UIImagePickerControllerOriginalImage];
+        
+        if (editedImage) {imageToSave = editedImage;}
+        else {imageToSave = originalImage;}
+        
+        // Save the new image (original or edited) to the Camera Roll
+        UIImageWriteToSavedPhotosAlbum (imageToSave, nil, nil , nil);
+    }
+    
+  
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+
+  
+}
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -386,9 +335,9 @@
     {
         cell = [[MIOTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
- 
-    cell.row = indexPath.row;
+
     cell.section = indexPath.section;
+    cell.row = indexPath.row;
     cell.delegate = self;
     return cell;
 }

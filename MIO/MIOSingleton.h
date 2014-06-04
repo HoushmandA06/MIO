@@ -11,17 +11,18 @@
 @interface MIOSingleton : NSObject
 
 @property (nonatomic) NSMutableDictionary * currentResident;
-
+@property (nonatomic) NSArray * sectionNames;
 
 +(MIOSingleton *)mainData;
 
--(void)addListItem:(NSDictionary *)listItem;
+
+-(void)addResidentItem:(NSMutableDictionary *)residentItem;
+
 -(void)removeListItem:(NSDictionary *)listItem;
 -(void)removeListItemAtIndex:(NSInteger)index;
 -(NSArray *)allListItems;
 
-//- (NSMutableDictionary *)currentResident;
-
+ 
 
 
 @end

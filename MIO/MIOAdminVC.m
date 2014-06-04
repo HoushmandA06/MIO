@@ -6,16 +6,16 @@
 //  Copyright (c) 2014 Ali Houshmand. All rights reserved.
 //
 
-#import "MIOStartNewVC.h"
+#import "MIOAdminVC.h"
 #import "MIOTableViewController.h"
 #import "MIONavVC.h"
 #import "MIOSingleton.h"
 
-@interface MIOStartNewVC () <UITextFieldDelegate>
+@interface MIOAdminVC () <UITextFieldDelegate>
 
 @end
 
-@implementation MIOStartNewVC
+@implementation MIOAdminVC
 {
  
     UIButton * submit;
@@ -51,6 +51,7 @@
     self.navigationItem.leftBarButtonItem = back;
     self.navigationItem.rightBarButtonItem = saveData;
         
+    
         
     }
     return self;
@@ -69,7 +70,7 @@
     adminTitle.text = @"Enter Admin Details:";
     [self.view addSubview:adminTitle];
     
-    fieldNames = @[@"Resident", @"Phone", @"Email", @"Property",@"Unit #"];
+    fieldNames = @[@"Resident", @"Phone", @"Email", @"Property",@"Unit#"];
  
 
 //    keyboardTypes = @[@(UIKeyboardTypeDefault),@(UIKeyboardTypePhonePad),@(UIKeyboardTypeEmailAddress),@(UIKeyboardTypeNamePhonePad),@(UIKeyboardTypeNumbersAndPunctuation)];
@@ -167,30 +168,50 @@
     moveDateLabel.textColor = [UIColor colorWithWhite:0.90 alpha:.90];
     [self.view addSubview:moveDateLabel];
     
-    ///// DATE PICKER
-    moveDate = [[UIDatePicker alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+45, 570, 240, 60)];
-    [moveDate addTarget:self action:@selector(updateDate:) forControlEvents:UIControlEventValueChanged];
-    moveDate.datePickerMode = UIDatePickerModeDate;
-    moveDate.backgroundColor = [UIColor clearColor];
-    moveDate.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    moveDate.layer.borderWidth = 1;
-    moveDate.layer.cornerRadius = 10;
-    
-    [self.view addSubview:moveDate];
+
+//    if([[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"] != nil)
+//      {
+//          NSDate * date = [[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"];
+//          moveDate = [[UIDatePicker alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+45, 570, 240, 60)];
+//          [moveDate addTarget:self action:@selector(updateDate:) forControlEvents:UIControlEventValueChanged];
+//          moveDate.datePickerMode = UIDatePickerModeDate;
+//          moveDate.backgroundColor = [UIColor clearColor];
+//          moveDate.layer.borderColor = [UIColor lightGrayColor].CGColor;
+//          moveDate.layer.borderWidth = 1;
+//          moveDate.layer.cornerRadius = 10;
+//        
+//          [moveDate setDate:date];
+//          [self.view addSubview:moveDate];
+//      }
+//        else
+//      {
+          moveDate = [[UIDatePicker alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+45, 570, 240, 60)];
+          [moveDate addTarget:self action:@selector(updateDate:) forControlEvents:UIControlEventValueChanged];
+          moveDate.datePickerMode = UIDatePickerModeDate;
+          moveDate.backgroundColor = [UIColor clearColor];
+          moveDate.layer.borderColor = [UIColor lightGrayColor].CGColor;
+          moveDate.layer.borderWidth = 1;
+          moveDate.layer.cornerRadius = 10;
+          [self.view addSubview:moveDate];
+//        }
 }
 
 
 -(void)updateDate:(id)sender
 {
     NSDate *myDate = moveDate.date;
+    [[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"] = myDate;
     
-    NSDateFormatter * dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"MM-dd-YYYY"];
-    
-    NSString *displayVersion = [dateFormat stringFromDate:myDate];
-    
-    NSLog(@"%@",displayVersion);
+    NSLog(@"%@",myDate);
+    NSLog(@"%@ from singleton",[[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"]);
     NSLog(@"spun");
+    
+ //// will use this code for pretty version of date later
+ 
+//   NSDateFormatter * dateFormat = [[NSDateFormatter alloc] init];
+//   [dateFormat setDateFormat:@"MM-dd-YYYY"];
+//   NSString *displayVersion = [dateFormat stringFromDate:myDate];
+//   [[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"] = displayVersion;
 
 }
 
@@ -217,7 +238,6 @@
 {
     
     [sender setSelected:!sender.selected];
-    
     
     MIOTableViewController  * tableVC = [[MIOTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
@@ -262,22 +282,8 @@
     NSString * key = fieldNames[index];
     [[MIOSingleton mainData] currentResident][@"adminDetails"][key] = textField.text;
     
-//    for (UITextField * tField in fields)
-//    {
-//        int index = [fields indexOfObject:tField];
-//
-//        if ([tField isEqual:textField])
-//        {
-//            
-//        }
-//        
-//        //  NSDictionary * listItem = [NSDictionary ]
-//        //  [[MIOSingleton mainData] addListItem: ]
-//
-//    }
     
     
- 
     return YES;
 }
 

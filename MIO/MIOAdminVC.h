@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MIOStartNewVC : UIViewController
+@interface MIOAdminVC : UIViewController
 
 @end

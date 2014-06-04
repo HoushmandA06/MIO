@@ -7,7 +7,7 @@
 //
 
 #import "MIOWelcomeVC.h"
-#import "MIOStartNewVC.h"
+#import "MIOAdminVC.h"
 #import "MIONavVC.h"
 
 @interface MIOWelcomeVC ()
@@ -92,9 +92,9 @@
 {
     
     NSLog(@"launching StartNew");
-    MIOStartNewVC  * startNewVC = [[MIOStartNewVC alloc] initWithNibName:nil bundle:nil];
+    MIOAdminVC  * adminVC = [[MIOAdminVC alloc] initWithNibName:nil bundle:nil];
     
-    MIONavVC * newNavVC = [[MIONavVC alloc] initWithRootViewController:startNewVC];
+    MIONavVC * newNavVC = [[MIONavVC alloc] initWithRootViewController:adminVC];
     
     [self presentViewController:newNavVC animated:NO completion:^{
     }];

@@ -22,7 +22,7 @@
 		0F0D5B2A19323224002443F8 /* MIOLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D5B2119323224002443F8 /* MIOLoginVC.m */; };
 		0F0D5B2B19323224002443F8 /* MIOSignUpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D5B2319323224002443F8 /* MIOSignUpVC.m */; };
 		0F0D5B2C19323224002443F8 /* MIOWelcomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D5B2519323224002443F8 /* MIOWelcomeVC.m */; };
-		0F0D5B2D19323224002443F8 /* MIOStartNewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D5B2719323224002443F8 /* MIOStartNewVC.m */; };
+		0F0D5B2D19323224002443F8 /* MIOAdminVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D5B2719323224002443F8 /* MIOAdminVC.m */; };
 		0F0D5B2E19323224002443F8 /* MIONavVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0D5B2919323224002443F8 /* MIONavVC.m */; };
 		0F0D5B3219323279002443F8 /* currentuser.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5B2F19323279002443F8 /* currentuser.png */; };
 		0F0D5B3319323279002443F8 /* newuser.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5B3019323279002443F8 /* newuser.png */; };
@@ -92,8 +92,8 @@
 		0F0D5B2319323224002443F8 /* MIOSignUpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIOSignUpVC.m; sourceTree = "<group>"; };
 		0F0D5B2419323224002443F8 /* MIOWelcomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIOWelcomeVC.h; sourceTree = "<group>"; };
 		0F0D5B2519323224002443F8 /* MIOWelcomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIOWelcomeVC.m; sourceTree = "<group>"; };
-		0F0D5B2619323224002443F8 /* MIOStartNewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIOStartNewVC.h; sourceTree = "<group>"; };
-		0F0D5B2719323224002443F8 /* MIOStartNewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIOStartNewVC.m; sourceTree = "<group>"; };
+		0F0D5B2619323224002443F8 /* MIOAdminVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIOAdminVC.h; sourceTree = "<group>"; };
+		0F0D5B2719323224002443F8 /* MIOAdminVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIOAdminVC.m; sourceTree = "<group>"; };
 		0F0D5B2819323224002443F8 /* MIONavVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIONavVC.h; sourceTree = "<group>"; };
 		0F0D5B2919323224002443F8 /* MIONavVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIONavVC.m; sourceTree = "<group>"; };
 		0F0D5B2F19323279002443F8 /* currentuser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = currentuser.png; sourceTree = "<group>"; };
@@ -224,8 +224,8 @@
 				0F0D5B2319323224002443F8 /* MIOSignUpVC.m */,
 				0F0D5B2419323224002443F8 /* MIOWelcomeVC.h */,
 				0F0D5B2519323224002443F8 /* MIOWelcomeVC.m */,
-				0F0D5B2619323224002443F8 /* MIOStartNewVC.h */,
-				0F0D5B2719323224002443F8 /* MIOStartNewVC.m */,
+				0F0D5B2619323224002443F8 /* MIOAdminVC.h */,
+				0F0D5B2719323224002443F8 /* MIOAdminVC.m */,
 				0F2C101E1934AEB300CD3CE4 /* MIOTableViewController.h */,
 				0F2C101F1934AEB300CD3CE4 /* MIOTableViewController.m */,
 				0F2C10211934AED100CD3CE4 /* MIOTableViewCell.h */,
@@ -443,7 +443,7 @@
 				0F0D5B02193231DE002443F8 /* MIOAppDelegate.m in Sources */,
 				0F2C10D3193A6DCE00CD3CE4 /* DLAStageScribble.m in Sources */,
 				0F2C10D2193A6DCE00CD3CE4 /* DLAStageLines.m in Sources */,
-				0F0D5B2D19323224002443F8 /* MIOStartNewVC.m in Sources */,
+				0F0D5B2D19323224002443F8 /* MIOAdminVC.m in Sources */,
 				0F0D5AFE193231DE002443F8 /* main.m in Sources */,
 				0F2C10C3193A307300CD3CE4 /* MIOSingleton.m in Sources */,
 				0F2C10BE1938D33700CD3CE4 /* GLAViewController.m in Sources */,

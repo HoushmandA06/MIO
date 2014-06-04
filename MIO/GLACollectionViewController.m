@@ -119,10 +119,7 @@
 //    cell.layer.cornerRadius = 10;
     
       return cell;
-    
 }
-
-
 
 
 - (void)viewDidLoad
@@ -158,11 +155,8 @@
         [self.collectionView reloadData];
     } failureBlock:^(NSError *error) {
         NSLog(@"Error loading images %@", error);
+    
     }];
-    
-
-    
-
     
     // Do any additional setup after loading the view.
 }

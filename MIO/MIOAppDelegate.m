@@ -26,6 +26,9 @@
     
     self.window.rootViewController = [[MIOLoginVC alloc] initWithNibName:nil bundle:nil];
 
+    
+    // testing
+    self.window.rootViewController = [[MIOWelcomeVC alloc] init];
  
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

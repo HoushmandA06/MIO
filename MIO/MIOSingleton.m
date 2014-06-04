@@ -40,17 +40,17 @@
         
         self.residentItems = [@[
                            
-                           @{   @"pdfData":@"string",
-                                @"sigData":@"string",
+                              @{@"pdfData":@"",
+                                @"sigData":@"",
                                 @"adminDetails":
                                     [@{
-                                       @"Resident": @"string",
-                                       @"phone":@"string",
-                                       @"email":@"string",
-                                       @"property":@"string",
-                                       @"unit":@"string",
+                                       @"Resident": @"",
+                                       @"Phone":@"",
+                                       @"Email":@"",
+                                       @"Property":@"",
+                                       @"Unit#":@"",
                                        @"minMout":@YES,
-                                       @"date":@"string",
+                                       @"date":@"",
                                        @"sectionLists":
                                            [@{
                                        
@@ -61,17 +61,17 @@
         
         
         
-        NSArray * sectionNames = @[@"Front Entrance",@"Living Room",@"Kitchen",@"Bathroom #1",@"Bathroom #2",@"Bedroom #1",@"Bedroom #2",@"Bedroom #3",@"Rear Entrance",@"Air Conditioning",@"Heating Systems",@"Patio",@"Balcony",@"Storage Room"];
+        self.sectionNames = @[@"Front Entrance",@"Living Room",@"Kitchen",@"Bathroom #1",@"Bathroom #2",@"Bedroom #1",@"Bedroom #2",@"Bedroom #3",@"Rear Entrance",@"Air Conditioning",@"Heating Systems",@"Patio",@"Balcony",@"Storage Room"];
         
-        for (NSString * sectionName in sectionNames)
+        for (NSString * sectionName in self.sectionNames)
         {
             self.residentItems[0][@"adminDetails"][@"sectionLists"][sectionName] = [@[] mutableCopy];
             
-            for (int i; i < 2; i++)
+            for (int i = 0; i < 2; i++)
             {
                 NSMutableDictionary * commentDetails = [@{
-                                                          @"comment":@"string",
-                                                          @"cost":@"string",
+                                                          @"comment":@"",
+                                                          @"cost":@"",
                                                           @"allClear":[NSNumber numberWithBool:YES],
                                                           @"image":[@[]mutableCopy]
                                                           } mutableCopy];
