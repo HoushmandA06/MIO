@@ -28,7 +28,10 @@
     
     NSMutableArray *sections;
     
+    NSMutableDictionary * commentDetails;
+    
     int numRow;
+    
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -41,8 +44,7 @@
         
     self.navigationItem.leftBarButtonItem = back;
     self.navigationItem.rightBarButtonItem = saveData;
-
-    sections = [@[@2,@2,@2,@2,@2,@2,@2,@2,@2,@2,@2,@2,@2,@2] mutableCopy];  // adjust to set amount for 14 fields
+        
 
     }
     return self;
@@ -71,11 +73,11 @@
     
     photos = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"photos"] style:UIBarButtonItemStylePlain target:self action:@selector(tabSelected:)];
     
-    //  photos = [[UIBarButtonItem alloc] initWithTitle:@"Colors" style:UIBarButtonItemStylePlain target:self action:@selector(tabSelected:)];
-    
     submit = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:self action:@selector(tabSelected:)];
     
     UIBarButtonItem * flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    sections = [@[@2,@2,@2,@2,@2,@2,@2,@2,@2,@2,@2,@2,@2,@2] mutableCopy];
     
     [self setToolbarItems:@[flexible, photos, flexible, submit, flexible]];
     self.navigationController.toolbarHidden = NO;
@@ -91,24 +93,15 @@
         NSLog(@"photos selected");
         
         GLACollectionViewController * collectionVC = [[GLACollectionViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
-        
-
         [self.navigationController pushViewController:collectionVC animated:NO];
-        
         
     } else
     {
         NSLog(@"submit selected");
-        
         DLAViewController * signatureVC = [[DLAViewController alloc] initWithNibName:nil bundle:nil];
-        
         [self.navigationController pushViewController:signatureVC animated:NO];
-
     }
 
-    
-    //  colorsIsSelected = [sender.title isEqualToString:@"Colors"];
-    //  [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -122,26 +115,20 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 
-    return [sections count];
+    return [[[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"] allKeys] count];
 
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
- 
-   // int rowCount1 = [[[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionName] allKeys] count];
+    NSString * sectionKey = [MIOSingleton mainData].sectionNames[section];
 
-   // int rowCount2 = [[[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][[sections[section] intValue]] allKeys] count];
-
-    int rowCount = [sections[section] intValue];
+    int rowCount = [[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey] count];
     
     return rowCount;
     
-    
 }
-
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
@@ -207,14 +194,12 @@
         // need to handle NEW CARPET, WASHER DRYER, KEYS ISSUED WITH YES / NO SEGMENTED CONTROL
     }
     
-    
     UISegmentedControl * segmentWorkOrder = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"All Clear", @"Exceptions", nil]];
     segmentWorkOrder.frame = CGRectMake(400, 5, 180, 40);
     segmentWorkOrder.selectedSegmentIndex = 0;
     segmentWorkOrder.tintColor = GREEN_COLOR;
     //[segmentWorkOrder addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
     
-
     UIButton * addRow = [[UIButton alloc] initWithFrame:CGRectMake(615, 10, 30, 30)];
     addRow.layer.cornerRadius = 15;
     [addRow setTitle:@"+" forState:UIControlStateNormal];
@@ -252,10 +237,9 @@
 
 -(void)addItemToArray:(UIButton *)sender
 {
-    
-    
+
     int rowCount = [sections[sender.tag] intValue];
-    NSMutableDictionary * commentDetails = [@{
+    commentDetails = [@{
                                               @"comment":@"",
                                               @"cost":@"",
                                               @"allClear":[NSNumber numberWithBool:YES],
@@ -263,12 +247,10 @@
                                               } mutableCopy];
 
     sectionName = [MIOSingleton mainData].sectionNames[sender.tag];
-   
     [[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionName] addObject:commentDetails];
-
     sections[sender.tag] = @(rowCount + 1);
-    [self.tableView reloadData];
     
+    [self.tableView reloadData];
     
 }
 
@@ -277,8 +259,9 @@
     
     int rowCount = [sections[sender.tag] intValue];
     
+    sectionName = [MIOSingleton mainData].sectionNames[sender.tag];
+    [[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionName] removeLastObject];
     sections[sender.tag] = @(rowCount - 1);
-    
     [self.tableView reloadData];
     
 }
