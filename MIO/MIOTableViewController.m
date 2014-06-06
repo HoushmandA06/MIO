@@ -32,6 +32,7 @@
     
     int numRow;
     
+    NSIndexPath * photoIndexPath;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -243,7 +244,6 @@
                                               @"comment":@"",
                                               @"cost":@"",
                                               @"allClear":[NSNumber numberWithBool:YES],
-                                              @"image":[@[]mutableCopy]
                                               } mutableCopy];
 
     sectionName = [MIOSingleton mainData].sectionNames[sender.tag];
@@ -266,9 +266,10 @@
     
 }
 
--(void)pushVC
+-(void)pushVCWithCell:(MIOTableViewCell *)cell
 {
-
+    photoIndexPath = [self.tableView indexPathForCell:cell];
+    
     UIImagePickerController * picker = [[UIImagePickerController alloc] init];
     
     picker.delegate = self;
@@ -294,10 +295,16 @@
         else {imageToSave = originalImage;}
         
         // Save the new image (original or edited) to the Camera Roll
-        UIImageWriteToSavedPhotosAlbum (imageToSave, nil, nil , nil);
+        // UIImageWriteToSavedPhotosAlbum (imageToSave, nil, nil , nil);
+        
+        // Save the new image (original or edited) to the singleton
+        
+        NSString * sectionKey = [MIOSingleton mainData].sectionNames[photoIndexPath.section];
+        
+        [[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey][photoIndexPath.row][@"image"] = imageToSave;
+
     }
-    
-  
+      
     [picker dismissViewControllerAnimated:YES completion:NULL];
 
   
@@ -318,7 +325,7 @@
     {
         cell = [[MIOTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-
+    
     cell.section = indexPath.section;
     cell.row = indexPath.row;
     cell.delegate = self;

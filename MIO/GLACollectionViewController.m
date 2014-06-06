@@ -10,6 +10,7 @@
 
 #import "GLACollectionViewController.h"
 #import "MIOCollectionViewCell.h"
+#import "MIOSingleton.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
 
@@ -22,7 +23,6 @@
 @implementation GLACollectionViewController
 {
     
-    NSMutableArray * imageLabels;
     
 }
 
@@ -36,34 +36,49 @@
         self.collectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
         
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        
-        //might need to be dictionary with key/values for image and image-title; ideally would grab title from TVC section header or comment textfield from cell
-        imageLabels = [@[
-                   @"Room Label",
-                   @"Room Label 2",
-                   @"Room Label 3",
-                   @"Room Label 4"
-                   ]mutableCopy];
+    
     }
     return self;
 }
 
-+ (ALAssetsLibrary *)defaultAssetsLibrary
+//+ (ALAssetsLibrary *)defaultAssetsLibrary
+//{
+//    static dispatch_once_t pred = 0;
+//    static ALAssetsLibrary *library = nil;
+//    dispatch_once(&pred, ^{
+//        library = [[ALAssetsLibrary alloc] init];
+//    });
+//    return library;
+//}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    static dispatch_once_t pred = 0;
-    static ALAssetsLibrary *library = nil;
-    dispatch_once(&pred, ^{
-        library = [[ALAssetsLibrary alloc] init];
-    });
-    return library;
+     
+    return [[[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"] allKeys] count];
+    
 }
 
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-   //return [imageLabels count];
-   // new code from tutorial
-    return self.assets.count;
+    
+    NSString * sectionKey = [MIOSingleton mainData].sectionNames[section];
+    
+    int itemsCount = 0;
+    
+    NSArray * items = [[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey];
+    
+    for (NSDictionary * item in items)
+    {
+        if (item[@"image"]) itemsCount++;
+    }
+    
+    return itemsCount;
+    
+
+// works with ALA tutorial
+//    return self.assets.count;
+    
 
 }
 
@@ -86,26 +101,39 @@
 
 -(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
+    
+    
     return 10.0;
+    
     
 }
 
 
-//// possible to build feature where user holds finger on photo (cell) to delete?
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    
+}
+
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 
-//modified below per tutorial
-   
-    MIOCollectionViewCell * cell = (MIOCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCell" forIndexPath:indexPath];
-    ALAsset * asset = self.assets[indexPath.row];
-
-    cell.asset = asset;
-    cell.backgroundColor = [UIColor redColor];
- 
+   MIOCollectionViewCell * cell = (MIOCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCell" forIndexPath:indexPath];
+  
+////  modified below per tutorial
+//    ALAsset * asset = self.assets[indexPath.row];
+//    cell.asset = asset;
     
-//// old code
+      cell.backgroundColor = [UIColor colorWithWhite:0.90 alpha:.90];
+    
+      cell.item = indexPath.item;
+      cell.section = indexPath.section;
+    
+
+    
+////  non ALA code
 //    UILabel * title = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, cell.frame.size.width-20, 20)];
 //    
 //    title.textColor = [UIColor colorWithWhite:.90 alpha:.90];
@@ -117,8 +145,15 @@
 //    cell.backgroundColor = [UIColor lightGrayColor];
 //    
 //    cell.layer.cornerRadius = 10;
+//
+//
+//    NSString * sectionName = [MIOSingleton mainData].sectionNames[cell.section];
+//
+//    cell.photoImageView = [[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionName][@"image"];
+//
+
+    return cell;
     
-      return cell;
 }
 
 
@@ -131,34 +166,35 @@
 
     
     // new code from tutorial
-    _assets = [@[] mutableCopy];
-    __block NSMutableArray *tmpAssets = [@[] mutableCopy];
+//    _assets = [@[] mutableCopy];
+//    __block NSMutableArray * tmpAssets = [@[] mutableCopy];
+//    
+//    // 1
+//    ALAssetsLibrary *assetsLibrary = [GLACollectionViewController defaultAssetsLibrary];
+//    // 2
+//    [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+//        [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+//            if(result)
+//            {
+//                // 3
+//                [tmpAssets addObject:result];
+//            }
+//        }];
+//        
+//        // 4
+//        //NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO];
+//        //self.assets = [tmpAssets sortedArrayUsingDescriptors:@[sort]];
+//        self.assets = tmpAssets;
+//        
+//        // 5
+//        [self.collectionView reloadData];
+//    } failureBlock:^(NSError *error) {
+//        NSLog(@"Error loading images %@", error);
+//    
+//    }];
     
-    // 1
-    ALAssetsLibrary *assetsLibrary = [GLACollectionViewController defaultAssetsLibrary];
-    // 2
-    [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-        [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-            if(result)
-            {
-                // 3
-                [tmpAssets addObject:result];
-            }
-        }];
-        
-        // 4
-        //NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO];
-        //self.assets = [tmpAssets sortedArrayUsingDescriptors:@[sort]];
-        self.assets = tmpAssets;
-        
-        // 5
-        [self.collectionView reloadData];
-    } failureBlock:^(NSError *error) {
-        NSLog(@"Error loading images %@", error);
-    
-    }];
-    
-    // Do any additional setup after loading the view.
+ 
+
 }
 
 

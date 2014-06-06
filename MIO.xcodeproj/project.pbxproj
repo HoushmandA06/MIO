@@ -37,7 +37,6 @@
 		0F2C10231934AED100CD3CE4 /* MIOTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C10221934AED100CD3CE4 /* MIOTableViewCell.m */; };
 		0F2C10251934D6AE00CD3CE4 /* camera4040.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2C10241934D6AE00CD3CE4 /* camera4040.png */; };
 		0F2C102E1937653300CD3CE4 /* photos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2C102D1937653300CD3CE4 /* photos@2x.png */; };
-		0F2C10BE1938D33700CD3CE4 /* GLAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C10BB1938D33700CD3CE4 /* GLAViewController.m */; };
 		0F2C10BF1938D33700CD3CE4 /* GLACollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C10BD1938D33700CD3CE4 /* GLACollectionViewController.m */; };
 		0F2C10C3193A307300CD3CE4 /* MIOSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C10C2193A307300CD3CE4 /* MIOSingleton.m */; };
 		0F2C10C6193A4BDD00CD3CE4 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2C10C5193A4BDD00CD3CE4 /* AssetsLibrary.framework */; };
@@ -111,8 +110,6 @@
 		0F2C10221934AED100CD3CE4 /* MIOTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIOTableViewCell.m; sourceTree = "<group>"; };
 		0F2C10241934D6AE00CD3CE4 /* camera4040.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera4040.png; sourceTree = "<group>"; };
 		0F2C102D1937653300CD3CE4 /* photos@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photos@2x.png"; sourceTree = "<group>"; };
-		0F2C10BA1938D33700CD3CE4 /* GLAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLAViewController.h; sourceTree = "<group>"; };
-		0F2C10BB1938D33700CD3CE4 /* GLAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLAViewController.m; sourceTree = "<group>"; };
 		0F2C10BC1938D33700CD3CE4 /* GLACollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLACollectionViewController.h; sourceTree = "<group>"; };
 		0F2C10BD1938D33700CD3CE4 /* GLACollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLACollectionViewController.m; sourceTree = "<group>"; };
 		0F2C10C1193A307300CD3CE4 /* MIOSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIOSingleton.h; sourceTree = "<group>"; };
@@ -285,8 +282,6 @@
 		0F2C1029193697EC00CD3CE4 /* Collection View */ = {
 			isa = PBXGroup;
 			children = (
-				0F2C10BA1938D33700CD3CE4 /* GLAViewController.h */,
-				0F2C10BB1938D33700CD3CE4 /* GLAViewController.m */,
 				0F2C10BC1938D33700CD3CE4 /* GLACollectionViewController.h */,
 				0F2C10BD1938D33700CD3CE4 /* GLACollectionViewController.m */,
 				0F2C10C7193A4FCB00CD3CE4 /* MIOCollectionViewCell.h */,
@@ -446,7 +441,6 @@
 				0F0D5B2D19323224002443F8 /* MIOAdminVC.m in Sources */,
 				0F0D5AFE193231DE002443F8 /* main.m in Sources */,
 				0F2C10C3193A307300CD3CE4 /* MIOSingleton.m in Sources */,
-				0F2C10BE1938D33700CD3CE4 /* GLAViewController.m in Sources */,
 				0F2C10201934AEB300CD3CE4 /* MIOTableViewController.m in Sources */,
 				0F2C10BF1938D33700CD3CE4 /* GLACollectionViewController.m in Sources */,
 			);

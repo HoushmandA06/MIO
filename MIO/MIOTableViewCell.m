@@ -69,7 +69,7 @@
     
     NSLog(@"%d %d",self.row,self.section);
     
-    [self.delegate pushVC];
+    [self.delegate pushVCWithCell:self];
         
     // pass position for image picker view to save value
     

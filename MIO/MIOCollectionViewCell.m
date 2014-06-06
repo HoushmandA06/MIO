@@ -7,6 +7,8 @@
 //
 
 #import "MIOCollectionViewCell.h"
+#import "MIOSingleton.h"
+
 
 @interface MIOCollectionViewCell()
 
@@ -21,21 +23,58 @@
     self = [super initWithFrame:frame];
     if (self) {
 
-        self.photoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10,10,104,104)];
+        self.photoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10,10,200,200)];
+       
+        self.labelComment = [[UILabel alloc] initWithFrame:CGRectMake(10,220,180,20)];
+        self.labelComment.textColor = [UIColor whiteColor];
+        
+        self.labelSection = [[UILabel alloc] initWithFrame:CGRectMake(10,10,180,20)];
+        self.labelSection.textColor = [UIColor whiteColor];
         
         [self.contentView addSubview:self.photoImageView];
+        [self.contentView addSubview:self.labelComment];
+        [self.contentView addSubview:self.labelSection];
         
     }
     return self;
 }
 
--(void)setAsset:(ALAsset *)asset
+//-(void)setAsset:(ALAsset *)asset
+//{
+//    _asset = asset;
+//    self.photoImageView.image = [UIImage imageWithCGImage:[asset thumbnail]];
+//
+//}
+
+- (void)setSection:(int)section
 {
-    _asset = asset;
- 
-    self.photoImageView.image = [UIImage imageWithCGImage:[asset thumbnail]];
+    _section = section;
+    
+    NSString * sectionName = [MIOSingleton mainData].sectionNames[_section];
+    
+    NSArray * items = [[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionName];
+    
+    NSMutableArray * itemsWithImages = [@[] mutableCopy];
+    
+    
+    for (NSDictionary * item in items)
+    {
+        if (item[@"image"]) [itemsWithImages addObject:item];
+     }
+    
+    self.photoImageView.image = itemsWithImages[_item][@"image"];
+    self.labelComment.text = itemsWithImages[_item][@"comment"];
+    self.labelSection.text = [MIOSingleton mainData].sectionNames[_section];
+
+
     
 }
+
+
+
+
+
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

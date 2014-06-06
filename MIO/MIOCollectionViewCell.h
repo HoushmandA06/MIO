@@ -14,5 +14,10 @@
 @property(nonatomic, strong) ALAsset * asset;
 @property (nonatomic, strong) UIImageView * photoImageView;
 
+@property (nonatomic) int item;
+@property (nonatomic) int section;
+
+@property (nonatomic, strong) UILabel * labelComment;
+@property (nonatomic, strong) UILabel * labelSection;
 
 @end

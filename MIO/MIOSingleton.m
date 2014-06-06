@@ -72,8 +72,7 @@
                 NSMutableDictionary * commentDetails = [@{
                                                           @"comment":@"",
                                                           @"cost":@"",
-                                                          @"allClear":[NSNumber numberWithBool:YES],
-                                                          @"image":[@[]mutableCopy]
+                                                          @"allClear":[NSNumber numberWithBool:YES]
                                                           } mutableCopy];
                 
                 [self.residentItems[0][@"adminDetails"][@"sectionLists"][sectionName] addObject:commentDetails];

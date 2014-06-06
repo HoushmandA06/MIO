@@ -24,7 +24,7 @@
 
 @protocol MIOTableViewCellDelegate <NSObject>
 
--(void)pushVC;
+-(void)pushVCWithCell:(MIOTableViewCell *)cell;
 
 
 @end
