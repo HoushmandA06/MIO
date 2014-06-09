@@ -23,13 +23,14 @@
     self = [super initWithFrame:frame];
     if (self) {
 
-        self.photoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10,10,200,200)];
+        self.photoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10,25,225,200)];
        
-        self.labelComment = [[UILabel alloc] initWithFrame:CGRectMake(10,220,180,20)];
+        self.labelComment = [[UILabel alloc] initWithFrame:CGRectMake(10,225,180,20)];
         self.labelComment.textColor = [UIColor whiteColor];
         
-        self.labelSection = [[UILabel alloc] initWithFrame:CGRectMake(10,10,180,20)];
-        self.labelSection.textColor = [UIColor whiteColor];
+        self.labelSection = [[UILabel alloc] initWithFrame:CGRectMake(10,5,180,20)];
+        self.labelSection.textColor = [UIColor blackColor];
+        
         
         [self.contentView addSubview:self.photoImageView];
         [self.contentView addSubview:self.labelComment];
@@ -60,14 +61,12 @@
     for (NSDictionary * item in items)
     {
         if (item[@"image"]) [itemsWithImages addObject:item];
-     }
-    
+    }
+        
     self.photoImageView.image = itemsWithImages[_item][@"image"];
     self.labelComment.text = itemsWithImages[_item][@"comment"];
     self.labelSection.text = [MIOSingleton mainData].sectionNames[_section];
 
-
-    
 }
 
 

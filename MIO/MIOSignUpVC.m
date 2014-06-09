@@ -36,6 +36,7 @@
        
     self.view.backgroundColor = [UIColor whiteColor];
     
+   
     back = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backToLogIn)];
     self.navigationItem.leftBarButtonItem = back;
     back.tintColor = [UIColor whiteColor];

@@ -61,9 +61,9 @@
         
         
         
-        self.sectionNames = @[@"Front Entrance",@"Living Room",@"Kitchen",@"Bathroom #1",@"Bathroom #2",@"Bedroom #1",@"Bedroom #2",@"Bedroom #3",@"Rear Entrance",@"Air Conditioning",@"Heating Systems",@"Patio",@"Balcony",@"Storage Room"];
+    self.sectionNames = @[@"Front Entrance",@"Living Room",@"Kitchen",@"Bathroom #1",@"Bathroom #2",@"Bedroom #1",@"Bedroom #2",@"Bedroom #3",@"Rear Entrance",@"Air Conditioning",@"Heating Systems",@"Patio",@"Balcony",@"Storage Room"];
         
-        for (NSString * sectionName in self.sectionNames)
+    for (NSString * sectionName in self.sectionNames)
         {
             self.residentItems[0][@"adminDetails"][@"sectionLists"][sectionName] = [@[] mutableCopy];
             
@@ -79,9 +79,8 @@
             }
         }
         
-        
         self.currentResident = self.residentItems[0];
-        
+
     }
     return self;
 }

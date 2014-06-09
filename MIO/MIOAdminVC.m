@@ -46,8 +46,7 @@
     //self.view.backgroundColor = [UIColor clearColor];
 
     back = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backToWelcome)];
-    saveData = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveData)];
-        
+    saveData = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveAction)];
     self.navigationItem.leftBarButtonItem = back;
     self.navigationItem.rightBarButtonItem = saveData;
         
@@ -168,32 +167,17 @@
     moveDateLabel.textColor = [UIColor colorWithWhite:0.90 alpha:.90];
     [self.view addSubview:moveDateLabel];
     
+    moveDate = [[UIDatePicker alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+45, 570, 240, 60)];
+    [moveDate addTarget:self action:@selector(updateDate:) forControlEvents:UIControlEventValueChanged];
+    moveDate.datePickerMode = UIDatePickerModeDate;
+    moveDate.backgroundColor = [UIColor clearColor];
+    moveDate.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    moveDate.minimumDate = [NSDate date];
+    moveDate.layer.borderWidth = 1;
+    moveDate.layer.cornerRadius = 10;
+    [self.view addSubview:moveDate];
 
-//    if([[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"] != nil)
-//      {
-//          NSDate * date = [[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"];
-//          moveDate = [[UIDatePicker alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+45, 570, 240, 60)];
-//          [moveDate addTarget:self action:@selector(updateDate:) forControlEvents:UIControlEventValueChanged];
-//          moveDate.datePickerMode = UIDatePickerModeDate;
-//          moveDate.backgroundColor = [UIColor clearColor];
-//          moveDate.layer.borderColor = [UIColor lightGrayColor].CGColor;
-//          moveDate.layer.borderWidth = 1;
-//          moveDate.layer.cornerRadius = 10;
-//        
-//          [moveDate setDate:date];
-//          [self.view addSubview:moveDate];
-//      }
-//        else
-//      {
-          moveDate = [[UIDatePicker alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+45, 570, 240, 60)];
-          [moveDate addTarget:self action:@selector(updateDate:) forControlEvents:UIControlEventValueChanged];
-          moveDate.datePickerMode = UIDatePickerModeDate;
-          moveDate.backgroundColor = [UIColor clearColor];
-          moveDate.layer.borderColor = [UIColor lightGrayColor].CGColor;
-          moveDate.layer.borderWidth = 1;
-          moveDate.layer.cornerRadius = 10;
-          [self.view addSubview:moveDate];
-//        }
+    
 }
 
 
@@ -257,11 +241,31 @@
     
 }
 
--(void)saveData
+-(void)saveAction
 {
 
     NSLog(@"Save Data Selected");
+
 }
+
+
+-(void)saveData  //saves the data
+{
+    NSString *path = [self listArchivePath];
+    
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.listItems]; //what we are archiving to, should be same as unarchive
+    [data writeToFile:path options:NSDataWritingAtomic error:nil];
+    
+}
+
+-(NSString *)listArchivePath  //finds the path to the data to save
+{
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentDirectory = documentDirectories[0];
+    return [documentDirectory stringByAppendingPathComponent:@"listdata.data"];
+    
+}
+
 
 
 - (void)didReceiveMemoryWarning

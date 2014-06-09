@@ -36,6 +36,10 @@
         self.collectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
         
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        
+        layout.sectionInset = UIEdgeInsetsMake(10, 0, 10, 0);
+        
+
     
     }
     return self;
@@ -86,6 +90,7 @@
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    
     return CGSizeMake(( SCREEN_WIDTH - 30) / 3.0, (SCREEN_HEIGHT - 30) / 4.0);
     
 }
@@ -95,16 +100,14 @@
 -(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
     
-    return 2.0;
+    return 4.0;
 }
 
 
 -(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     
-    
     return 10.0;
-    
     
 }
 
@@ -113,6 +116,9 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
+
+    NSLog(@"did select cell");
+    
     
 }
 
@@ -120,17 +126,19 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 
-   MIOCollectionViewCell * cell = (MIOCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCell" forIndexPath:indexPath];
+    MIOCollectionViewCell * cell = (MIOCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCell" forIndexPath:indexPath];
   
 ////  modified below per tutorial
 //    ALAsset * asset = self.assets[indexPath.row];
 //    cell.asset = asset;
     
-      cell.backgroundColor = [UIColor colorWithWhite:0.90 alpha:.90];
+      cell.backgroundColor = [UIColor colorWithWhite:0.50 alpha:.90];
     
       cell.item = indexPath.item;
       cell.section = indexPath.section;
-    
+      cell.layer.cornerRadius = 5;
+      [cell.layer setBorderWidth:1];
+      [cell.layer setBorderColor:[UIColor lightGrayColor].CGColor];
 
     
 ////  non ALA code

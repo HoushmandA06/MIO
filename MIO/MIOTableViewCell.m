@@ -78,33 +78,7 @@
 - (void)setRow:(int)row
 {
     _row = row;
-      // update comment.text = somthing based on _row / _section
     
-//    NSString * sectionKey = [data allKeys][self.section];
-//    
-//    NSArray * rows = data[sectionKey];
-//    
-//    NSDictionary * rowData = rows[row];
-//    
-//    
-//    comment.text = rowData[@"comment"];
-//    cost.text = rowData[@"cost"];
- 
-    
-//    _index = index;
-//    NSDictionary * profileInfo = [[TDLSingleton sharedCollection] allListItems][index];
-//    
-//    NSString *imageUrlString = profileInfo[@"image"];
-//    
-//    NSURL *imageUrl = [[NSURL alloc] initWithString:imageUrlString];
-//    NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
-//    
-//    UIImage *image = [UIImage imageWithData:imageData];
-//    profileImage.image = image;
-//    
-//    profileName.text = profileInfo[@"name"];
-//    profileURL.text = profileInfo[@"github"];
-   
     
     sectionKey = [MIOSingleton mainData].sectionNames[self.section];
 
@@ -125,28 +99,7 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField   //now any textField will allow resign keyboard
 {
-    
-// save comment.text to something based on self.row / self.section
-    
-//    NSString * sectionKey = [data allKeys][self.section];
-//    NSMutableArray * rows = data[sectionKey];
-//    [rows removeObjectAtIndex:self.row];
-//    NSMutableDictionary * rowData = rows[self.row];
-    
-//    needs to be parse or singleton
-//    rowData[@"comment"] = comment.text;
-//    rowData[@"cost"] = cost.text;
-    
-    
-//    int index = (int)[fields indexOfObject:textField];
-
-//    NSString * key = fields[index];
-//    NSMutableArray * rows = [[MIOSingleton mainData] currentResident][sectionKey][@"sectionLists"];
-//    [rows removeObjectAtIndex:self.row];
-//    NSMutableDictionary * rowData = rows[self.row];
-//    NSLog(@"%@",details);
-    
-    
+        
     sectionKey = [MIOSingleton mainData].sectionNames[self.section];
 
     [[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey][self.row][@"comment"] = comment.text;
