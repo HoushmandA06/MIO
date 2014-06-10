@@ -26,13 +26,12 @@
     UIBarButtonItem * submit;
     NSString * sectionName;
     
-    NSMutableArray *sections;
-    
     NSMutableDictionary * commentDetails;
     
     int numRow;
     
     NSIndexPath * photoIndexPath;
+    
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -40,8 +39,10 @@
     self = [super initWithStyle:style];
     if (self) {
 
+        // init controls
+        
     back = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backToStartNew)];
-    saveData = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveData)];
+    saveData = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveAction)];
         
     self.navigationItem.leftBarButtonItem = back;
     self.navigationItem.rightBarButtonItem = saveData;
@@ -61,11 +62,14 @@
     
 }
 
--(void)saveData
+-(void)saveAction
 {
+//    [self listArchivePath];
+    [[MIOSingleton mainData] saveData];
     
     NSLog(@"Save Data Selected");
 }
+
 
 
 - (void)viewDidLoad
@@ -78,7 +82,6 @@
     
     UIBarButtonItem * flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
-    sections = [@[@2,@2,@2,@2,@2,@2,@2,@2,@2,@2,@2,@2,@2,@2] mutableCopy];
     
     [self setToolbarItems:@[flexible, photos, flexible, submit, flexible]];
     self.navigationController.toolbarHidden = NO;
@@ -115,7 +118,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
+    
     return [[[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"] allKeys] count];
 
 }
@@ -126,6 +129,7 @@
     NSString * sectionKey = [MIOSingleton mainData].sectionNames[section];
 
     int rowCount = [[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey] count];
+    NSLog(@"%i",rowCount);
     
     return rowCount;
     
@@ -147,59 +151,10 @@
     headerLabel.textAlignment = NSTextAlignmentLeft;
     headerLabel.textColor = [UIColor whiteColor];
     
-    switch (section)
-    {
-        case 0:
-            headerLabel.text = @"Front Entrance";
-            break;
-        case 1:
-            headerLabel.text = @"Living Room";
-            break;
-        case 2:
-            headerLabel.text = @"Kitchen";
-            break;
-        case 3:
-            headerLabel.text = @"Bathroom #1";
-            break;
-        case 4:
-            headerLabel.text = @"Bathroom #2";
-            break;
-        case 5:
-            headerLabel.text = @"Bedroom #1";
-            break;
-        case 6:
-            headerLabel.text = @"Bedroom #2";
-            break;
-        case 7:
-            headerLabel.text = @"Bedroom #3";
-            break;
-        case 8:
-            headerLabel.text = @"Rear Entrance";
-            break;
-        case 9:
-            headerLabel.text = @"Air Conditioning";
-            break;
-        case 10:
-            headerLabel.text = @"Heating System";
-            break;
-        case 11:
-            headerLabel.text = @"Patio";
-            break;
-        case 12:
-            headerLabel.text = @"Balcony";
-            break;
-        case 13:
-            headerLabel.text = @"Storage Room";
-        default:break;
+    // need to handle NEW CARPET, WASHER DRYER, KEYS ISSUED WITH YES / NO SEGMENTED CONTROL
 
-        // need to handle NEW CARPET, WASHER DRYER, KEYS ISSUED WITH YES / NO SEGMENTED CONTROL
-    }
-    
-    UISegmentedControl * segmentWorkOrder = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"All Clear", @"Exceptions", nil]];
-    segmentWorkOrder.frame = CGRectMake(400, 5, 180, 40);
-    segmentWorkOrder.selectedSegmentIndex = 0;
-    segmentWorkOrder.tintColor = GREEN_COLOR;
-    //[segmentWorkOrder addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
+    NSString * sectionKey = [MIOSingleton mainData].sectionNames[section];
+    headerLabel.text = sectionKey;
     
     UIButton * addRow = [[UIButton alloc] initWithFrame:CGRectMake(615, 10, 30, 30)];
     addRow.layer.cornerRadius = 15;
@@ -227,43 +182,65 @@
      UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 600, 50)];
     customView.backgroundColor = BLUE_COLOR
     [customView addSubview:headerLabel];
-    [customView addSubview:segmentWorkOrder];
     [customView addSubview:addRow];
     [customView addSubview:delRow];
-    return customView;
+    
+    
+    //  UISegmentedControl * segmentWorkOrder = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"All Clear", @"Exceptions", nil]];
+    //  segmentWorkOrder.frame = CGRectMake(400, 5, 180, 40);
+    //  segmentWorkOrder.userInteractionEnabled = NO;
+    //  add segment to controls for key sectionKey
+    //  switch 0 or 1 based on change of data
+    //  segmentWorkOrder.selectedSegmentIndex = 0;
+    //  segmentWorkOrder.selectedSegmentIndex = [[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionName][@"allClear"] intValue];
+    //  segmentWorkOrder.tintColor = GREEN_COLOR;
+    //  [segmentWorkOrder addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
+    //  [customView addSubview:segmentWorkOrder];
 
+    return customView;
+    
 }
 
+
+-(void)refreshCell:(MIOTableViewCell *)cell
+{
+    
+    [self.tableView reloadData];
+
+}
 
 
 -(void)addItemToArray:(UIButton *)sender
 {
 
-    int rowCount = [sections[sender.tag] intValue];
-    commentDetails = [@{
-                                              @"comment":@"",
-                                              @"cost":@"",
-                                              @"allClear":[NSNumber numberWithBool:YES],
-                                              } mutableCopy];
+// now that row count in sections is no longer determined by sections[sender.tag], adding a row does not work as the singleton is driving row count
+// int rowCount = [sections[sender.tag] intValue];
+//    NSString * sectionKey = [MIOSingleton mainData].sectionNames[sender.tag];
+//    int rowCount = [[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey] count];
 
-    sectionName = [MIOSingleton mainData].sectionNames[sender.tag];
-    [[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionName] addObject:commentDetails];
-    sections[sender.tag] = @(rowCount + 1);
+    commentDetails = [@{
+                        @"comment":@"",
+                        @"cost":@"",
+                        @"allClear":[NSNumber numberWithBool:YES],
+                        } mutableCopy];
+
+    NSString * sectionKey = [MIOSingleton mainData].sectionNames[sender.tag];
     
+    [[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey] addObject:commentDetails];
+   
     [self.tableView reloadData];
     
 }
 
 - (void)delItemToArray:(UIButton *)sender
 {
-    
-    int rowCount = [sections[sender.tag] intValue];
-    
-    sectionName = [MIOSingleton mainData].sectionNames[sender.tag];
-    [[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionName] removeLastObject];
-    sections[sender.tag] = @(rowCount - 1);
+    NSString * sectionKey = [MIOSingleton mainData].sectionNames[sender.tag];
+    [[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey] removeLastObject];
     [self.tableView reloadData];
     
+    // int rowCount = [sections[sender.tag] intValue];
+    // sectionName = [MIOSingleton mainData].sectionNames[sender.tag];
+    // sections[sender.tag] = @(rowCount - 1);
 }
 
 -(void)pushVCWithCell:(MIOTableViewCell *)cell
@@ -273,6 +250,7 @@
     UIImagePickerController * picker = [[UIImagePickerController alloc] init];
     
     picker.delegate = self;
+    
     picker.allowsEditing = YES; // gives you preview of chosen photo
     picker.sourceType = UIImagePickerControllerSourceTypeCamera;
     [self presentViewController:picker animated:YES completion:NULL];
@@ -293,11 +271,6 @@
         
         if (editedImage) {imageToSave = editedImage;}
         else {imageToSave = originalImage;}
-        
-        // Save the new image (original or edited) to the Camera Roll
-        // UIImageWriteToSavedPhotosAlbum (imageToSave, nil, nil , nil);
-        
-        // Save the new image (original or edited) to the singleton
         
         NSString * sectionKey = [MIOSingleton mainData].sectionNames[photoIndexPath.section];
         
@@ -333,28 +306,53 @@
 }
 
 
+
 /*
-// Override to support conditional editing of the table view.
+ ////// will not need this if changing functionality of SEGMENTEDCONTROL
+ - (void)valueChanged:(UISegmentedControl *)segment
+ {
+ 
+ // segment.tag = section -> sectionName
+ sectionName = [MIOSingleton mainData].sectionNames[segment.tag];
+ NSLog(@"%i",segment.selectedSegmentIndex);
+ // NSLog(@"%ld",(long)segmentedControl.selectedSegmentIndex);
+ }
+*/
+
+
+
+/*
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+ 
+    [self.tableView reloadData];
+     return YES;
 }
 */
 
 
-/*
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        
+//        [[MIOSingleton mainData].currentResident ] removeListItemAtIndex:indexPath.row];
+        
+        // [listItems removeObjectIdenticalTo:listItem];
+        
+//        TDLTableViewCell *cell = (TDLTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+//        cell.alpha = 0;
+//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
+//        NSString * sectionKey = [MIOSingleton mainData].sectionNames[indexPath];
+//        [[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey] removeObjectAtIndex:indexPath];
         // [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
 
  
 /*

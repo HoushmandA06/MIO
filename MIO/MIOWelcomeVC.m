@@ -9,6 +9,7 @@
 #import "MIOWelcomeVC.h"
 #import "MIOAdminVC.h"
 #import "MIONavVC.h"
+#import "MIOSingleton.h"
 
 @interface MIOWelcomeVC ()
 
@@ -21,7 +22,6 @@
     UIButton * editSaved;
     UIBarButtonItem * back;
     UILabel * welcomeTitle;
-    
     
 }
 
@@ -42,6 +42,14 @@
         back = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backToLogIn)];
         
         self.navigationItem.leftBarButtonItem = back;
+        
+        
+        UIImageView *backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH,SCREEN_HEIGHT)];
+        backgroundImage.contentMode = UIViewContentModeScaleToFill;     
+        [backgroundImage setImage:[UIImage imageNamed:@"gradblue.png"]];
+        
+        [self.view addSubview:backgroundImage];
+        [self.view sendSubviewToBack:backgroundImage];
     
     }
     return self;
@@ -73,16 +81,14 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    
     [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        
-        welcomeTitle.alpha = 0;
-        
+    welcomeTitle.alpha = 0;
         
     [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        
-        welcomeTitle.alpha = 1;
+    welcomeTitle.alpha = 1;
             
-        } completion:nil];
+    } completion:nil];
     } completion:nil];
     
 }
@@ -92,23 +98,29 @@
 {
     
     NSLog(@"launching StartNew");
+    
+    [[MIOSingleton mainData] addNewResident];
+    
     MIOAdminVC  * adminVC = [[MIOAdminVC alloc] initWithNibName:nil bundle:nil];
     
     MIONavVC * newNavVC = [[MIONavVC alloc] initWithRootViewController:adminVC];
-    
     [self presentViewController:newNavVC animated:NO completion:^{
     }];
-    
-    
-    
-    
+
 }
 
 -(void)launchEditSaved
 {
     
+    NSLog(@"%lu",(unsigned long)[[[MIOSingleton mainData] allResidentItems] count]);
+    
     NSLog(@"launching EditSaved");
     
+    MIOAdminVC  * adminVC = [[MIOAdminVC alloc] initWithNibName:nil bundle:nil];
+    
+    MIONavVC * newNavVC = [[MIONavVC alloc] initWithRootViewController:adminVC];
+    [self presentViewController:newNavVC animated:NO completion:^{
+    }];
     
 }
 

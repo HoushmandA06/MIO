@@ -31,6 +31,10 @@
 		0F0D5B3A1932328B002443F8 /* new.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5B361932328B002443F8 /* new.png */; };
 		0F0D5B3B1932328B002443F8 /* movein.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5B371932328B002443F8 /* movein.png */; };
 		0F0D5B3C1932328B002443F8 /* moveout.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5B381932328B002443F8 /* moveout.png */; };
+		0F19C0F119463A8F00178BB2 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F19C0F019463A8F00178BB2 /* Crashlytics.framework */; };
+		0F19C0F31947298C00178BB2 /* gradblue.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F19C0F21947298C00178BB2 /* gradblue.png */; };
+		0F19C0F519472C6600178BB2 /* tech.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F19C0F419472C6600178BB2 /* tech.png */; };
+		0F19C17D194793D400178BB2 /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F19C17C194793D300178BB2 /* launch.png */; };
 		0F2C101C1933C8D200CD3CE4 /* exclamation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2C101A1933C8D200CD3CE4 /* exclamation.png */; };
 		0F2C101D1933C8D200CD3CE4 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2C101B1933C8D200CD3CE4 /* check.png */; };
 		0F2C10201934AEB300CD3CE4 /* MIOTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C101F1934AEB300CD3CE4 /* MIOTableViewController.m */; };
@@ -102,6 +106,10 @@
 		0F0D5B361932328B002443F8 /* new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new.png; sourceTree = "<group>"; };
 		0F0D5B371932328B002443F8 /* movein.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = movein.png; sourceTree = "<group>"; };
 		0F0D5B381932328B002443F8 /* moveout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moveout.png; sourceTree = "<group>"; };
+		0F19C0F019463A8F00178BB2 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		0F19C0F21947298C00178BB2 /* gradblue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gradblue.png; sourceTree = "<group>"; };
+		0F19C0F419472C6600178BB2 /* tech.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tech.png; sourceTree = "<group>"; };
+		0F19C17C194793D300178BB2 /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
 		0F2C101A1933C8D200CD3CE4 /* exclamation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exclamation.png; sourceTree = "<group>"; };
 		0F2C101B1933C8D200CD3CE4 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		0F2C101E1934AEB300CD3CE4 /* MIOTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIOTableViewController.h; sourceTree = "<group>"; };
@@ -148,6 +156,7 @@
 				0F2C1134193D303500CD3CE4 /* QuartzCore.framework in Frameworks */,
 				0F2C1132193D302C00CD3CE4 /* MobileCoreServices.framework in Frameworks */,
 				0F2C1130193D302300CD3CE4 /* libz.dylib in Frameworks */,
+				0F19C0F119463A8F00178BB2 /* Crashlytics.framework in Frameworks */,
 				0F0D5AF4193231DE002443F8 /* CoreGraphics.framework in Frameworks */,
 				0F2C112E193D301100CD3CE4 /* CFNetwork.framework in Frameworks */,
 				0F2C112C193D300A00CD3CE4 /* AudioToolbox.framework in Frameworks */,
@@ -193,6 +202,7 @@
 		0F0D5AF0193231DE002443F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0F19C0F019463A8F00178BB2 /* Crashlytics.framework */,
 				0F2C1139193D305C00CD3CE4 /* SystemConfiguration.framework */,
 				0F2C1137193D304E00CD3CE4 /* StoreKit.framework */,
 				0F2C1135193D304100CD3CE4 /* Security.framework */,
@@ -241,6 +251,9 @@
 		0F0D5AF8193231DE002443F8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0F19C17C194793D300178BB2 /* launch.png */,
+				0F19C0F419472C6600178BB2 /* tech.png */,
+				0F19C0F21947298C00178BB2 /* gradblue.png */,
 				0F2C1129193D2FC600CD3CE4 /* Parse.framework */,
 				0F2C102D1937653300CD3CE4 /* photos@2x.png */,
 				0F2C10241934D6AE00CD3CE4 /* camera4040.png */,
@@ -325,6 +338,7 @@
 				0F0D5AEA193231DE002443F8 /* Sources */,
 				0F0D5AEB193231DE002443F8 /* Frameworks */,
 				0F0D5AEC193231DE002443F8 /* Resources */,
+				0F19C0EF19463A7100178BB2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -394,6 +408,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F19C17D194793D400178BB2 /* launch.png in Resources */,
+				0F19C0F31947298C00178BB2 /* gradblue.png in Resources */,
 				0F2C10D9193A6DEB00CD3CE4 /* Delete.png in Resources */,
 				0F0D5AFC193231DE002443F8 /* InfoPlist.strings in Resources */,
 				0F0D5B3A1932328B002443F8 /* new.png in Resources */,
@@ -404,6 +420,7 @@
 				0F2C10D8193A6DEB00CD3CE4 /* arrow_undo.png in Resources */,
 				0F2C101C1933C8D200CD3CE4 /* exclamation.png in Resources */,
 				0F0D5B3219323279002443F8 /* currentuser.png in Resources */,
+				0F19C0F519472C6600178BB2 /* tech.png in Resources */,
 				0F0D5B3319323279002443F8 /* newuser.png in Resources */,
 				0F2C102E1937653300CD3CE4 /* photos@2x.png in Resources */,
 				0F0D5B3419323279002443F8 /* image.png in Resources */,
@@ -422,6 +439,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0F19C0EF19463A7100178BB2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 7e9617f8130b789cc5f26b6e7471c44ecf935911 918d8a537dd794470b72b61c6e8b24c0d5570464c5271df443513a6ea0734ae6";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0F0D5AEA193231DE002443F8 /* Sources */ = {
@@ -565,6 +598,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MIO",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MIO/MIO-Prefix.pch";
@@ -584,6 +618,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MIO",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MIO/MIO-Prefix.pch";

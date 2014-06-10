@@ -32,7 +32,15 @@
     if (self) {
       
     self.view.backgroundColor = BLUE_COLOR;
-    
+       
+    UIImageView *backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH,SCREEN_HEIGHT)];
+    backgroundImage.contentMode = UIViewContentModeScaleToFill;
+    [backgroundImage setImage:[UIImage imageNamed:@"gradblue.png"]];
+        
+    [self.view addSubview:backgroundImage];
+    [self.view sendSubviewToBack:backgroundImage];
+        
+        
     //// WOULD LIKE TO ANIMATE THIS TO "MIO"
     logInTitle = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-150, 100, 300, 50)];
     logInTitle.font = [UIFont fontWithName:@"Helvetica" size:50];
@@ -156,6 +164,9 @@
              UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Log-in Error" message:errorDescription delegate:self cancelButtonTitle:@"Try Again" otherButtonTitles:nil];  //need to customize per the specific error message
              [alertView show];
          }
+         
+         [ai removeFromSuperview];
+
      }];
 }
 

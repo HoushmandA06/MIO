@@ -36,55 +36,68 @@
     self = [super init];
     if(self)
     {
-        [self loadListItems];
+    
+    
+        [self loadListItems];  // will show last save, "launch edit saved", will result this method called
         
-        self.residentItems = [@[
-                           
-                              @{@"pdfData":@"",
-                                @"sigData":@"",
-                                @"adminDetails":
-                                    [@{
-                                       @"Resident": @"",
-                                       @"Phone":@"",
-                                       @"Email":@"",
-                                       @"Property":@"",
-                                       @"Unit#":@"",
-                                       @"minMout":@YES,
-                                       @"date":@"",
-                                       @"sectionLists":
-                                           [@{
-                                       
-                                              } mutableCopy]
-                                       } mutableCopy]
-                                }
-                           ] mutableCopy];
+        self.sectionNames = @[@"Front Entrance",@"Living Room",@"Kitchen",@"Bathroom #1",@"Bathroom #2",@"Bedroom #1",@"Bedroom #2",@"Bedroom #3",@"Rear Entrance",@"Air Conditioning",@"Heating Systems",@"Patio",@"Balcony",@"Storage Room"];
         
         
         
-    self.sectionNames = @[@"Front Entrance",@"Living Room",@"Kitchen",@"Bathroom #1",@"Bathroom #2",@"Bedroom #1",@"Bedroom #2",@"Bedroom #3",@"Rear Entrance",@"Air Conditioning",@"Heating Systems",@"Patio",@"Balcony",@"Storage Room"];
         
-    for (NSString * sectionName in self.sectionNames)
+        if ( self.residentItems == nil )  // will show blank template, "launch new" will result in this if true
         {
-            self.residentItems[0][@"adminDetails"][@"sectionLists"][sectionName] = [@[] mutableCopy];
+            self.residentItems = [@[] mutableCopy];
+            [self addNewResident];
             
-            for (int i = 0; i < 2; i++)
-            {
-                NSMutableDictionary * commentDetails = [@{
-                                                          @"comment":@"",
-                                                          @"cost":@"",
-                                                          @"allClear":[NSNumber numberWithBool:YES]
-                                                          } mutableCopy];
-                
-                [self.residentItems[0][@"adminDetails"][@"sectionLists"][sectionName] addObject:commentDetails];
-            }
-        }
+        } // closes if
         
-        self.currentResident = self.residentItems[0];
+        self.currentResident = [self.residentItems lastObject];
+        
 
     }
     return self;
 }
 
+- (void)addNewResident
+{
+    NSMutableDictionary * newResident = [@{@"pdfData":@"",
+                                           @"sigData":@"",
+                                           @"adminDetails":
+                                               [@{
+                                                  @"Resident": @"",
+                                                  @"Phone":@"",
+                                                  @"Email":@"",
+                                                  @"Property":@"",
+                                                  @"Unit#":@"",
+                                                  @"minMout":@"",
+                                                  @"date":[NSDate date],
+                                                  @"sectionLists":
+                                                      [@{
+                                                         
+                                                         } mutableCopy]
+                                                  } mutableCopy]
+                                           } mutableCopy];
+    
+    for (NSString * sectionName in self.sectionNames)
+    {
+        newResident[@"adminDetails"][@"sectionLists"][sectionName] = [@[] mutableCopy];
+        
+        for (int i = 0; i < 2; i++)
+        {
+            NSMutableDictionary * commentDetails = [@{
+                                                      @"comment":@"",
+                                                      @"cost":@"",
+                                                      } mutableCopy];
+            
+            [newResident[@"adminDetails"][@"sectionLists"][sectionName] addObject:commentDetails];
+        }
+    }
+    
+    [self.residentItems addObject:newResident];
+    
+    self.currentResident = newResident;
+}
 
 
 -(void)addResidentItem:(NSMutableDictionary *)residentItem
@@ -109,7 +122,7 @@
 }
 
 
--(NSArray *)allListItems
+-(NSArray *)allResidentItems
 {
     return [self.residentItems copy];
 }
@@ -126,7 +139,7 @@
 {
     NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentDirectory = documentDirectories[0];
-    return [documentDirectory stringByAppendingPathComponent:@"listdata.data"];
+    return [documentDirectory stringByAppendingPathComponent:@"residents.data"];
     
 }
 

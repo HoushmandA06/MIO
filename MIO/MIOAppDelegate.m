@@ -10,6 +10,7 @@
 #import "MIOLoginVC.h"
 #import "MIOWelcomeVC.h"
 #import <Parse/Parse.h>
+#import <Crashlytics/Crashlytics.h>
 
 @implementation MIOAppDelegate
 
@@ -24,7 +25,9 @@
 
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
-    self.window.rootViewController = [[MIOLoginVC alloc] initWithNibName:nil bundle:nil];
+    [Crashlytics startWithAPIKey:@"7e9617f8130b789cc5f26b6e7471c44ecf935911"];
+    
+    //self.window.rootViewController = [[MIOLoginVC alloc] initWithNibName:nil bundle:nil];
 
     
     // testing

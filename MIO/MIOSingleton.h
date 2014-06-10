@@ -20,9 +20,12 @@
 
 -(void)removeListItem:(NSDictionary *)listItem;
 -(void)removeListItemAtIndex:(NSInteger)index;
--(NSArray *)allListItems;
 
+-(NSArray *)allResidentItems;
+
+- (void)addNewResident;
  
+-(void)saveData;
 
 
 @end

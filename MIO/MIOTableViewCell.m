@@ -22,6 +22,11 @@
     
     NSString * sectionKey;
     
+   // UILabel * attentionLabel;
+    
+    UITextField * attentionLabel;
+    
+    
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -47,6 +52,13 @@
         cost.autocorrectionType = FALSE;
         cost.delegate = self;
         [self.contentView addSubview:cost];
+        
+        attentionLabel = [[UITextField alloc] initWithFrame:CGRectMake(410, 1, 160, 40)];
+        attentionLabel.userInteractionEnabled = NO;
+        attentionLabel.delegate = self;
+        attentionLabel.textAlignment = NSTextAlignmentCenter;
+        [self.contentView addSubview:attentionLabel];
+        
         
         camera = [[UIButton alloc] initWithFrame:CGRectMake(710, 0, 40, 40)];
         [camera addTarget:self action:@selector(selected:) forControlEvents:UIControlEventTouchUpInside];
@@ -85,7 +97,19 @@
     comment.text = [[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey][self.row][@"comment"];
     cost.text = [[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey][self.row][@"cost"];
 
-
+    if([comment.text length] > 0)
+    {
+        attentionLabel.text = @"Work Order Req";
+        attentionLabel.textColor = [UIColor redColor];
+        
+    } else
+    {
+        attentionLabel.text = @"All Clear";
+        attentionLabel.textColor = GREEN_COLOR;
+        
+    }
+        
+    
 }
 
 - (void)setSection:(int)section
@@ -93,19 +117,20 @@
     
     _section = section;
 
-//     sectionKey = [MIOSingleton mainData].sectionNames[self.section];
     
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField   //now any textField will allow resign keyboard
 {
-        
-    sectionKey = [MIOSingleton mainData].sectionNames[self.section];
 
+
+    sectionKey = [MIOSingleton mainData].sectionNames[self.section];
     [[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey][self.row][@"comment"] = comment.text;
     [[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey][self.row][@"cost"] = cost.text;
-    
     [textField resignFirstResponder];
+    
+    [self.delegate refreshCell:self];
+
     
     return YES;
 }

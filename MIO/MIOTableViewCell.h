@@ -10,6 +10,7 @@
 
 @protocol MIOTableViewCellDelegate;
 
+
 @interface MIOTableViewCell : UITableViewCell <UITextFieldDelegate>
 
 @property (nonatomic,assign) id<MIOTableViewCellDelegate> delegate;
@@ -25,6 +26,8 @@
 @protocol MIOTableViewCellDelegate <NSObject>
 
 -(void)pushVCWithCell:(MIOTableViewCell *)cell;
+-(void)refreshCell:(MIOTableViewCell *)cell;
+
 
 
 @end

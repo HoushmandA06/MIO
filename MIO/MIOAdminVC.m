@@ -49,8 +49,9 @@
     saveData = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveAction)];
     self.navigationItem.leftBarButtonItem = back;
     self.navigationItem.rightBarButtonItem = saveData;
+       
         
-    
+           
         
     }
     return self;
@@ -136,7 +137,9 @@
     segmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Move-In", @"Move-Out", nil]];
     segmentedControl.frame = CGRectMake(100, 570, 250, 75);
 
-    segmentedControl.selectedSegmentIndex = 0;
+    segmentedControl.selectedSegmentIndex = [[[MIOSingleton mainData] currentResident][@"adminDetails"][@"minMout"] intValue];
+   
+    
     segmentedControl.tintColor = GREEN_COLOR;
     [segmentedControl addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
     [self.view addSubview:segmentedControl];
@@ -173,6 +176,7 @@
     moveDate.backgroundColor = [UIColor clearColor];
     moveDate.layer.borderColor = [UIColor lightGrayColor].CGColor;
     moveDate.minimumDate = [NSDate date];
+    moveDate.date = [[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"];
     moveDate.layer.borderWidth = 1;
     moveDate.layer.cornerRadius = 10;
     [self.view addSubview:moveDate];
@@ -184,7 +188,9 @@
 -(void)updateDate:(id)sender
 {
     NSDate *myDate = moveDate.date;
+    
     [[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"] = myDate;
+    
     
     NSLog(@"%@",myDate);
     NSLog(@"%@ from singleton",[[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"]);
@@ -207,11 +213,13 @@
     
     if(segment.selectedSegmentIndex == 0) {
         moveDateLabel.text = @"Move-In Date";
-        
+       
     } else if(segment.selectedSegmentIndex == 1){
         moveDateLabel.text = @"Move-Out Date";
-    
     }
+    
+    [[MIOSingleton mainData] currentResident][@"adminDetails"][@"minMout"] = [NSNumber numberWithInt:segment.selectedSegmentIndex];
+    
     
     NSLog(@"%ld",(long)segmentedControl.selectedSegmentIndex);
 }
@@ -243,28 +251,38 @@
 
 -(void)saveAction
 {
+//    [self listArchivePath];
+    [[MIOSingleton mainData] saveData];
 
+    
     NSLog(@"Save Data Selected");
 
 }
 
 
--(void)saveData  //saves the data
-{
-    NSString *path = [self listArchivePath];
-    
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.listItems]; //what we are archiving to, should be same as unarchive
-    [data writeToFile:path options:NSDataWritingAtomic error:nil];
-    
-}
-
--(NSString *)listArchivePath  //finds the path to the data to save
-{
-    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentDirectory = documentDirectories[0];
-    return [documentDirectory stringByAppendingPathComponent:@"listdata.data"];
-    
-}
+//-(void)saveData  //saves the data
+//{
+//    NSString *path = [self listArchivePath];
+//    
+//    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:[[MIOSingleton mainData] currentResident]]; //what we are archiving to, should be same as unarchive
+//    [data writeToFile:path options:NSDataWritingAtomic error:nil];
+//    
+//    if(data !=nil)
+//    {
+//        NSLog(@"data created");
+//        NSUInteger texas = [data length];
+//        NSLog(@"%lu",(unsigned long)texas);
+//    }
+//
+//}
+//
+//-(NSString *)listArchivePath  //finds the path to the data to save
+//{
+//    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *documentDirectory = documentDirectories[0];
+//    return [documentDirectory stringByAppendingPathComponent:@"listdata.data"];
+//    
+//}
 
 
 
