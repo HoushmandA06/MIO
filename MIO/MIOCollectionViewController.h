@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GLACollectionViewController : UICollectionViewController
+@interface MIOCollectionViewController : UICollectionViewController
 
 
 

@@ -8,21 +8,24 @@
 
 
 
-#import "GLACollectionViewController.h"
+#import "MIOCollectionViewController.h"
 #import "MIOCollectionViewCell.h"
+#import "MIODisplayCellVC.h"
 #import "MIOSingleton.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <QuartzCore/QuartzCore.h>
 
 
-@interface GLACollectionViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate>
+
+@interface MIOCollectionViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate>
 
 @property (nonatomic, strong) NSArray * assets;
 
 @end
 
-@implementation GLACollectionViewController
+@implementation MIOCollectionViewController
 {
-    
+  
     
 }
 
@@ -39,7 +42,19 @@
         
         layout.sectionInset = UIEdgeInsetsMake(10, 0, 10, 0);
         
-
+        self.collectionView.backgroundColor = [UIColor clearColor];
+        
+        
+ 
+        
+    UIBarButtonItem * submit = [[UIBarButtonItem alloc] initWithTitle:@"Screen Shot" style:UIBarButtonItemStylePlain target:self action:@selector(takeAScreenShot)];
+        
+        //tabSelected:
+        
+    UIBarButtonItem * flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        
+    [self setToolbarItems:@[flexible, submit, flexible]];
+    self.navigationController.toolbarHidden = NO;
     
     }
     return self;
@@ -80,7 +95,7 @@
     return itemsCount;
     
 
-// works with ALA tutorial
+//    works with ALA tutorial
 //    return self.assets.count;
     
 
@@ -115,9 +130,21 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+ 
     
+    MIOCollectionViewCell * cell = (MIOCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+   
+    MIODisplayCellVC * displayVC = [[MIODisplayCellVC alloc] initWithNibName:nil bundle:nil];
+    displayVC.cellImage.image = cell.photoImageView.image;
+    [self.navigationController pushViewController:displayVC animated:NO];
+    
+    // NSLog(@"did select cell");
 
-    NSLog(@"did select cell");
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
     
     
 }
@@ -204,6 +231,34 @@
  
 
 }
+
+
+
+
+-(void)takeAScreenShot
+{
+
+    
+    CGRect frame = self.collectionView.frame;
+    frame.size.height = self.collectionView.contentSize.height;//the most important line
+    self.collectionView.frame = frame;
+    
+    UIGraphicsBeginImageContext(self.collectionView.bounds.size);
+    [self.collectionView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+    
+    /*
+     if you want to save captured image locally in your app's document directory
+     NSData * data = UIImagePNGRepresentation(image);
+     
+     NSString *imagePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"testImage.png"];
+     NSLog(@"Path for Image : %@",imagePath);
+     [data writeToFile:imagePath atomically:YES];
+     */
+}
+
 
 
 

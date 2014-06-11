@@ -7,11 +7,11 @@
 //
 
 #import "MIOTableViewController.h"
-#import "GLACollectionViewController.h" // collection view for photos
+#import "MIOCollectionViewController.h" // collection view for photos
 #import "DLAViewController.h"  // draw app, will proxy for signature page
 #import "MIOSingleton.h"
 #import <MobileCoreServices/MobileCoreServices.h>
-
+#import <QuartzCore/QuartzCore.h>
 
 @interface MIOTableViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -42,6 +42,7 @@
         // init controls
         
     back = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backToStartNew)];
+    
     saveData = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveAction)];
         
     self.navigationItem.leftBarButtonItem = back;
@@ -75,10 +76,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    
     
     photos = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"photos"] style:UIBarButtonItemStylePlain target:self action:@selector(tabSelected:)];
+   
+    submit = [[UIBarButtonItem alloc] initWithTitle:@"Screen Shot" style:UIBarButtonItemStylePlain target:self action:@selector(takeAScreenShot)];
     
-    submit = [[UIBarButtonItem alloc] initWithTitle:@"Submit" style:UIBarButtonItemStylePlain target:self action:@selector(tabSelected:)];
+    //tabSelected:
     
     UIBarButtonItem * flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
@@ -96,7 +101,7 @@
     {
         NSLog(@"photos selected");
         
-        GLACollectionViewController * collectionVC = [[GLACollectionViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+        MIOCollectionViewController * collectionVC = [[MIOCollectionViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
         [self.navigationController pushViewController:collectionVC animated:NO];
         
     } else
@@ -184,18 +189,7 @@
     [customView addSubview:headerLabel];
     [customView addSubview:addRow];
     [customView addSubview:delRow];
-    
-    
-    //  UISegmentedControl * segmentWorkOrder = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"All Clear", @"Exceptions", nil]];
-    //  segmentWorkOrder.frame = CGRectMake(400, 5, 180, 40);
-    //  segmentWorkOrder.userInteractionEnabled = NO;
-    //  add segment to controls for key sectionKey
-    //  switch 0 or 1 based on change of data
-    //  segmentWorkOrder.selectedSegmentIndex = 0;
-    //  segmentWorkOrder.selectedSegmentIndex = [[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionName][@"allClear"] intValue];
-    //  segmentWorkOrder.tintColor = GREEN_COLOR;
-    //  [segmentWorkOrder addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
-    //  [customView addSubview:segmentWorkOrder];
+
 
     return customView;
     
@@ -307,69 +301,73 @@
 
 
 
-/*
- ////// will not need this if changing functionality of SEGMENTEDCONTROL
- - (void)valueChanged:(UISegmentedControl *)segment
- {
- 
- // segment.tag = section -> sectionName
- sectionName = [MIOSingleton mainData].sectionNames[segment.tag];
- NSLog(@"%i",segment.selectedSegmentIndex);
- // NSLog(@"%ld",(long)segmentedControl.selectedSegmentIndex);
- }
-*/
 
 
 
-/*
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
  
-    [self.tableView reloadData];
      return YES;
 }
-*/
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+    //    return UITableViewCellEditingStyleInsert;
+}
 
 
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
         
-//        [[MIOSingleton mainData].currentResident ] removeListItemAtIndex:indexPath.row];
+        MIOTableViewCell *cell = (MIOTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+        cell.alpha = 0;
         
-        // [listItems removeObjectIdenticalTo:listItem];
-        
-//        TDLTableViewCell *cell = (TDLTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-//        cell.alpha = 0;
-//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-
-//        NSString * sectionKey = [MIOSingleton mainData].sectionNames[indexPath];
-//        [[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey] removeObjectAtIndex:indexPath];
-        // [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        NSString * sectionKey = [MIOSingleton mainData].sectionNames[indexPath.section];
+        [[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey] removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
 
- 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+
+-(void)takeAScreenShot
 {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+ 
+    
+    CGRect frame = self.tableView.frame;
+    frame.size.height = self.tableView.contentSize.height;//the most important line
+    self.tableView.frame = frame;
+    
+    if([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+    UIGraphicsBeginImageContextWithOptions(self.tableView.bounds.size, NO, [UIScreen mainScreen].scale);
+    else
+    UIGraphicsBeginImageContext(self.tableView.bounds.size);
+    
+//    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+//        UIGraphicsBeginImageContextWithOptions(self.window.bounds.size, NO, [UIScreen mainScreen].scale);
+//    else
+//        UIGraphicsBeginImageContext(self.window.bounds.size);
+    
+    [self.tableView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+    
+    /*
+    if you want to save captured image locally in your app's document directory
+     NSData * data = UIImagePNGRepresentation(image);
+ 
+     NSString *imagePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"testImage.png"];
+     NSLog(@"Path for Image : %@",imagePath);
+     [data writeToFile:imagePath atomically:YES];
+     */
 }
-*/
 
 
 

@@ -99,7 +99,7 @@
 
     if([comment.text length] > 0)
     {
-        attentionLabel.text = @"Work Order Req";
+        attentionLabel.text = @"Attention";
         attentionLabel.textColor = [UIColor redColor];
         
     } else

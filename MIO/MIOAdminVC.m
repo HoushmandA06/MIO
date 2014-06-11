@@ -10,6 +10,8 @@
 #import "MIOTableViewController.h"
 #import "MIONavVC.h"
 #import "MIOSingleton.h"
+#import "MIODatePickerViewController.h"
+
 
 @interface MIOAdminVC () <UITextFieldDelegate>
 
@@ -49,10 +51,7 @@
     saveData = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveAction)];
     self.navigationItem.leftBarButtonItem = back;
     self.navigationItem.rightBarButtonItem = saveData;
-       
-        
-           
-        
+ 
     }
     return self;
 }
@@ -61,6 +60,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIButton * showDatePickerVC = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+45, 100, 200, 60)];
+    showDatePickerVC.backgroundColor = [UIColor colorWithWhite:0.95 alpha:.65];
+    showDatePickerVC.layer.cornerRadius = 10;
+    [showDatePickerVC setTitle:@"Choose Date" forState:UIControlStateNormal];
+    [showDatePickerVC setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [showDatePickerVC addTarget:self action:@selector(showDatePicker) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:showDatePickerVC];
+
+    
     
     ///// ADMIN SECTION       
     UILabel * adminTitle = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 568, 60)];
@@ -73,9 +82,6 @@
     fieldNames = @[@"Resident", @"Phone", @"Email", @"Property",@"Unit#"];
  
 
-//    keyboardTypes = @[@(UIKeyboardTypeDefault),@(UIKeyboardTypePhonePad),@(UIKeyboardTypeEmailAddress),@(UIKeyboardTypeNamePhonePad),@(UIKeyboardTypeNumbersAndPunctuation)];
-
-    
     fields = [@[]mutableCopy];
     
     
@@ -83,7 +89,7 @@
     {
         NSInteger index = [fieldNames indexOfObject:name];
         UITextField * textField = [[UITextField alloc] initWithFrame:CGRectMake(100,(index * 70)+170,568,60)];
-        textField.backgroundColor = [UIColor colorWithWhite:0.90 alpha:1.0];
+        textField.backgroundColor = [UIColor colorWithWhite:0.95 alpha:0.65];
         textField.layer.cornerRadius = 10;
         textField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a set amt right of the textfield
         textField.leftViewMode = UITextFieldViewModeAlways;
@@ -116,17 +122,11 @@
                 
         }
         
-//        for (NSString * keyboard in keyboardTypes)
-//        {
-//            NSInteger index = [keyboardTypes indexOfObject:keyboard];
-//            [textField setKeyboardType:keyboardTypes[index]];
-//        }
         
         textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
         textField.delegate = self;
-        [textField.layer setBorderColor: [[UIColor lightGrayColor] CGColor]];
-        [textField.layer setBorderWidth: 2.0];
-        [textField resignFirstResponder]; //this is what makes keyboard go away
+ 
+        [textField resignFirstResponder];
         [fields addObject:textField];
         [self.view addSubview:textField];
     }
@@ -146,19 +146,37 @@
     
     
     ///// SUBMIT BUTTON
-    submit = [[UIButton alloc] initWithFrame:CGRectMake(100,900,568,60)];
-    submit.backgroundColor = BLUE_COLOR;
+    submit = [[UIButton alloc] initWithFrame:CGRectMake(100,860,568,60)];
+    submit.backgroundColor = [UIColor colorWithWhite:0.95 alpha:.65];
     submit.layer.cornerRadius = 10;
     [submit setTitle:@"Submit" forState:UIControlStateNormal];
-    [submit setTitleColor:[UIColor greenColor] forState:UIControlStateSelected];
     [submit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [submit.layer setBorderColor: [[UIColor lightGrayColor] CGColor]];
-    [submit.layer setBorderWidth: 1.0];
     [submit addTarget:self action:@selector(selected:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:submit];
     
     
 }
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+    UIBarButtonItem * screenShot = [[UIBarButtonItem alloc] initWithTitle:@"Screen Shot" style:UIBarButtonItemStylePlain target:self action:@selector(takeAScreenShot)];
+    UIBarButtonItem * flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    [self setToolbarItems:@[flexible, screenShot, flexible]];
+
+    self.navigationController.toolbarHidden = NO;
+    
+}
+
+
+-(void)showDatePicker
+{
+    
+    
+    
+}
+
 
 -(void)moveInOutDate
 {
@@ -166,7 +184,6 @@
     moveDateLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
     moveDateLabel.textAlignment = NSTextAlignmentLeft;
     moveDateLabel.text = @"Move-In Date";
-
     moveDateLabel.textColor = [UIColor colorWithWhite:0.90 alpha:.90];
     [self.view addSubview:moveDateLabel];
     
@@ -174,12 +191,14 @@
     [moveDate addTarget:self action:@selector(updateDate:) forControlEvents:UIControlEventValueChanged];
     moveDate.datePickerMode = UIDatePickerModeDate;
     moveDate.backgroundColor = [UIColor clearColor];
-    moveDate.layer.borderColor = [UIColor lightGrayColor].CGColor;
     moveDate.minimumDate = [NSDate date];
     moveDate.date = [[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"];
-    moveDate.layer.borderWidth = 1;
-    moveDate.layer.cornerRadius = 10;
+    // moveDate.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    // moveDate.layer.borderWidth = 1;
+    // moveDate.layer.cornerRadius = 10;
+    
     [self.view addSubview:moveDate];
+    
 
     
 }
@@ -259,30 +278,38 @@
 
 }
 
-
-//-(void)saveData  //saves the data
-//{
-//    NSString *path = [self listArchivePath];
-//    
-//    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:[[MIOSingleton mainData] currentResident]]; //what we are archiving to, should be same as unarchive
-//    [data writeToFile:path options:NSDataWritingAtomic error:nil];
-//    
-//    if(data !=nil)
-//    {
-//        NSLog(@"data created");
-//        NSUInteger texas = [data length];
-//        NSLog(@"%lu",(unsigned long)texas);
-//    }
-//
-//}
-//
-//-(NSString *)listArchivePath  //finds the path to the data to save
-//{
-//    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//    NSString *documentDirectory = documentDirectories[0];
-//    return [documentDirectory stringByAppendingPathComponent:@"listdata.data"];
-//    
-//}
+-(void)takeAScreenShot
+{
+    
+    
+    CGRect frame = self.view.frame;
+    frame.size.height = self.view.frame.size.height;//the most important line
+    self.view.frame = frame;
+    
+    if([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, NO, [UIScreen mainScreen].scale);
+    else
+        UIGraphicsBeginImageContext(self.view.bounds.size);
+    
+    //    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
+    //        UIGraphicsBeginImageContextWithOptions(self.window.bounds.size, NO, [UIScreen mainScreen].scale);
+    //    else
+    //        UIGraphicsBeginImageContext(self.window.bounds.size);
+    
+    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+    
+    /*
+     if you want to save captured image locally in your app's document directory
+     NSData * data = UIImagePNGRepresentation(image);
+     
+     NSString *imagePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"testImage.png"];
+     NSLog(@"Path for Image : %@",imagePath);
+     [data writeToFile:imagePath atomically:YES];
+     */
+}
 
 
 

@@ -44,12 +44,12 @@
         self.navigationItem.leftBarButtonItem = back;
         
         
-        UIImageView *backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH,SCREEN_HEIGHT)];
-        backgroundImage.contentMode = UIViewContentModeScaleToFill;     
-        [backgroundImage setImage:[UIImage imageNamed:@"gradblue.png"]];
-        
-        [self.view addSubview:backgroundImage];
-        [self.view sendSubviewToBack:backgroundImage];
+//        UIImageView *backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH,SCREEN_HEIGHT)];
+//        backgroundImage.contentMode = UIViewContentModeScaleToFill;     
+//        [backgroundImage setImage:[UIImage imageNamed:@"gradblue.png"]];
+//        
+//        [self.view addSubview:backgroundImage];
+//        [self.view sendSubviewToBack:backgroundImage];
     
     }
     return self;
@@ -81,7 +81,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    
+        
     [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
     welcomeTitle.alpha = 0;
         
