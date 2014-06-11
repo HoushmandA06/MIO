@@ -10,7 +10,6 @@
 #import "MIOTableViewController.h"
 #import "MIONavVC.h"
 #import "MIOSingleton.h"
-#import "MIODatePickerViewController.h"
 
 
 @interface MIOAdminVC () <UITextFieldDelegate>
@@ -37,6 +36,10 @@
     UILabel * moveDateLabel;
     UIDatePicker * moveDate;
     
+    UIView * datePickerView;
+    UITextField * dateDisplay;
+    
+    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -46,11 +49,13 @@
       
     self.view.backgroundColor = BLUE_COLOR;
     //self.view.backgroundColor = [UIColor clearColor];
+    
 
     back = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backToWelcome)];
     saveData = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveAction)];
     self.navigationItem.leftBarButtonItem = back;
     self.navigationItem.rightBarButtonItem = saveData;
+        
  
     }
     return self;
@@ -61,15 +66,8 @@
 {
     [super viewDidLoad];
     
-    UIButton * showDatePickerVC = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+45, 100, 200, 60)];
-    showDatePickerVC.backgroundColor = [UIColor colorWithWhite:0.95 alpha:.65];
-    showDatePickerVC.layer.cornerRadius = 10;
-    [showDatePickerVC setTitle:@"Choose Date" forState:UIControlStateNormal];
-    [showDatePickerVC setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [showDatePickerVC addTarget:self action:@selector(showDatePicker) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:showDatePickerVC];
+    [self moveInOutDate];
 
-    
     
     ///// ADMIN SECTION       
     UILabel * adminTitle = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 568, 60)];
@@ -131,20 +129,7 @@
         [self.view addSubview:textField];
     }
     
-    [self moveInOutDate];
-    
-    ///// MOVEIN OR MOVEOUT
-    segmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Move-In", @"Move-Out", nil]];
-    segmentedControl.frame = CGRectMake(100, 570, 250, 75);
 
-    segmentedControl.selectedSegmentIndex = [[[MIOSingleton mainData] currentResident][@"adminDetails"][@"minMout"] intValue];
-   
-    
-    segmentedControl.tintColor = GREEN_COLOR;
-    [segmentedControl addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
-    [self.view addSubview:segmentedControl];
-    
-    
     ///// SUBMIT BUTTON
     submit = [[UIButton alloc] initWithFrame:CGRectMake(100,860,568,60)];
     submit.backgroundColor = [UIColor colorWithWhite:0.95 alpha:.65];
@@ -154,7 +139,7 @@
     [submit addTarget:self action:@selector(selected:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:submit];
     
-    
+
 }
 
 
@@ -170,44 +155,77 @@
 }
 
 
--(void)showDatePicker
-{
-    
-    
-    
-}
 
 
 -(void)moveInOutDate
 {
-    moveDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+45, 520, 200, 60)];
+    
+    datePickerView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-300, SCREEN_WIDTH, 300)];
+    datePickerView.backgroundColor = [UIColor colorWithWhite:.95 alpha:.65];
+    
+    
+    /////// ITEMS IN SELF.VIEW
+    dateDisplay = [[UITextField alloc] initWithFrame:CGRectMake(100, 570, 250, 60)];
+    dateDisplay.inputView = datePickerView;
+    dateDisplay.backgroundColor = [UIColor colorWithWhite:0.95 alpha:0.65];
+    dateDisplay.layer.cornerRadius = 10;
+    dateDisplay.placeholder = @"Select Date";
+    [dateDisplay setTextAlignment:NSTextAlignmentCenter];
+    //  dateDisplay.delegate = self;  // shuts off ability of this textfield to call keyboard
+    [self.view addSubview:dateDisplay];
+    
+    moveDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 520, 200, 60)];
     moveDateLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
     moveDateLabel.textAlignment = NSTextAlignmentLeft;
     moveDateLabel.text = @"Move-In Date";
-    moveDateLabel.textColor = [UIColor colorWithWhite:0.90 alpha:.90];
+    moveDateLabel.textColor = [UIColor colorWithWhite:0.85 alpha:.90];
     [self.view addSubview:moveDateLabel];
     
-    moveDate = [[UIDatePicker alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2+45, 570, 240, 60)];
+    
+    /////// ITEMS IN DATEPICKERVIEW
+    UIButton * done = [[UIButton alloc] initWithFrame:CGRectMake(568,20,100,40)];
+    done.backgroundColor = BLUE_COLOR;
+    done.layer.cornerRadius = 8;
+    [done setTitle:@"Done" forState:UIControlStateNormal];
+    [done setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [done addTarget:self action:@selector(closeDatePickerView) forControlEvents:UIControlEventTouchUpInside];
+    [datePickerView addSubview:done];
+    
+    segmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Move-In", @"Move-Out", nil]];
+    segmentedControl.frame = CGRectMake(SCREEN_WIDTH/2+45, 152, 240, 60);
+    segmentedControl.selectedSegmentIndex = [[[MIOSingleton mainData] currentResident][@"adminDetails"][@"minMout"] intValue];
+    segmentedControl.tintColor = GREEN_COLOR;
+    [segmentedControl addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
+    [datePickerView addSubview:segmentedControl];
+   
+    moveDate = [[UIDatePicker alloc] initWithFrame:CGRectMake(100, 50, 240, 60)];
     [moveDate addTarget:self action:@selector(updateDate:) forControlEvents:UIControlEventValueChanged];
     moveDate.datePickerMode = UIDatePickerModeDate;
-    moveDate.backgroundColor = [UIColor clearColor];
+    moveDate.backgroundColor = [UIColor whiteColor];
+    moveDate.alpha = .85;
     moveDate.minimumDate = [NSDate date];
     moveDate.date = [[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"];
-    // moveDate.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    // moveDate.layer.borderWidth = 1;
-    // moveDate.layer.cornerRadius = 10;
-    
-    [self.view addSubview:moveDate];
-    
-
+    [datePickerView addSubview:moveDate];
     
 }
+
+-(void)closeDatePickerView
+{
+
+    [self.view endEditing:YES];
+    
+}
+
 
 
 -(void)updateDate:(id)sender
 {
     NSDate *myDate = moveDate.date;
-    
+   
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"MM-dd-yyyy"];
+    dateDisplay.text = [dateFormat stringFromDate:moveDate.date];
+
     [[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"] = myDate;
     
     
@@ -323,15 +341,12 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField   //now any textField will allow resign keyboard
 {
+    
     [textField resignFirstResponder];
-    
-    
     int index = [fields indexOfObject:textField];
-    
     NSString * key = fieldNames[index];
     [[MIOSingleton mainData] currentResident][@"adminDetails"][key] = textField.text;
-    
-    
+
     
     return YES;
 }

@@ -61,7 +61,6 @@
 		0F2C1136193D304100CD3CE4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2C1135193D304100CD3CE4 /* Security.framework */; };
 		0F2C1138193D304E00CD3CE4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2C1137193D304E00CD3CE4 /* StoreKit.framework */; };
 		0F2C113A193D305C00CD3CE4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2C1139193D305C00CD3CE4 /* SystemConfiguration.framework */; };
-		0F8BE2341948B19F00D4487E /* MIODatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F8BE2331948B19F00D4487E /* MIODatePickerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,8 +146,6 @@
 		0F2C1135193D304100CD3CE4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		0F2C1137193D304E00CD3CE4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		0F2C1139193D305C00CD3CE4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		0F8BE2321948B19F00D4487E /* MIODatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIODatePickerViewController.h; sourceTree = "<group>"; };
-		0F8BE2331948B19F00D4487E /* MIODatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIODatePickerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,8 +234,6 @@
 				0F0D5B2319323224002443F8 /* MIOSignUpVC.m */,
 				0F0D5B2419323224002443F8 /* MIOWelcomeVC.h */,
 				0F0D5B2519323224002443F8 /* MIOWelcomeVC.m */,
-				0F8BE2321948B19F00D4487E /* MIODatePickerViewController.h */,
-				0F8BE2331948B19F00D4487E /* MIODatePickerViewController.m */,
 				0F0D5B2619323224002443F8 /* MIOAdminVC.h */,
 				0F0D5B2719323224002443F8 /* MIOAdminVC.m */,
 				0F2C101E1934AEB300CD3CE4 /* MIOTableViewController.h */,
@@ -485,7 +480,6 @@
 				0F0D5B2D19323224002443F8 /* MIOAdminVC.m in Sources */,
 				0F0D5AFE193231DE002443F8 /* main.m in Sources */,
 				0F2C10C3193A307300CD3CE4 /* MIOSingleton.m in Sources */,
-				0F8BE2341948B19F00D4487E /* MIODatePickerViewController.m in Sources */,
 				0F2C10201934AEB300CD3CE4 /* MIOTableViewController.m in Sources */,
 				0F2C10BF1938D33700CD3CE4 /* MIOCollectionViewController.m in Sources */,
 			);
