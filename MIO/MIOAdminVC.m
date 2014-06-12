@@ -12,7 +12,7 @@
 #import "MIOSingleton.h"
 
 
-@interface MIOAdminVC () <UITextFieldDelegate>
+@interface MIOAdminVC () <UITextFieldDelegate, UIAlertViewDelegate>
 
 @end
 
@@ -87,7 +87,7 @@
     {
         NSInteger index = [fieldNames indexOfObject:name];
         UITextField * textField = [[UITextField alloc] initWithFrame:CGRectMake(100,(index * 70)+170,568,60)];
-        textField.backgroundColor = [UIColor colorWithWhite:0.95 alpha:0.65];
+        textField.backgroundColor = [UIColor colorWithWhite:0.95 alpha:0.75];
         textField.layer.cornerRadius = 10;
         textField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a set amt right of the textfield
         textField.leftViewMode = UITextFieldViewModeAlways;
@@ -170,6 +170,17 @@
     dateDisplay.backgroundColor = [UIColor colorWithWhite:0.95 alpha:0.65];
     dateDisplay.layer.cornerRadius = 10;
     dateDisplay.placeholder = @"Select Date";
+    
+    // testing
+    
+    if([[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"] != nil)
+    {
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"MM-dd-yyyy"];
+    dateDisplay.text =  [dateFormat stringFromDate:[[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"]];
+    }
+        //
+    
     [dateDisplay setTextAlignment:NSTextAlignmentCenter];
     //  dateDisplay.delegate = self;  // shuts off ability of this textfield to call keyboard
     [self.view addSubview:dateDisplay];
@@ -178,7 +189,7 @@
     moveDateLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
     moveDateLabel.textAlignment = NSTextAlignmentLeft;
     moveDateLabel.text = @"Move-In Date";
-    moveDateLabel.textColor = [UIColor colorWithWhite:0.85 alpha:.90];
+    moveDateLabel.textColor = [UIColor colorWithWhite:0.95 alpha:.90];
     [self.view addSubview:moveDateLabel];
     
     
@@ -194,14 +205,17 @@
     segmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Move-In", @"Move-Out", nil]];
     segmentedControl.frame = CGRectMake(SCREEN_WIDTH/2+45, 152, 240, 60);
     segmentedControl.selectedSegmentIndex = [[[MIOSingleton mainData] currentResident][@"adminDetails"][@"minMout"] intValue];
-    segmentedControl.tintColor = GREEN_COLOR;
+    segmentedControl.tintColor = BLUE_COLOR;
     [segmentedControl addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
     [datePickerView addSubview:segmentedControl];
    
     moveDate = [[UIDatePicker alloc] initWithFrame:CGRectMake(100, 50, 240, 60)];
     [moveDate addTarget:self action:@selector(updateDate:) forControlEvents:UIControlEventValueChanged];
     moveDate.datePickerMode = UIDatePickerModeDate;
-    moveDate.backgroundColor = [UIColor whiteColor];
+    moveDate.backgroundColor = [UIColor clearColor];
+    moveDate.layer.borderColor = [UIColor colorWithRed:0.137f green:0.627f blue:0.906f alpha:1.0f].CGColor;
+    moveDate.layer.borderWidth = 1;
+    moveDate.layer.cornerRadius = 5;
     moveDate.alpha = .85;
     moveDate.minimumDate = [NSDate date];
     moveDate.date = [[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"];
@@ -212,7 +226,7 @@
 -(void)closeDatePickerView
 {
 
-    [self.view endEditing:YES];
+     [self.view endEditing:YES];
     
 }
 
@@ -289,10 +303,30 @@
 -(void)saveAction
 {
 //    [self listArchivePath];
+    
+
+    UIActivityIndicatorView *ai = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    ai.color = [UIColor whiteColor];
+    ai.frame = CGRectMake(SCREEN_WIDTH/2-50, 40, 100.0, 100.0);
+    [ai startAnimating];
+    [self.view addSubview:ai];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+ 
     [[MIOSingleton mainData] saveData];
 
+    [ai removeFromSuperview];
+        
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Save Successful" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+        
+
+        
+        
+    });
     
-    NSLog(@"Save Data Selected");
+
+    
 
 }
 
