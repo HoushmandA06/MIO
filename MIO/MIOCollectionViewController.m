@@ -44,9 +44,6 @@
         
         self.collectionView.backgroundColor = [UIColor clearColor];
         
-        
- 
-        
     UIBarButtonItem * submit = [[UIBarButtonItem alloc] initWithTitle:@"Screen Shot" style:UIBarButtonItemStylePlain target:self action:@selector(takeAScreenShot)];
         
         //tabSelected:
@@ -136,6 +133,8 @@
    
     MIODisplayCellVC * displayVC = [[MIODisplayCellVC alloc] initWithNibName:nil bundle:nil];
     displayVC.cellImage.image = cell.photoImageView.image;
+    displayVC.cellImage.contentMode = UIViewContentModeScaleAspectFit;
+
     [self.navigationController pushViewController:displayVC animated:NO];
     
     // NSLog(@"did select cell");

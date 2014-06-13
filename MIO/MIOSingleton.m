@@ -40,9 +40,8 @@
     
         [self loadListItems];  // will show last save, "launch edit saved", will result this method called
         
-        self.sectionNames = @[@"Front Entrance",@"Living Room",@"Kitchen",@"Bathroom #1",@"Bathroom #2",@"Bedroom #1",@"Bedroom #2",@"Bedroom #3",@"Rear Entrance",@"Air Conditioning",@"Heating Systems",@"Patio",@"Balcony",@"Storage Room"];
-        
-        
+        self.sectionNames = @[@"Front Entrance",@"Living Room",@"Kitchen",@"Bedroom #1",@"Bedroom #2",@"Bedroom #3",@"Bathroom #1",@"Bathroom #2",@"Rear Entrance",@"Washer/Dryer",@"Patio",@"Balcony",@"HVAC",@"Storage Room",@"Keys Issued"];
+            
         
         
         if ( self.residentItems == nil )  // will show blank template, "launch new" will result in this if true
@@ -61,7 +60,9 @@
 
 - (void)addNewResident
 {
-    NSMutableDictionary * newResident = [@{@"pdfData":@"",
+    NSMutableDictionary * newResident = [@{
+                                           @"screenShot":[@{}mutableCopy],
+                                           @"screenShot2":[@{}mutableCopy],
                                            @"sigData":@"",
                                            @"adminDetails":
                                                [@{
@@ -83,7 +84,7 @@
     {
         newResident[@"adminDetails"][@"sectionLists"][sectionName] = [@[] mutableCopy];
         
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 1; i++)
         {
             NSMutableDictionary * commentDetails = [@{
                                                       @"comment":@"",

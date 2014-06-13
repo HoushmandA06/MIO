@@ -124,6 +124,7 @@
 {
 
 
+    
     sectionKey = [MIOSingleton mainData].sectionNames[self.section];
     [[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey][self.row][@"comment"] = comment.text;
     [[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey][self.row][@"cost"] = cost.text;

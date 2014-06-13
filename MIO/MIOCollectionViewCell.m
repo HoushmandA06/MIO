@@ -55,10 +55,7 @@
     
     NSArray * items = [[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionName];
     
-
-    
     NSMutableArray * itemsWithImages = [@[] mutableCopy];
-    
     
     for (NSDictionary * item in items)
     {

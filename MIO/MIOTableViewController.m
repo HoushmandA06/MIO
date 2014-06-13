@@ -24,6 +24,8 @@
     
     UIBarButtonItem * photos;
     UIBarButtonItem * submit;
+    UIBarButtonItem * launchAVC;
+    
     NSString * sectionName;
     
     NSMutableDictionary * commentDetails;
@@ -47,12 +49,33 @@
         
     self.navigationItem.leftBarButtonItem = back;
     self.navigationItem.rightBarButtonItem = saveData;
-        
 
     }
     return self;
 }
 
+
+
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+
+    photos = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"photos"] style:UIBarButtonItemStylePlain target:self action:@selector(tabSelected:)];
+    
+    submit = [[UIBarButtonItem alloc] initWithTitle:@"Screen Shot" style:UIBarButtonItemStylePlain target:self action:@selector(takeAScreenShot)];
+    
+    launchAVC = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(launchAVC)];
+    
+    UIBarButtonItem * flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    
+    [self setToolbarItems:@[flexible, photos, flexible, launchAVC, flexible, submit, flexible]];
+    self.navigationController.toolbarHidden = NO;
+    
+    
+}
 
 
 -(void)backToStartNew
@@ -65,34 +88,33 @@
 
 -(void)saveAction
 {
-//    [self listArchivePath];
-    [[MIOSingleton mainData] saveData];
-    
-    NSLog(@"Save Data Selected");
-}
-
-
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
+ 
+    UIActivityIndicatorView *ai = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    ai.color = BLUE_COLOR;
+    ai.frame = CGRectMake(SCREEN_WIDTH-100, 30, 20, 20.0);
+    [ai startAnimating];
+    [self.navigationController.view addSubview:ai];
     
     
-    photos = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"photos"] style:UIBarButtonItemStylePlain target:self action:@selector(tabSelected:)];
-   
-    submit = [[UIBarButtonItem alloc] initWithTitle:@"Screen Shot" style:UIBarButtonItemStylePlain target:self action:@selector(takeAScreenShot)];
     
-    //tabSelected:
-    
-    UIBarButtonItem * flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    
-    
-    [self setToolbarItems:@[flexible, photos, flexible, submit, flexible]];
-    self.navigationController.toolbarHidden = NO;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,(unsigned long)NULL), ^{
+        
+        [[MIOSingleton mainData] saveData];
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+            
+            [ai removeFromSuperview];
+            
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Save Successful" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+            
+        });
+        
+    });
     
     
 }
+
 
 -(void)tabSelected:(UIBarButtonItem *)sender
 {
@@ -152,39 +174,36 @@
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     headerLabel.backgroundColor = [UIColor clearColor];
     headerLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20.0];
-    headerLabel.frame = CGRectMake(10, 15, 200, 20);
+    headerLabel.frame = CGRectMake(10, 15, 200, 22);
     headerLabel.textAlignment = NSTextAlignmentLeft;
     headerLabel.textColor = [UIColor whiteColor];
     
-    // need to handle NEW CARPET, WASHER DRYER, KEYS ISSUED WITH YES / NO SEGMENTED CONTROL
-
     NSString * sectionKey = [MIOSingleton mainData].sectionNames[section];
     headerLabel.text = sectionKey;
     
-    UIButton * addRow = [[UIButton alloc] initWithFrame:CGRectMake(615, 10, 30, 30)];
-    addRow.layer.cornerRadius = 15;
+    UIButton * addRow = [[UIButton alloc] initWithFrame:CGRectMake(612, 6, 40, 40)];
+    addRow.layer.cornerRadius = 20;
     [addRow setTitle:@"+" forState:UIControlStateNormal];
     [addRow addTarget:self action:@selector(addItemToArray:) forControlEvents:UIControlEventTouchUpInside];
     addRow.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
     addRow.layer.borderColor = [UIColor whiteColor].CGColor;
     addRow.titleLabel.textAlignment = NSTextAlignmentCenter;
-    addRow.showsTouchWhenHighlighted = YES;
-    addRow.layer.borderWidth = 1;
+    addRow.layer.borderWidth = 2;
     addRow.titleLabel.textColor = [UIColor whiteColor];
     addRow.tag = section;
     
-    UIButton * delRow = [[UIButton alloc] initWithFrame:CGRectMake(710, 10, 30, 30)];
-    delRow.layer.cornerRadius = 15;
+    UIButton * delRow = [[UIButton alloc] initWithFrame:CGRectMake(707, 6, 40, 40)];
+    delRow.layer.cornerRadius = 20;
     [delRow setTitle:@"-" forState:UIControlStateNormal];
-    delRow.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
+    delRow.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:30];
     [delRow addTarget:self action:@selector(delItemToArray:) forControlEvents:UIControlEventTouchUpInside];
     delRow.layer.borderColor = [UIColor whiteColor].CGColor;
-    delRow.showsTouchWhenHighlighted = YES;
-    delRow.layer.borderWidth = 1;
+    delRow.layer.backgroundColor = [UIColor colorWithRed:0.890f green:0.384f blue:0.431f alpha:1.0f].CGColor;
+    delRow.layer.borderWidth = 2;
     delRow.titleLabel.textColor = [UIColor whiteColor];
     delRow.tag = section;
     
-     UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 600, 50)];
+    UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 600, 50)];
     customView.backgroundColor = BLUE_COLOR
     [customView addSubview:headerLabel];
     [customView addSubview:addRow];
@@ -300,10 +319,6 @@
 }
 
 
-
-
-
-
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
  
@@ -334,39 +349,88 @@
     }   
 }
 
+-(void)launchAVC
+{
+    
+    NSString * intro = @"MIO report for ";
+    NSString * resident = [MIOSingleton mainData].currentResident[@"adminDetails"][@"Resident"];
+    NSString * property = [MIOSingleton mainData].currentResident[@"adminDetails"][@"Property"];
+    NSString * unit = [MIOSingleton mainData].currentResident[@"adminDetails"][@"Unit#"];
+    
+    NSArray * stringsArray = @[intro,resident,property,unit];
+    
+    NSMutableArray * emailArray = [@[]mutableCopy];
+    
+    for (NSString * emailString in stringsArray)
+    {
+        if(emailString.length > 0)
+        {
+            [emailArray addObject:emailString];
+        } else
+            [emailArray addObject:@"n/a"];
+    }
+    
+    //NSString *joinedString=[NSString stringWithFormat:@"%@ | Resident: %@ | Property: %@ | Unit: %@",intro,resident,property,unit];
+    
+    //// EMAIL COMPONENTS FOR VC:
+    NSString * combinedString = [NSString stringWithFormat:@" %@ | Resident: %@ | Property: %@ | Unit: %@", emailArray[0],emailArray[1],emailArray[2],emailArray[3]];
+    
+    
+    ///// TEST CODE FOR INSERTING SCREEN SHOTS FROM SINGLETON DICTIONARY KEY @"screenShot"
+    UIImage * pulledAdminScreenShot = [[MIOSingleton mainData] currentResident][@"screenShot"][@"adminScreenshot"];
+    UIImage * pulledCheckList = [[MIOSingleton mainData] currentResident][@"screenShot2"][@"checkListScreenshot"];
+    
+    
+    NSArray * arrayOfActivityItems = [NSArray arrayWithObjects:@"MIO Report:", pulledAdminScreenShot, pulledCheckList, nil];
+    
+    //// ACTIVITY VC:
+    UIActivityViewController * activityVC = [[UIActivityViewController alloc] initWithActivityItems: arrayOfActivityItems applicationActivities:nil];
+    [activityVC setValue:combinedString forKey:@"subject"];
+    
+    [self.navigationController presentViewController:activityVC animated:YES completion:^{
+        
+    }];
+
+    // Tailor the list of services displayed
+    /*
+    activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypeMessage,
+                                         UIActivityTypeSaveToCameraRoll, UIActivityTypePrint, UIActivityTypePostToWeibo,
+                                         UIActivityTypeCopyToPasteboard];
+    */
+    
+}
 
 
 -(void)takeAScreenShot
 {
- 
+    
+    CGRect origFrame = self.tableView.frame;
     
     CGRect frame = self.tableView.frame;
-    frame.size.height = self.tableView.contentSize.height;//the most important line
+    frame.size.height = self.tableView.contentSize.height; // self.tableView.frame.size.height
     self.tableView.frame = frame;
+    self.tableView.bounds = frame;
     
     if([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
     UIGraphicsBeginImageContextWithOptions(self.tableView.bounds.size, NO, [UIScreen mainScreen].scale);
     else
     UIGraphicsBeginImageContext(self.tableView.bounds.size);
-    
-//    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
-//        UIGraphicsBeginImageContextWithOptions(self.window.bounds.size, NO, [UIScreen mainScreen].scale);
-//    else
-//        UIGraphicsBeginImageContext(self.window.bounds.size);
-    
+
     [self.tableView.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+
+    NSMutableDictionary * checkListScreenshot = [[NSMutableDictionary alloc] init];
+    [checkListScreenshot setObject:image forKey:@"checkListScreenshot"];
+    [[MIOSingleton mainData] currentResident][@"screenShot2"] = checkListScreenshot;
+    NSLog(@"%@",[[[MIOSingleton mainData] currentResident][@"screenShot2"] allKeys]);
+
     
-    /*
-    if you want to save captured image locally in your app's document directory
-     NSData * data = UIImagePNGRepresentation(image);
- 
-     NSString *imagePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"testImage.png"];
-     NSLog(@"Path for Image : %@",imagePath);
-     [data writeToFile:imagePath atomically:YES];
-     */
+    self.tableView.frame = origFrame;
+    
+
+   
 }
 
 

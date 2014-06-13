@@ -74,7 +74,7 @@
     adminTitle.font = [UIFont fontWithName:@"Helvetica" size:35];
     adminTitle.textAlignment = NSTextAlignmentLeft;
     adminTitle.textColor = [UIColor colorWithWhite:0.95 alpha:1.0];
-    adminTitle.text = @"Enter Admin Details:";
+    adminTitle.text = @"Admin Details:";
     [self.view addSubview:adminTitle];
     
     fieldNames = @[@"Resident", @"Phone", @"Email", @"Property",@"Unit#"];
@@ -134,7 +134,7 @@
     submit = [[UIButton alloc] initWithFrame:CGRectMake(100,860,568,60)];
     submit.backgroundColor = [UIColor colorWithWhite:0.95 alpha:.65];
     submit.layer.cornerRadius = 10;
-    [submit setTitle:@"Submit" forState:UIControlStateNormal];
+    [submit setTitle:@"Launch Checklist" forState:UIControlStateNormal];
     [submit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [submit addTarget:self action:@selector(selected:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:submit];
@@ -171,15 +171,13 @@
     dateDisplay.layer.cornerRadius = 10;
     dateDisplay.placeholder = @"Select Date";
     
-    // testing
-    
     if([[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"] != nil)
     {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"MM-dd-yyyy"];
     dateDisplay.text =  [dateFormat stringFromDate:[[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"]];
     }
-        //
+    
     
     [dateDisplay setTextAlignment:NSTextAlignmentCenter];
     //  dateDisplay.delegate = self;  // shuts off ability of this textfield to call keyboard
@@ -306,52 +304,60 @@
     
 
     UIActivityIndicatorView *ai = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    ai.color = [UIColor whiteColor];
-    ai.frame = CGRectMake(SCREEN_WIDTH/2-50, 40, 100.0, 100.0);
+    ai.color = BLUE_COLOR;
+    ai.frame = CGRectMake(SCREEN_WIDTH-100, 30, 20, 20.0);
     [ai startAnimating];
-    [self.view addSubview:ai];
+    [self.navigationController.view addSubview:ai];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
- 
-    [[MIOSingleton mainData] saveData];
+    
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,(unsigned long)NULL), ^{
+        
+        [[MIOSingleton mainData] saveData];
 
-    [ai removeFromSuperview];
-        
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Save Successful" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [alert show];
-        
-
-        
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+           
+            [ai removeFromSuperview];
+                
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Save Successful" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+            
+        });
         
     });
     
 
-    
 
+    
 }
 
 -(void)takeAScreenShot
 {
     
-    
     CGRect frame = self.view.frame;
-    frame.size.height = self.view.frame.size.height;//the most important line
+    frame.size.height = self.view.frame.size.height;
     self.view.frame = frame;
-    
+    self.view.bounds = frame;
+
     if([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
-        UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, NO, [UIScreen mainScreen].scale);
+    UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, NO, [UIScreen mainScreen].scale);
     else
-        UIGraphicsBeginImageContext(self.view.bounds.size);
-    
-    //    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)])
-    //        UIGraphicsBeginImageContextWithOptions(self.window.bounds.size, NO, [UIScreen mainScreen].scale);
-    //    else
-    //        UIGraphicsBeginImageContext(self.window.bounds.size);
+    UIGraphicsBeginImageContext(self.view.bounds.size);
     
     [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+
+    //// TEST CODE **** MAY EXPLODE APP *****
+    
+    NSMutableDictionary * adminScreenshot = [[NSMutableDictionary alloc] init];
+    [adminScreenshot setObject:image forKey:@"adminScreenshot"];
+    [[MIOSingleton mainData] currentResident][@"screenShot"] = adminScreenshot;
+    
+    NSLog(@"%@",[[[MIOSingleton mainData] currentResident][@"screenShot"] allKeys]);
+    
+    
     
     /*
      if you want to save captured image locally in your app's document directory

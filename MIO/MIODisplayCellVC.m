@@ -20,10 +20,10 @@
     if (self)
     {
         
-        self.cellImage = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH,SCREEN_HEIGHT)];
-        self.cellImage.backgroundColor = [UIColor colorWithWhite:0.50 alpha:.90];
-        //
         
+        self.cellImage = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH,SCREEN_HEIGHT)];
+        self.cellImage.backgroundColor = [UIColor clearColor];   //[UIColor colorWithWhite:0.50 alpha:.90];
+        //
         [self.view addSubview:self.cellImage];
         
 
