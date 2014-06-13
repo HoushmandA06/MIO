@@ -24,10 +24,7 @@
 @end
 
 @implementation MIOCollectionViewController
-{
-  
-    
-}
+
 
 -(id)initWithCollectionViewLayout:(UICollectionViewFlowLayout *)layout
 {
@@ -45,8 +42,6 @@
         self.collectionView.backgroundColor = [UIColor clearColor];
         
     UIBarButtonItem * submit = [[UIBarButtonItem alloc] initWithTitle:@"Screen Shot" style:UIBarButtonItemStylePlain target:self action:@selector(takeAScreenShot)];
-        
-        //tabSelected:
         
     UIBarButtonItem * flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
         
@@ -83,11 +78,6 @@
     }
     
     return itemsCount;
-    
-
-//    works with ALA tutorial
-//    return self.assets.count;
-    
 
 }
 
@@ -132,7 +122,6 @@
 
     [self.navigationController pushViewController:displayVC animated:NO];
     
-    // NSLog(@"did select cell");
 
 }
 
@@ -176,6 +165,7 @@
     
     self.navigationController.toolbarHidden = YES;
     
+    animated = NO;
 }
 
 

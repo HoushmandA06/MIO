@@ -55,6 +55,7 @@
 		0F2C1136193D304100CD3CE4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2C1135193D304100CD3CE4 /* Security.framework */; };
 		0F2C1138193D304E00CD3CE4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2C1137193D304E00CD3CE4 /* StoreKit.framework */; };
 		0F2C113A193D305C00CD3CE4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2C1139193D305C00CD3CE4 /* SystemConfiguration.framework */; };
+		0FABABA9194B936700B4A397 /* camera2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FABABA8194B936700B4A397 /* camera2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +135,7 @@
 		0F2C1135193D304100CD3CE4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		0F2C1137193D304E00CD3CE4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		0F2C1139193D305C00CD3CE4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		0FABABA8194B936700B4A397 /* camera2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +248,7 @@
 				0F19C0F21947298C00178BB2 /* gradblue.png */,
 				0F2C1129193D2FC600CD3CE4 /* Parse.framework */,
 				0F2C102D1937653300CD3CE4 /* photos@2x.png */,
+				0FABABA8194B936700B4A397 /* camera2.png */,
 				0F2C10241934D6AE00CD3CE4 /* camera4040.png */,
 				0F0D5B351932328B002443F8 /* folder.png */,
 				0F0D5B361932328B002443F8 /* new.png */,
@@ -404,6 +407,7 @@
 				0F2C10D8193A6DEB00CD3CE4 /* arrow_undo.png in Resources */,
 				0F0D5B3219323279002443F8 /* currentuser.png in Resources */,
 				0F0D5B3319323279002443F8 /* newuser.png in Resources */,
+				0FABABA9194B936700B4A397 /* camera2.png in Resources */,
 				0F2C102E1937653300CD3CE4 /* photos@2x.png in Resources */,
 				0F2C10D7193A6DEB00CD3CE4 /* Toggle.png in Resources */,
 				0F2C10251934D6AE00CD3CE4 /* camera4040.png in Resources */,

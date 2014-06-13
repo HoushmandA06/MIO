@@ -60,9 +60,9 @@
         [self.contentView addSubview:attentionLabel];
         
         
-        camera = [[UIButton alloc] initWithFrame:CGRectMake(710, 0, 40, 40)];
+        camera = [[UIButton alloc] initWithFrame:CGRectMake(706, 2, 40, 40)];
         [camera addTarget:self action:@selector(selected:) forControlEvents:UIControlEventTouchUpInside];
-        [camera setImage:[UIImage imageNamed:@"camera4040"] forState:UIControlStateNormal];
+        [camera setImage:[UIImage imageNamed:@"camera2"] forState:UIControlStateNormal];
         
         [fields addObject:comment];
         [fields addObject:cost];
@@ -75,16 +75,11 @@
 
 -(void)selected:(UIButton *)sender
 {
-    ////how to give each camera a tag to be assigned to a particular comment or section
     
     [sender setSelected:!sender.selected];
     
-    NSLog(@"%d %d",self.row,self.section);
-    
     [self.delegate pushVCWithCell:self];
         
-    // pass position for image picker view to save value
-    
 }
 
 - (void)setRow:(int)row

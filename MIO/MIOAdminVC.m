@@ -148,14 +148,16 @@
   
     self.navigationController.toolbarHidden = YES;  
     
+    animated = NO;
+    
 }
 
 
 -(void)moveInOutDate
 {
     
-    datePickerView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-300, SCREEN_WIDTH, 300)];
-    datePickerView.backgroundColor = [UIColor colorWithWhite:.95 alpha:.65];
+    datePickerView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-270, SCREEN_WIDTH, 270)];
+    datePickerView.backgroundColor = [UIColor colorWithWhite:.95 alpha:.50];
     
     
     /////// ITEMS IN SELF.VIEW
@@ -186,7 +188,7 @@
     
     
     /////// ITEMS IN DATEPICKERVIEW
-    UIButton * done = [[UIButton alloc] initWithFrame:CGRectMake(568,20,100,40)];
+    UIButton * done = [[UIButton alloc] initWithFrame:CGRectMake(568,172,100,40)];
     done.backgroundColor = BLUE_COLOR;
     done.layer.cornerRadius = 8;
     [done setTitle:@"Done" forState:UIControlStateNormal];
@@ -195,12 +197,13 @@
     [datePickerView addSubview:done];
     
     segmentedControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Move-In", @"Move-Out", nil]];
-    segmentedControl.frame = CGRectMake(SCREEN_WIDTH/2+45, 152, 240, 60);
+    segmentedControl.frame = CGRectMake(SCREEN_WIDTH/2+45, 50, 240, 60);
     segmentedControl.selectedSegmentIndex = [[[MIOSingleton mainData] currentResident][@"adminDetails"][@"minMout"] intValue];
     segmentedControl.tintColor = BLUE_COLOR;
     [segmentedControl addTarget:self action:@selector(valueChanged:) forControlEvents: UIControlEventValueChanged];
     [datePickerView addSubview:segmentedControl];
    
+    
     moveDate = [[UIDatePicker alloc] initWithFrame:CGRectMake(100, 50, 240, 60)];
     [moveDate addTarget:self action:@selector(updateDate:) forControlEvents:UIControlEventValueChanged];
     moveDate.datePickerMode = UIDatePickerModeDate;
@@ -234,9 +237,7 @@
 
     [[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"] = myDate;
     
-    NSLog(@"%@",myDate);
-    NSLog(@"%@ from singleton",[[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"]);
-    NSLog(@"spun");
+     NSLog(@"%@ from singleton",[[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"]);
 }
 
 
@@ -253,8 +254,6 @@
     
     [[MIOSingleton mainData] currentResident][@"adminDetails"][@"minMout"] = [NSNumber numberWithInt:segment.selectedSegmentIndex];
     
-    
-    NSLog(@"%ld",(long)segmentedControl.selectedSegmentIndex);
 }
 
 
@@ -335,6 +334,7 @@
     NSMutableDictionary * adminScreenshot = [[NSMutableDictionary alloc] init];
     [adminScreenshot setObject:image forKey:@"adminScreenshot"];
     [[MIOSingleton mainData] currentResident][@"screenShot"] = adminScreenshot;
+
     NSLog(@"%@",[[[MIOSingleton mainData] currentResident][@"screenShot"] allKeys]);
     
 

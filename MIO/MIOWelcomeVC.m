@@ -97,7 +97,6 @@
 -(void)launchStartNew
 {
     
-    NSLog(@"launching StartNew");
     
     [[MIOSingleton mainData] addNewResident];
     
@@ -113,8 +112,6 @@
 {
     
     NSLog(@"%lu",(unsigned long)[[[MIOSingleton mainData] allResidentItems] count]);
-    
-    NSLog(@"launching EditSaved");
     
     MIOAdminVC  * adminVC = [[MIOAdminVC alloc] initWithNibName:nil bundle:nil];
     
