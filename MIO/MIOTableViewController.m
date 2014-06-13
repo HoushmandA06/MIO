@@ -33,6 +33,8 @@
     int numRow;
     
     NSIndexPath * photoIndexPath;
+
+    MIOCollectionViewController * collectionVC;
     
 }
 
@@ -49,6 +51,11 @@
         
     self.navigationItem.leftBarButtonItem = back;
     self.navigationItem.rightBarButtonItem = saveData;
+        
+    //// TEST CODE
+        
+    collectionVC = [[MIOCollectionViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+
 
     }
     return self;
@@ -63,15 +70,15 @@
     
 
     photos = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"photos"] style:UIBarButtonItemStylePlain target:self action:@selector(tabSelected:)];
-    
-    submit = [[UIBarButtonItem alloc] initWithTitle:@"Screen Shot" style:UIBarButtonItemStylePlain target:self action:@selector(takeAScreenShot)];
-    
+   
     launchAVC = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(launchAVC)];
+    
+//  submit = [[UIBarButtonItem alloc] initWithTitle:@"Screen Shot" style:UIBarButtonItemStylePlain target:self action:@selector(takeAScreenShot)];
     
     UIBarButtonItem * flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     
-    [self setToolbarItems:@[flexible, photos, flexible, launchAVC, flexible, submit, flexible]];
+    [self setToolbarItems:@[flexible, photos, flexible, launchAVC, flexible]];
     self.navigationController.toolbarHidden = NO;
     
     
@@ -88,25 +95,30 @@
 
 -(void)saveAction
 {
- 
+    
+    [self takeAScreenShot];
+
+    [collectionVC.collectionView reloadData];
+    [collectionVC takeAScreenShot];
+    
+    
     UIActivityIndicatorView *ai = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     ai.color = BLUE_COLOR;
     ai.frame = CGRectMake(SCREEN_WIDTH-100, 30, 20, 20.0);
     [ai startAnimating];
     [self.navigationController.view addSubview:ai];
     
-    
-    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,(unsigned long)NULL), ^{
         
-        [[MIOSingleton mainData] saveData];
+    [[MIOSingleton mainData] saveData];
         
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        
+    [ai removeFromSuperview];
             
-            [ai removeFromSuperview];
-            
-            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Save Successful" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-            [alert show];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Save Successful" message:@"Screen Capture Successful" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    
+    [alert show];
             
         });
         
@@ -123,14 +135,15 @@
     {
         NSLog(@"photos selected");
         
-        MIOCollectionViewController * collectionVC = [[MIOCollectionViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
-        [self.navigationController pushViewController:collectionVC animated:NO];
+//    collectionVC = [[MIOCollectionViewController alloc] initWithCollectionViewLayout: [[UICollectionViewFlowLayout alloc] init]];
         
-    } else
-    {
-        NSLog(@"submit selected");
-        DLAViewController * signatureVC = [[DLAViewController alloc] initWithNibName:nil bundle:nil];
-        [self.navigationController pushViewController:signatureVC animated:NO];
+        [collectionVC.collectionView reloadData];
+        [self.navigationController pushViewController:collectionVC animated:NO];
+    
+    } else  {
+    NSLog(@"submit selected");
+    DLAViewController * signatureVC = [[DLAViewController alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:signatureVC animated:NO];
     }
 
 }
@@ -360,7 +373,7 @@
     NSString * unit = [MIOSingleton mainData].currentResident[@"adminDetails"][@"Unit#"];
     
     
-    NSString * moveType = [[NSString alloc] init];
+    NSString * moveType = @"";
     if([[[MIOSingleton mainData] currentResident][@"adminDetails"][@"minMout"] intValue] == 0)
     {moveType = @"Move-In";} else {moveType = @"Move-Out";}
     
@@ -387,13 +400,13 @@
     
     NSString * bodyString = [NSString stringWithFormat:@" Resident: %@ | Phone: %@ | Email: %@ | Property: %@ | Unit: %@ | MI/O: %@ | Date: %@",emailArray[1],emailArray[2],emailArray[3], emailArray[4],emailArray[5], emailArray[6], emailArray[7]];
     
-    
     ///// CODE FOR INSERTING SCREEN SHOTS FROM SINGLETON DICTIONARY KEY @"screenShot"
-    UIImage * pulledAdminScreenShot = [[MIOSingleton mainData] currentResident][@"screenShot"][@"adminScreenshot"];
+    //   UIImage * pulledAdminScreenShot = [[MIOSingleton mainData] currentResident][@"screenShot"][@"adminScreenshot"];
+    
     UIImage * pulledCheckList = [[MIOSingleton mainData] currentResident][@"screenShot2"][@"checkListScreenshot"];
     UIImage * pulledCollection = [[MIOSingleton mainData] currentResident][@"screenShot3"][@"collectionScreenshot"];
     
-    NSArray * arrayOfActivityItems = [NSArray arrayWithObjects:@"Report:",@"", bodyString, pulledAdminScreenShot, pulledCheckList, pulledCollection, nil];
+    NSArray * arrayOfActivityItems = [NSArray arrayWithObjects:@"Report:",@"", bodyString, pulledCheckList, pulledCollection, nil];
     
     //// ACTIVITY VC:
     UIActivityViewController * activityVC = [[UIActivityViewController alloc] initWithActivityItems: arrayOfActivityItems applicationActivities:nil];
@@ -409,6 +422,7 @@
                                          UIActivityTypeSaveToCameraRoll, UIActivityTypePrint, UIActivityTypePostToWeibo,
                                          UIActivityTypeCopyToPasteboard];
     */
+    
     
 }
 

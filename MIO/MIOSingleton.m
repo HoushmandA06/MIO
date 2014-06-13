@@ -40,7 +40,7 @@
     
         [self loadListItems];  // will show last save, "launch edit saved", will result this method called
         
-        self.sectionNames = @[@"Front Entrance",@"Living Room",@"Kitchen",@"Bedroom #1",@"Bedroom #2",@"Bedroom #3",@"Bathroom #1",@"Bathroom #2",@"Rear Entrance",@"Washer/Dryer",@"Patio",@"Balcony",@"HVAC",@"Storage Room",@"Keys Issued"];
+        self.sectionNames = @[@"Front Entrance",@"Living Room",@"Kitchen",@"Bedroom #1",@"Bedroom #2",@"Bedroom #3",@"Bathroom #1",@"Bathroom #2",@"Rear Entrance",@"Washer/Dryer",@"Patio",@"Balcony",@"HVAC",@"Storage Room"];
             
         
         
@@ -60,6 +60,9 @@
 
 - (void)addNewResident
 {
+ 
+    //// screenShot is a key value for the "Admin page" screenshot. Currently not using, may enable in future. 
+    
     NSMutableDictionary * newResident = [@{
                                            @"screenShot":[@{}mutableCopy],
                                            @"screenShot2":[@{}mutableCopy],

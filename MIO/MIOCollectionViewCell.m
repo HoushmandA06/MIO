@@ -23,9 +23,9 @@
     self = [super initWithFrame:frame];
     if (self) {
 
-        self.photoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10,25,225,200)];
+        self.photoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10,25,350,290)];
        
-        self.labelComment = [[UILabel alloc] initWithFrame:CGRectMake(10,225,180,20)];
+        self.labelComment = [[UILabel alloc] initWithFrame:CGRectMake(10,295,180,20)];
         self.labelComment.textColor = [UIColor whiteColor];
         
         self.labelSection = [[UILabel alloc] initWithFrame:CGRectMake(10,5,180,20)];

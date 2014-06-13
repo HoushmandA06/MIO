@@ -10,6 +10,8 @@
 
 @interface MIOCollectionViewController : UICollectionViewController
 
+-(void)takeAScreenShot;
+
 
 
 @end

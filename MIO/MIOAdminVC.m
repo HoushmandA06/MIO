@@ -145,12 +145,14 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+  
+    // not using screenshot on admin page, may enable in the future
     
-    UIBarButtonItem * screenShot = [[UIBarButtonItem alloc] initWithTitle:@"Screen Shot" style:UIBarButtonItemStylePlain target:self action:@selector(takeAScreenShot)];
-    UIBarButtonItem * flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    [self setToolbarItems:@[flexible, screenShot, flexible]];
+//    UIBarButtonItem * screenShot = [[UIBarButtonItem alloc] initWithTitle:@"Screen Shot" style:UIBarButtonItemStylePlain target:self action:@selector(takeAScreenShot)];
+//    UIBarButtonItem * flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+//    [self setToolbarItems:@[flexible, screenShot, flexible]];
 
-    self.navigationController.toolbarHidden = NO;
+    self.navigationController.toolbarHidden = YES;  
     
 }
 
@@ -240,20 +242,10 @@
 
     [[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"] = myDate;
     
-    
     NSLog(@"%@",myDate);
     NSLog(@"%@ from singleton",[[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"]);
     NSLog(@"spun");
-    
- //// will use this code for pretty version of date later
- 
-//   NSDateFormatter * dateFormat = [[NSDateFormatter alloc] init];
-//   [dateFormat setDateFormat:@"MM-dd-YYYY"];
-//   NSString *displayVersion = [dateFormat stringFromDate:myDate];
-//   [[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"] = displayVersion;
-
 }
-
 
 
 
@@ -301,7 +293,6 @@
 -(void)saveAction
 {
 //    [self listArchivePath];
-    
 
     UIActivityIndicatorView *ai = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     ai.color = BLUE_COLOR;
@@ -381,6 +372,7 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField   //now any textField will allow resign keyboard
 {
+    
     
     [textField resignFirstResponder];
     int index = [fields indexOfObject:textField];

@@ -103,8 +103,10 @@
 {
     
     
-    return CGSizeMake(( SCREEN_WIDTH - 30) / 3.0, (SCREEN_HEIGHT - 30) / 4.0);
+    return CGSizeMake(( SCREEN_WIDTH - 30) / 2.0, (SCREEN_HEIGHT - 30) / 3.0);
     
+    
+    //3,4
 }
 
 
