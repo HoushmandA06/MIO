@@ -44,7 +44,7 @@
         // init controls
         
     back = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backToStartNew)];
-    
+        
     saveData = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveAction)];
         
     self.navigationItem.leftBarButtonItem = back;
@@ -354,38 +354,50 @@
     
     NSString * intro = @"MIO report for ";
     NSString * resident = [MIOSingleton mainData].currentResident[@"adminDetails"][@"Resident"];
+    NSString * phone = [MIOSingleton mainData].currentResident[@"adminDetails"][@"Phone"];
+    NSString * email = [MIOSingleton mainData].currentResident[@"adminDetails"][@"Email"];
     NSString * property = [MIOSingleton mainData].currentResident[@"adminDetails"][@"Property"];
     NSString * unit = [MIOSingleton mainData].currentResident[@"adminDetails"][@"Unit#"];
     
-    NSArray * stringsArray = @[intro,resident,property,unit];
+    
+    NSString * moveType = [[NSString alloc] init];
+    if([[[MIOSingleton mainData] currentResident][@"adminDetails"][@"minMout"] intValue] == 0)
+    {moveType = @"Move-In";} else {moveType = @"Move-Out";}
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"MM-dd-yyyy"];
+    NSString * date = [dateFormat stringFromDate:[MIOSingleton mainData].currentResident[@"adminDetails"][@"date"]];
+    
+    NSArray * stringsArray = @[intro,resident, phone, email, property,unit,moveType,date];
     
     NSMutableArray * emailArray = [@[]mutableCopy];
     
-    for (NSString * emailString in stringsArray)
+    for (NSString * string in stringsArray)
     {
-        if(emailString.length > 0)
+        if(string.length > 0)
         {
-            [emailArray addObject:emailString];
+            [emailArray addObject:string];
         } else
             [emailArray addObject:@"n/a"];
     }
     
-    //NSString *joinedString=[NSString stringWithFormat:@"%@ | Resident: %@ | Property: %@ | Unit: %@",intro,resident,property,unit];
     
     //// EMAIL COMPONENTS FOR VC:
-    NSString * combinedString = [NSString stringWithFormat:@" %@ | Resident: %@ | Property: %@ | Unit: %@", emailArray[0],emailArray[1],emailArray[2],emailArray[3]];
+    NSString * subjectString = [NSString stringWithFormat:@" %@ - Resident: %@ | Property: %@ | Unit: %@", emailArray[0],emailArray[1],emailArray[4],emailArray[5]];
+    
+    NSString * bodyString = [NSString stringWithFormat:@" Resident: %@ | Phone: %@ | Email: %@ | Property: %@ | Unit: %@ | MI/O: %@ | Date: %@",emailArray[1],emailArray[2],emailArray[3], emailArray[4],emailArray[5], emailArray[6], emailArray[7]];
     
     
-    ///// TEST CODE FOR INSERTING SCREEN SHOTS FROM SINGLETON DICTIONARY KEY @"screenShot"
+    ///// CODE FOR INSERTING SCREEN SHOTS FROM SINGLETON DICTIONARY KEY @"screenShot"
     UIImage * pulledAdminScreenShot = [[MIOSingleton mainData] currentResident][@"screenShot"][@"adminScreenshot"];
     UIImage * pulledCheckList = [[MIOSingleton mainData] currentResident][@"screenShot2"][@"checkListScreenshot"];
+    UIImage * pulledCollection = [[MIOSingleton mainData] currentResident][@"screenShot3"][@"collectionScreenshot"];
     
-    
-    NSArray * arrayOfActivityItems = [NSArray arrayWithObjects:@"MIO Report:", pulledAdminScreenShot, pulledCheckList, nil];
+    NSArray * arrayOfActivityItems = [NSArray arrayWithObjects:@"Report:",@"", bodyString, pulledAdminScreenShot, pulledCheckList, pulledCollection, nil];
     
     //// ACTIVITY VC:
     UIActivityViewController * activityVC = [[UIActivityViewController alloc] initWithActivityItems: arrayOfActivityItems applicationActivities:nil];
-    [activityVC setValue:combinedString forKey:@"subject"];
+    [activityVC setValue:subjectString forKey:@"subject"];
     
     [self.navigationController presentViewController:activityVC animated:YES completion:^{
         

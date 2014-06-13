@@ -248,14 +248,12 @@
     UIGraphicsEndImageContext();
     UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
     
-    /*
-     if you want to save captured image locally in your app's document directory
-     NSData * data = UIImagePNGRepresentation(image);
-     
-     NSString *imagePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"testImage.png"];
-     NSLog(@"Path for Image : %@",imagePath);
-     [data writeToFile:imagePath atomically:YES];
-     */
+    NSMutableDictionary * collectionScreenshot = [[NSMutableDictionary alloc] init];
+    [collectionScreenshot setObject:image forKey:@"collectionScreenshot"];
+    [[MIOSingleton mainData] currentResident][@"screenShot3"] = collectionScreenshot;
+    NSLog(@"%@",[[[MIOSingleton mainData] currentResident][@"screenShot3"] allKeys]);
+    
+    
 }
 
 

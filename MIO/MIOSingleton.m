@@ -63,6 +63,7 @@
     NSMutableDictionary * newResident = [@{
                                            @"screenShot":[@{}mutableCopy],
                                            @"screenShot2":[@{}mutableCopy],
+                                           @"screenShot3":[@{}mutableCopy],
                                            @"sigData":@"",
                                            @"adminDetails":
                                                [@{
