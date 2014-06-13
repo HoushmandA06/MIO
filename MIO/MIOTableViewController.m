@@ -98,7 +98,8 @@
     
     [self takeAScreenShot];
 
-    [collectionVC.collectionView reloadData];
+   // [collectionVC.collectionView reloadData];
+
     [collectionVC takeAScreenShot];
     
     
@@ -116,7 +117,7 @@
         
     [ai removeFromSuperview];
             
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Save Successful" message:@"Screen Capture Successful" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Save Successful / Screen Capture Generated" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
     
     [alert show];
             
@@ -138,12 +139,16 @@
 //    collectionVC = [[MIOCollectionViewController alloc] initWithCollectionViewLayout: [[UICollectionViewFlowLayout alloc] init]];
         
         [collectionVC.collectionView reloadData];
+        
         [self.navigationController pushViewController:collectionVC animated:NO];
     
     } else  {
-    NSLog(@"submit selected");
-    DLAViewController * signatureVC = [[DLAViewController alloc] initWithNibName:nil bundle:nil];
-    [self.navigationController pushViewController:signatureVC animated:NO];
+   
+        NSLog(@"submit selected");
+    
+        DLAViewController * signatureVC = [[DLAViewController alloc] initWithNibName:nil bundle:nil];
+    
+        [self.navigationController pushViewController:signatureVC animated:NO];
     }
 
 }
@@ -239,10 +244,6 @@
 -(void)addItemToArray:(UIButton *)sender
 {
 
-// now that row count in sections is no longer determined by sections[sender.tag], adding a row does not work as the singleton is driving row count
-// int rowCount = [sections[sender.tag] intValue];
-//    NSString * sectionKey = [MIOSingleton mainData].sectionNames[sender.tag];
-//    int rowCount = [[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey] count];
 
     commentDetails = [@{
                         @"comment":@"",

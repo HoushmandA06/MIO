@@ -11,7 +11,6 @@
 #import "MIOWelcomeVC.h"
 #import "MIONavVC.h"
 #import <Parse/Parse.h>
-//// WILL NEED TO ADD PARSE
 
 
 @interface MIOLoginVC ()
@@ -41,7 +40,6 @@
     [self.view sendSubviewToBack:backgroundImage];
         
         
-    //// WOULD LIKE TO ANIMATE THIS TO "MIO"
     logInTitle = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-150, 100, 300, 50)];
     logInTitle.font = [UIFont fontWithName:@"Helvetica" size:50];
     logInTitle.textAlignment = NSTextAlignmentCenter;
@@ -132,20 +130,18 @@
 
 -(void)signIn
 {
-    //// PARSE CODE FOR TESTING USER NAME AND PW WITH ALERT VIEW REQUIRED HERE
+ 
     UIActivityIndicatorView *ai = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     ai.color = [UIColor whiteColor];
     ai.frame = CGRectMake(160, 200, 75.0, 75.0);
     [ai startAnimating];
-    [self.view addSubview:ai];   // can set to center by adding it to self.view.frame
-    
+    [self.view addSubview:ai];
     [PFUser  logInWithUsernameInBackground:nameField.text password:pwField.text block:^(PFUser *user, NSError *error)
      
      {
          if (error == nil)
          {
 
-             //// NAVIGATION; TO BE ADDED TO PARSE LOGIN SUCCESS BLOCK
              
              MIOWelcomeVC  * welcomeVC = [[MIOWelcomeVC alloc] initWithNibName:nil bundle:nil];
              

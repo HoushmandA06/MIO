@@ -17,13 +17,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
+    //// Parse login disabled.
     
-    [Parse setApplicationId:@"MVbaAT07puTu2miBmmt1rZKprFCNrMagEfyexmW1"
-                  clientKey:@"SPuuWONsvvQUGUpGuDOwamk4fMFeTBesOqOGV8GZ"];
-
-    [PFUser enableAutomaticUser];
-
-    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+//    [Parse setApplicationId:@"MVbaAT07puTu2miBmmt1rZKprFCNrMagEfyexmW1"
+//                  clientKey:@"SPuuWONsvvQUGUpGuDOwamk4fMFeTBesOqOGV8GZ"];
+//
+//    [PFUser enableAutomaticUser];
+//
+//    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     [Crashlytics startWithAPIKey:@"7e9617f8130b789cc5f26b6e7471c44ecf935911"];
     

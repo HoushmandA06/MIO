@@ -51,21 +51,14 @@
     UIBarButtonItem * flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
         
     [self setToolbarItems:@[flexible, submit, flexible]];
-    self.navigationController.toolbarHidden = NO;
+    
+    self.navigationController.toolbarHidden = YES;
     
     }
     return self;
 }
 
-//+ (ALAssetsLibrary *)defaultAssetsLibrary
-//{
-//    static dispatch_once_t pred = 0;
-//    static ALAssetsLibrary *library = nil;
-//    dispatch_once(&pred, ^{
-//        library = [[ALAssetsLibrary alloc] init];
-//    });
-//    return library;
-//}
+
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -156,10 +149,6 @@
 
     MIOCollectionViewCell * cell = (MIOCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCell" forIndexPath:indexPath];
   
-////  modified below per tutorial
-//    ALAsset * asset = self.assets[indexPath.row];
-//    cell.asset = asset;
-    
       cell.backgroundColor = [UIColor colorWithWhite:0.50 alpha:.90];
     
       cell.item = indexPath.item;
@@ -168,25 +157,6 @@
       [cell.layer setBorderWidth:1];
       [cell.layer setBorderColor:[UIColor lightGrayColor].CGColor];
 
-    
-////  non ALA code
-//    UILabel * title = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, cell.frame.size.width-20, 20)];
-//    
-//    title.textColor = [UIColor colorWithWhite:.90 alpha:.90];
-//    
-//    title.text = imageLabels[indexPath.row];
-//    
-//    [cell.contentView addSubview:title];
-//    
-//    cell.backgroundColor = [UIColor lightGrayColor];
-//    
-//    cell.layer.cornerRadius = 10;
-//
-//
-//    NSString * sectionName = [MIOSingleton mainData].sectionNames[cell.section];
-//
-//    cell.photoImageView = [[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionName][@"image"];
-//
 
     return cell;
     
@@ -197,47 +167,22 @@
 {
     [super viewDidLoad];
     
-    // had to insert this to get rid of unrecognized selector crash
     [self.collectionView registerClass:[MIOCollectionViewCell class] forCellWithReuseIdentifier:@"PhotoCell"];
-
-    
-    // new code from tutorial
-//    _assets = [@[] mutableCopy];
-//    __block NSMutableArray * tmpAssets = [@[] mutableCopy];
-//    
-//    // 1
-//    ALAssetsLibrary *assetsLibrary = [GLACollectionViewController defaultAssetsLibrary];
-//    // 2
-//    [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
-//        [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-//            if(result)
-//            {
-//                // 3
-//                [tmpAssets addObject:result];
-//            }
-//        }];
-//        
-//        // 4
-//        //NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO];
-//        //self.assets = [tmpAssets sortedArrayUsingDescriptors:@[sort]];
-//        self.assets = tmpAssets;
-//        
-//        // 5
-//        [self.collectionView reloadData];
-//    } failureBlock:^(NSError *error) {
-//        NSLog(@"Error loading images %@", error);
-//    
-//    }];
-    
- 
 
 }
 
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+    self.navigationController.toolbarHidden = YES;
+    
+}
 
 
 -(void)takeAScreenShot
 {
+
+    [self.collectionView reloadData];
 
     
     CGRect frame = self.collectionView.frame;
@@ -255,6 +200,7 @@
     [[MIOSingleton mainData] currentResident][@"screenShot3"] = collectionScreenshot;
     NSLog(@"%@",[[[MIOSingleton mainData] currentResident][@"screenShot3"] allKeys]);
     
+
     
 }
 

@@ -146,17 +146,9 @@
 -(void)viewWillAppear:(BOOL)animated
 {
   
-    // not using screenshot on admin page, may enable in the future
-    
-//    UIBarButtonItem * screenShot = [[UIBarButtonItem alloc] initWithTitle:@"Screen Shot" style:UIBarButtonItemStylePlain target:self action:@selector(takeAScreenShot)];
-//    UIBarButtonItem * flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-//    [self setToolbarItems:@[flexible, screenShot, flexible]];
-
     self.navigationController.toolbarHidden = YES;  
     
 }
-
-
 
 
 -(void)moveInOutDate
@@ -339,25 +331,13 @@
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-
-    //// TEST CODE **** MAY EXPLODE APP *****
     
     NSMutableDictionary * adminScreenshot = [[NSMutableDictionary alloc] init];
     [adminScreenshot setObject:image forKey:@"adminScreenshot"];
     [[MIOSingleton mainData] currentResident][@"screenShot"] = adminScreenshot;
-    
     NSLog(@"%@",[[[MIOSingleton mainData] currentResident][@"screenShot"] allKeys]);
     
-    
-    
-    /*
-     if you want to save captured image locally in your app's document directory
-     NSData * data = UIImagePNGRepresentation(image);
-     
-     NSString *imagePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"testImage.png"];
-     NSLog(@"Path for Image : %@",imagePath);
-     [data writeToFile:imagePath atomically:YES];
-     */
+
 }
 
 
@@ -365,12 +345,11 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+ }
 
 
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField   //now any textField will allow resign keyboard
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     
     
