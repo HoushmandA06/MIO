@@ -81,10 +81,10 @@
     
     ///// ADMIN SECTION       
     UILabel * adminTitle = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 568, 60)];
-    adminTitle.font = [UIFont fontWithName:@"Helvetica" size:35];
+    adminTitle.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:50];
     adminTitle.textAlignment = NSTextAlignmentLeft;
-    adminTitle.textColor = [UIColor colorWithWhite:0.95 alpha:1.0];
-    adminTitle.text = @"Admin Details:";
+    adminTitle.textColor = BLUE_COLOR;
+    adminTitle.text = @"Resident Information";
     [self.view addSubview:adminTitle];
     
     fieldNames = @[@"Resident", @"Phone", @"Email", @"Property",@"Unit#"];
@@ -96,7 +96,7 @@
     for (NSString * name in fieldNames)
     {
         NSInteger index = [fieldNames indexOfObject:name];
-        UITextField * textField = [[UITextField alloc] initWithFrame:CGRectMake(100,(index * 70)+170,568,60)];
+        UITextField * textField = [[UITextField alloc] initWithFrame:CGRectMake(100,(index * 70)+320,568,60)];
         textField.backgroundColor = [UIColor colorWithWhite:0.95 alpha:0.85];
         textField.layer.cornerRadius = 10;
         textField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a set amt right of the textfield
@@ -112,19 +112,29 @@
         {
             case 0:
                 textField.keyboardType = UIKeyboardTypeDefault;
+                
                 break;
          
             case 1:
                 textField.keyboardType = UIKeyboardTypePhonePad;
+                textField.frame = CGRectMake(100,(1 * 70)+320,261,60);
+
+                
                 break;
             case 2:
                 textField.keyboardType = UIKeyboardTypeEmailAddress;
+                textField.frame = CGRectMake(367,(1 * 70)+320,301,60);
+                
                 break;
             case 3:
                 textField.keyboardType = UIKeyboardTypeDefault;
+                textField.frame = CGRectMake(100,(2 * 70)+320,466,60);
+
                 break;
             case 4:
                 textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+                textField.frame = CGRectMake(572,(2 * 70)+320,96,60);
+            
                 
             default:break;
                 
