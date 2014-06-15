@@ -37,21 +37,17 @@
     if(self)
     {
     
+    [self loadListItems];  // will show last save, "launch edit saved", will result this method called
     
-        [self loadListItems];  // will show last save, "launch edit saved", will result this method called
+    self.sectionNames = @[@"Front Entrance",@"Living Room",@"Kitchen",@"Bedroom #1",@"Bedroom #2",@"Bedroom #3",@"Bathroom #1",@"Bathroom #2",@"Rear Entrance",@"Washer/Dryer",@"Patio",@"Balcony",@"HVAC",@"Storage Room"];
         
-        self.sectionNames = @[@"Front Entrance",@"Living Room",@"Kitchen",@"Bedroom #1",@"Bedroom #2",@"Bedroom #3",@"Bathroom #1",@"Bathroom #2",@"Rear Entrance",@"Washer/Dryer",@"Patio",@"Balcony",@"HVAC",@"Storage Room"];
-            
-        
-        
-        if ( self.residentItems == nil )  // will show blank template, "launch new" will result in this if true
+    if ( self.residentItems == nil )  // will show blank template, "launch new" will result in this if true
         {
             self.residentItems = [@[] mutableCopy];
             [self addNewResident];
-            
-        } // closes if
+        }
         
-        self.currentResident = [self.residentItems lastObject];
+    self.currentResident = [self.residentItems lastObject];
         
 
     }

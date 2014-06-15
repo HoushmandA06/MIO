@@ -32,10 +32,9 @@
  
         self.view.backgroundColor = BLUE_COLOR;
 
-        welcomeTitle = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-305, 168.3, 600, 105)];
+        welcomeTitle = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-305, 400, 600, 105)];
         welcomeTitle.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:100];
         welcomeTitle.textAlignment = NSTextAlignmentCenter;
-        welcomeTitle.textColor = [UIColor colorWithWhite:0.95 alpha:1.0];
         [self.view addSubview:welcomeTitle];
         
         back = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backToLogIn)];
@@ -70,23 +69,27 @@
     [super viewDidLoad];
     
     startNew = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-250, 580, 150, 150)];
-    [startNew setImage:[UIImage imageNamed:@"new"] forState:UIControlStateNormal];
+    //[startNew setImage:[UIImage imageNamed:@"new"] forState:UIControlStateNormal];
+    startNew.backgroundColor = [UIColor colorWithWhite:0.95 alpha:.60];
+    startNew.layer.cornerRadius = 75;
     [startNew addTarget:self action:@selector(launchStartNew) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:startNew];
     
-    editSaved = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)+50, 550, 220, 220)];
-    [editSaved setImage:[UIImage imageNamed:@"folder"] forState:UIControlStateNormal];
+    editSaved = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)+90, 580, 150, 150)];
+    //[editSaved setImage:[UIImage imageNamed:@"folder"] forState:UIControlStateNormal];
+    editSaved.backgroundColor = [UIColor colorWithWhite:0.95 alpha:.60];
+    editSaved.layer.cornerRadius = 75;
     [editSaved addTarget:self action:@selector(launchEditSaved) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:editSaved];
     
     UILabel * startNewFile = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-250, 720, 300, 50)];
-    startNewFile.text = @"New";
+    startNewFile.text = @"new";
     startNewFile.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:30];
     startNewFile.textColor = [UIColor lightTextColor];
     [self.view addSubview:startNewFile];
     
-    UILabel * editLastSaved = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)+50, 720, 300, 50)];
-    editLastSaved.text = @"Edit Last Saved";
+    UILabel * editLastSaved = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)+90, 720, 300, 50)];
+    editLastSaved.text = @"edit previous";
     editLastSaved.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:30];
     editLastSaved.textColor = [UIColor lightTextColor];
     [self.view addSubview:editLastSaved];
@@ -98,16 +101,18 @@
 {
     
     welcomeTitle.textColor = [UIColor lightTextColor];
-    welcomeTitle.text = @"MoveInOut";
+    welcomeTitle.text = @"Welcome";
     
-    [UIView animateWithDuration:1.0 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         
         welcomeTitle.alpha = 0;
         
     } completion:^(BOOL finished) {
         
         welcomeTitle.textColor = [UIColor lightTextColor];
-        welcomeTitle.text = @"M I O";
+        welcomeTitle.text =  [[UIDevice currentDevice] name];
+        
+       
         
     [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
             
@@ -143,7 +148,7 @@
 -(void)launchStartNew
 {
     
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"A new MIO will erase last saved. Continue?" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Cancel", nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"A new MIO will erase last saved, continue?" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Cancel", nil];
     
     [alertView show];
     
@@ -162,6 +167,8 @@
 {
     
     NSLog(@"%lu",(unsigned long)[[[MIOSingleton mainData] allResidentItems] count]);
+    NSLog(@"%@",[[MIOSingleton mainData] allResidentItems]);
+    
     
     MIOAdminVC  * adminVC = [[MIOAdminVC alloc] initWithNibName:nil bundle:nil];
     
