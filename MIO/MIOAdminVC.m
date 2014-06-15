@@ -87,7 +87,7 @@
     {
         NSInteger index = [fieldNames indexOfObject:name];
         UITextField * textField = [[UITextField alloc] initWithFrame:CGRectMake(100,(index * 70)+170,568,60)];
-        textField.backgroundColor = [UIColor colorWithWhite:0.95 alpha:0.75];
+        textField.backgroundColor = [UIColor colorWithWhite:0.95 alpha:0.85];
         textField.layer.cornerRadius = 10;
         textField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a set amt right of the textfield
         textField.leftViewMode = UITextFieldViewModeAlways;
@@ -131,7 +131,7 @@
     
 
     ///// SUBMIT BUTTON
-    submit = [[UIButton alloc] initWithFrame:CGRectMake(100,860,568,60)];
+    submit = [[UIButton alloc] initWithFrame:CGRectMake(100,800,568,60)];
     submit.backgroundColor = [UIColor colorWithWhite:0.95 alpha:.65];
     submit.layer.cornerRadius = 10;
     [submit setTitle:@"Launch Checklist" forState:UIControlStateNormal];

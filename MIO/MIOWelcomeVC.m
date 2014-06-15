@@ -109,7 +109,7 @@
         
     } completion:^(BOOL finished) {
         
-        welcomeTitle.textColor = [UIColor lightTextColor];
+        welcomeTitle.textColor = BLUE_COLOR;
         welcomeTitle.text =  [[UIDevice currentDevice] name];
         
        
