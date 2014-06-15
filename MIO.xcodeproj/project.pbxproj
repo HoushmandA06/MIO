@@ -29,12 +29,10 @@
 		0F0D5B391932328B002443F8 /* folder.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5B351932328B002443F8 /* folder.png */; };
 		0F0D5B3A1932328B002443F8 /* new.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F0D5B361932328B002443F8 /* new.png */; };
 		0F19C0F119463A8F00178BB2 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F19C0F019463A8F00178BB2 /* Crashlytics.framework */; };
-		0F19C0F31947298C00178BB2 /* gradblue.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F19C0F21947298C00178BB2 /* gradblue.png */; };
 		0F19C17D194793D400178BB2 /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F19C17C194793D300178BB2 /* launch.png */; };
 		0F19C1801947CBDD00178BB2 /* MIODisplayCellVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F19C17F1947CBDD00178BB2 /* MIODisplayCellVC.m */; };
 		0F2C10201934AEB300CD3CE4 /* MIOTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C101F1934AEB300CD3CE4 /* MIOTableViewController.m */; };
 		0F2C10231934AED100CD3CE4 /* MIOTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C10221934AED100CD3CE4 /* MIOTableViewCell.m */; };
-		0F2C10251934D6AE00CD3CE4 /* camera4040.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2C10241934D6AE00CD3CE4 /* camera4040.png */; };
 		0F2C102E1937653300CD3CE4 /* photos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F2C102D1937653300CD3CE4 /* photos@2x.png */; };
 		0F2C10BF1938D33700CD3CE4 /* MIOCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C10BD1938D33700CD3CE4 /* MIOCollectionViewController.m */; };
 		0F2C10C3193A307300CD3CE4 /* MIOSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C10C2193A307300CD3CE4 /* MIOSingleton.m */; };
@@ -100,7 +98,6 @@
 		0F0D5B351932328B002443F8 /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder.png; sourceTree = "<group>"; };
 		0F0D5B361932328B002443F8 /* new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new.png; sourceTree = "<group>"; };
 		0F19C0F019463A8F00178BB2 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		0F19C0F21947298C00178BB2 /* gradblue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gradblue.png; sourceTree = "<group>"; };
 		0F19C17C194793D300178BB2 /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
 		0F19C17E1947CBDD00178BB2 /* MIODisplayCellVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIODisplayCellVC.h; sourceTree = "<group>"; };
 		0F19C17F1947CBDD00178BB2 /* MIODisplayCellVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIODisplayCellVC.m; sourceTree = "<group>"; };
@@ -108,7 +105,6 @@
 		0F2C101F1934AEB300CD3CE4 /* MIOTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIOTableViewController.m; sourceTree = "<group>"; };
 		0F2C10211934AED100CD3CE4 /* MIOTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIOTableViewCell.h; sourceTree = "<group>"; };
 		0F2C10221934AED100CD3CE4 /* MIOTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIOTableViewCell.m; sourceTree = "<group>"; };
-		0F2C10241934D6AE00CD3CE4 /* camera4040.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera4040.png; sourceTree = "<group>"; };
 		0F2C102D1937653300CD3CE4 /* photos@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photos@2x.png"; sourceTree = "<group>"; };
 		0F2C10BC1938D33700CD3CE4 /* MIOCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIOCollectionViewController.h; sourceTree = "<group>"; };
 		0F2C10BD1938D33700CD3CE4 /* MIOCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIOCollectionViewController.m; sourceTree = "<group>"; };
@@ -245,11 +241,9 @@
 			isa = PBXGroup;
 			children = (
 				0F19C17C194793D300178BB2 /* launch.png */,
-				0F19C0F21947298C00178BB2 /* gradblue.png */,
 				0F2C1129193D2FC600CD3CE4 /* Parse.framework */,
 				0F2C102D1937653300CD3CE4 /* photos@2x.png */,
 				0FABABA8194B936700B4A397 /* camera2.png */,
-				0F2C10241934D6AE00CD3CE4 /* camera4040.png */,
 				0F0D5B351932328B002443F8 /* folder.png */,
 				0F0D5B361932328B002443F8 /* new.png */,
 				0F0D5B2F19323279002443F8 /* currentuser.png */,
@@ -399,7 +393,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F19C17D194793D400178BB2 /* launch.png in Resources */,
-				0F19C0F31947298C00178BB2 /* gradblue.png in Resources */,
 				0F2C10D9193A6DEB00CD3CE4 /* Delete.png in Resources */,
 				0F0D5AFC193231DE002443F8 /* InfoPlist.strings in Resources */,
 				0F0D5B3A1932328B002443F8 /* new.png in Resources */,
@@ -410,7 +403,6 @@
 				0FABABA9194B936700B4A397 /* camera2.png in Resources */,
 				0F2C102E1937653300CD3CE4 /* photos@2x.png in Resources */,
 				0F2C10D7193A6DEB00CD3CE4 /* Toggle.png in Resources */,
-				0F2C10251934D6AE00CD3CE4 /* camera4040.png in Resources */,
 				0F0D5B391932328B002443F8 /* folder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

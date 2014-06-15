@@ -24,6 +24,10 @@
 @end
 
 @implementation MIOCollectionViewController
+{
+    
+    NSMutableDictionary * collectionScreenshot;
+}
 
 
 -(id)initWithCollectionViewLayout:(UICollectionViewFlowLayout *)layout
@@ -44,6 +48,9 @@
     UIBarButtonItem * submit = [[UIBarButtonItem alloc] initWithTitle:@"Screen Shot" style:UIBarButtonItemStylePlain target:self action:@selector(takeAScreenShot)];
         
     UIBarButtonItem * flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        
+    collectionScreenshot = [[NSMutableDictionary alloc] init];
+
         
     [self setToolbarItems:@[flexible, submit, flexible]];
     
@@ -171,9 +178,9 @@
 
 -(void)takeAScreenShot
 {
-
     [self.collectionView reloadData];
 
+    CGRect origFrame = self.collectionView.frame;
     
     CGRect frame = self.collectionView.frame;
     frame.size.height = self.collectionView.contentSize.height;//the most important line
@@ -185,22 +192,18 @@
     UIGraphicsEndImageContext();
     UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
     
-    NSMutableDictionary * collectionScreenshot = [[NSMutableDictionary alloc] init];
     [collectionScreenshot setObject:image forKey:@"collectionScreenshot"];
     [[MIOSingleton mainData] currentResident][@"screenShot3"] = collectionScreenshot;
     NSLog(@"%@",[[[MIOSingleton mainData] currentResident][@"screenShot3"] allKeys]);
     
-
-    
+    self.collectionView.frame = origFrame;
 }
-
-
 
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
 }
 
 

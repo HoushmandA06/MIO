@@ -43,18 +43,19 @@
     self = [super initWithStyle:style];
     if (self) {
 
-        // init controls
+    collectionVC = [[MIOCollectionViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
         
     back = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backToStartNew)];
         
-    saveData = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveAction)];
+    saveData = [[UIBarButtonItem alloc] initWithTitle:@"Save & Generate Report" style:UIBarButtonItemStylePlain target:self action:@selector(saveAction)];
+        
+//    saveData = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveAction)];
+        
+    
         
     self.navigationItem.leftBarButtonItem = back;
     self.navigationItem.rightBarButtonItem = saveData;
         
-    //// TEST CODE
-        
-    collectionVC = [[MIOCollectionViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
 
 
     }
@@ -87,9 +88,8 @@
 {
     
     self.navigationController.toolbarHidden = NO;
-    
+
     animated = NO;
-    
     
 }
 
@@ -103,21 +103,19 @@
 }
 
 
-
-
-
-
 -(void)saveAction
 {
     
+    [collectionVC.collectionView reloadData];
+    
+    
     [self takeAScreenShot];
-
+    
     [collectionVC takeAScreenShot];
-    
-    
+  
     UIActivityIndicatorView *ai = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     ai.color = BLUE_COLOR;
-    ai.frame = CGRectMake(SCREEN_WIDTH-100, 30, 20, 20.0);
+    ai.frame = CGRectMake(SCREEN_WIDTH-250, 30, 20, 20.0);
     [ai startAnimating];
     [self.navigationController.view addSubview:ai];
     
@@ -129,7 +127,7 @@
         
     [ai removeFromSuperview];
             
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Save Successful / Screen Capture Generated" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Save Successful / Report Generated" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
     
     [alert show];
             
@@ -146,8 +144,11 @@
    
     if([sender isEqual:photos])
     {
+    
         [collectionVC.collectionView reloadData];
+        
         [self.navigationController pushViewController:collectionVC animated:NO];
+    
     }
     
 //    else  {
@@ -342,9 +343,7 @@
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return UITableViewCellEditingStyleDelete;
-    
 }
-
 
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -374,7 +373,6 @@
     NSString * property = [MIOSingleton mainData].currentResident[@"adminDetails"][@"Property"];
     NSString * unit = [MIOSingleton mainData].currentResident[@"adminDetails"][@"Unit#"];
     
-    
     NSString * moveType = @"";
     if([[[MIOSingleton mainData] currentResident][@"adminDetails"][@"minMout"] intValue] == 0)
     {moveType = @"Move-In";} else {moveType = @"Move-Out";}
@@ -396,7 +394,6 @@
             [emailArray addObject:@"n/a"];
     }
     
-    
     //// EMAIL COMPONENTS FOR VC:
     NSString * subjectString = [NSString stringWithFormat:@" %@ -- Resident: %@ | Property: %@ | Unit: %@", emailArray[0],emailArray[1],emailArray[4],emailArray[5]];
     
@@ -407,7 +404,7 @@
     UIImage * pulledCheckList = [[MIOSingleton mainData] currentResident][@"screenShot2"][@"checkListScreenshot"];
     UIImage * pulledCollection = [[MIOSingleton mainData] currentResident][@"screenShot3"][@"collectionScreenshot"];
     
-    NSArray * arrayOfActivityItems = [NSArray arrayWithObjects:@"Report Items:",@"", bodyString, pulledCheckList, pulledCollection, nil];
+    NSArray * arrayOfActivityItems = [NSArray arrayWithObjects:@"Admin. Details:",@"", bodyString,@"",pulledCheckList, pulledCollection, nil];
     
     //// ACTIVITY VC:
     UIActivityViewController * activityVC = [[UIActivityViewController alloc] initWithActivityItems: arrayOfActivityItems applicationActivities:nil];
@@ -416,8 +413,6 @@
     [self.navigationController presentViewController:activityVC animated:YES completion:^{
         
     }];
-    
-
     
 }
 
@@ -447,11 +442,8 @@
     [[MIOSingleton mainData] currentResident][@"screenShot2"] = checkListScreenshot;
     NSLog(@"%@",[[[MIOSingleton mainData] currentResident][@"screenShot2"] allKeys]);
 
-    
     self.tableView.frame = origFrame;
     
-
-   
 }
 
 
