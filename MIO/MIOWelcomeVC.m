@@ -32,8 +32,8 @@
  
         self.view.backgroundColor = BLUE_COLOR;
 
-        welcomeTitle = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-305, 400, 600, 105)];
-        welcomeTitle.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:100];
+        welcomeTitle = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-305, 900, 600, 85)];
+        welcomeTitle.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:75];
         welcomeTitle.textAlignment = NSTextAlignmentCenter;
         [self.view addSubview:welcomeTitle];
         
@@ -82,7 +82,7 @@
     [editSaved addTarget:self action:@selector(launchEditSaved) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:editSaved];
     
-    UILabel * startNewFile = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-250, 720, 300, 50)];
+    UILabel * startNewFile = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-250+45, 720, 300, 50)];
     startNewFile.text = @"new";
     startNewFile.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:30];
     startNewFile.textColor = [UIColor lightTextColor];
@@ -131,6 +131,7 @@
     if (buttonIndex == 0)
     {
         [[MIOSingleton mainData] addNewResident];
+
         
         MIOAdminVC  * adminVC = [[MIOAdminVC alloc] initWithNibName:nil bundle:nil];
         
@@ -148,8 +149,9 @@
 -(void)launchStartNew
 {
     
+
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"A new MIO will erase last saved, continue?" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Cancel", nil];
-    
+
     [alertView show];
     
 
@@ -169,6 +171,8 @@
     NSLog(@"%lu",(unsigned long)[[[MIOSingleton mainData] allResidentItems] count]);
     NSLog(@"%@",[[MIOSingleton mainData] allResidentItems]);
     
+    
+
     
     MIOAdminVC  * adminVC = [[MIOAdminVC alloc] initWithNibName:nil bundle:nil];
     

@@ -52,9 +52,19 @@
     
 
     back = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backToWelcome)];
-    saveData = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveAction)];
+        
+    saveData = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveAction)];
     self.navigationItem.leftBarButtonItem = back;
     self.navigationItem.rightBarButtonItem = saveData;
+        
+        
+    //// TEST CODE:
+        UIImageView *backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH,SCREEN_HEIGHT)];
+        backgroundImage.contentMode = UIViewContentModeScaleToFill;
+        [backgroundImage setImage:[UIImage imageNamed:@"launch.png"]];
+        
+        [self.view addSubview:backgroundImage];
+        [self.view sendSubviewToBack:backgroundImage];
         
  
     }

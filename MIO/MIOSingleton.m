@@ -147,6 +147,10 @@
 -(void)loadListItems //to load data from saved
 {
     NSString *path = [self listArchivePath];
+    
+    NSLog(@"%@",path);
+    
+    
     if([[NSFileManager defaultManager] fileExistsAtPath:path])
     {
         self.residentItems = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
