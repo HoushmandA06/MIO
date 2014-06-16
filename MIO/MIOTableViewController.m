@@ -176,11 +176,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
+    
     NSString * sectionKey = [MIOSingleton mainData].sectionNames[section];
 
     int rowCount = [[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey] count];
     
     return rowCount;
+    
+
     
 }
 
@@ -362,9 +365,14 @@
         [[[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey] removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 
+
+        
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
  
     }
+    
+    [self.tableView reloadData];
+
     
 }
 

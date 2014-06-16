@@ -45,16 +45,15 @@
         
         self.collectionView.backgroundColor = [UIColor clearColor];
         
-    UIBarButtonItem * submit = [[UIBarButtonItem alloc] initWithTitle:@"Screen Shot" style:UIBarButtonItemStylePlain target:self action:@selector(takeAScreenShot)];
+        UIBarButtonItem * submit = [[UIBarButtonItem alloc] initWithTitle:@"Screen Shot" style:UIBarButtonItemStylePlain target:self action:@selector(takeAScreenShot)];
         
-    UIBarButtonItem * flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        UIBarButtonItem * flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
         
-    collectionScreenshot = [[NSMutableDictionary alloc] init];
-
+        collectionScreenshot = [[NSMutableDictionary alloc] init];
         
-    [self setToolbarItems:@[flexible, submit, flexible]];
-    
-    self.navigationController.toolbarHidden = YES;
+        [self setToolbarItems:@[flexible, submit, flexible]];
+        
+        self.navigationController.toolbarHidden = YES;
     
     }
     return self;

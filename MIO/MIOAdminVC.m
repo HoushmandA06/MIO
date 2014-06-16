@@ -58,13 +58,12 @@
     self.navigationItem.rightBarButtonItem = saveData;
         
         
-    //// TEST CODE:
-        UIImageView *backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH,SCREEN_HEIGHT)];
-        backgroundImage.contentMode = UIViewContentModeScaleToFill;
-        [backgroundImage setImage:[UIImage imageNamed:@"launch.png"]];
+    UIImageView *backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH,SCREEN_HEIGHT)];
+    backgroundImage.contentMode = UIViewContentModeScaleToFill;
+    [backgroundImage setImage:[UIImage imageNamed:@"bg2.png"]];
         
-        [self.view addSubview:backgroundImage];
-        [self.view sendSubviewToBack:backgroundImage];
+    [self.view addSubview:backgroundImage];
+    [self.view sendSubviewToBack:backgroundImage];
         
  
     }
@@ -80,7 +79,7 @@
 
     
     ///// ADMIN SECTION       
-    UILabel * adminTitle = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 568, 60)];
+    UILabel * adminTitle = [[UILabel alloc] initWithFrame:CGRectMake(100, 200, 568, 60)];
     adminTitle.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:50];
     adminTitle.textAlignment = NSTextAlignmentLeft;
     adminTitle.textColor = BLUE_COLOR;
@@ -184,27 +183,25 @@
     /////// ITEMS IN SELF.VIEW
     dateDisplay = [[UITextField alloc] initWithFrame:CGRectMake(100, 570, 250, 60)];
     dateDisplay.inputView = datePickerView;
-    dateDisplay.backgroundColor = [UIColor colorWithWhite:0.95 alpha:0.65];
+    dateDisplay.textColor = BLUE_COLOR;
+    dateDisplay.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
+    dateDisplay.backgroundColor = [UIColor colorWithWhite:0.95 alpha:0.85];
     dateDisplay.layer.cornerRadius = 10;
     dateDisplay.placeholder = @"Select Date";
-    
     if([[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"] != nil)
     {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"MM-dd-yyyy"];
     dateDisplay.text =  [dateFormat stringFromDate:[[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"]];
     }
-    
-    
     [dateDisplay setTextAlignment:NSTextAlignmentCenter];
-    //  dateDisplay.delegate = self;  // shuts off ability of this textfield to call keyboard
     [self.view addSubview:dateDisplay];
     
     moveDateLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 520, 200, 60)];
-    moveDateLabel.font = [UIFont fontWithName:@"Helvetica" size:16];
+    moveDateLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
     moveDateLabel.textAlignment = NSTextAlignmentLeft;
     moveDateLabel.text = @"Move-In Date";
-    moveDateLabel.textColor = [UIColor colorWithWhite:0.95 alpha:.90];
+    moveDateLabel.textColor = [UIColor colorWithWhite:0.95 alpha:0.90];
     [self.view addSubview:moveDateLabel];
     
     

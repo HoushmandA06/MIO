@@ -30,15 +30,10 @@
         self.labelSection.backgroundColor = [UIColor blackColor];
         self.labelSection.alpha = .40;
         
-        
         self.labelComment = [[UILabel alloc] initWithFrame:CGRectMake(11,290,349,20)];
         self.labelComment.textColor = [UIColor whiteColor];
         self.labelComment.backgroundColor = [UIColor blackColor];
         self.labelComment.alpha = .40;
-        
-        
-      
-        
         
         [self.contentView addSubview:self.photoImageView];
         [self.contentView addSubview:self.labelComment];

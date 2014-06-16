@@ -69,14 +69,14 @@
     [super viewDidLoad];
     
     startNew = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-250, 580, 150, 150)];
-    //[startNew setImage:[UIImage imageNamed:@"new"] forState:UIControlStateNormal];
+    [startNew setImage:[UIImage imageNamed:@"add.png"] forState:UIControlStateNormal];
     startNew.backgroundColor = [UIColor colorWithWhite:0.95 alpha:.60];
     startNew.layer.cornerRadius = 75;
     [startNew addTarget:self action:@selector(launchStartNew) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:startNew];
     
     editSaved = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)+90, 580, 150, 150)];
-    //[editSaved setImage:[UIImage imageNamed:@"folder"] forState:UIControlStateNormal];
+    [editSaved setImage:[UIImage imageNamed:@"search.png"] forState:UIControlStateNormal];
     editSaved.backgroundColor = [UIColor colorWithWhite:0.95 alpha:.60];
     editSaved.layer.cornerRadius = 75;
     [editSaved addTarget:self action:@selector(launchEditSaved) forControlEvents:UIControlEventTouchUpInside];

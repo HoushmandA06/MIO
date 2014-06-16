@@ -54,6 +54,10 @@
 		0F2C1138193D304E00CD3CE4 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2C1137193D304E00CD3CE4 /* StoreKit.framework */; };
 		0F2C113A193D305C00CD3CE4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2C1139193D305C00CD3CE4 /* SystemConfiguration.framework */; };
 		0FABABA9194B936700B4A397 /* camera2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FABABA8194B936700B4A397 /* camera2.png */; };
+		0FABABAE194F4CE000B4A397 /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FABABAA194F4CE000B4A397 /* add.png */; };
+		0FABABAF194F4CE000B4A397 /* bg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FABABAB194F4CE000B4A397 /* bg1.png */; };
+		0FABABB0194F4CE000B4A397 /* bg2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FABABAC194F4CE000B4A397 /* bg2.png */; };
+		0FABABB1194F4CE000B4A397 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 0FABABAD194F4CE000B4A397 /* search.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,7 +126,7 @@
 		0F2C10D4193A6DEB00CD3CE4 /* Toggle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Toggle.png; sourceTree = "<group>"; };
 		0F2C10D5193A6DEB00CD3CE4 /* arrow_undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_undo.png; sourceTree = "<group>"; };
 		0F2C10D6193A6DEB00CD3CE4 /* Delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Delete.png; sourceTree = "<group>"; };
-		0F2C1129193D2FC600CD3CE4 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		0F2C1129193D2FC600CD3CE4 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = MIO/Parse.framework; sourceTree = "<group>"; };
 		0F2C112B193D300A00CD3CE4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		0F2C112D193D301100CD3CE4 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		0F2C112F193D302300CD3CE4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -132,6 +136,10 @@
 		0F2C1137193D304E00CD3CE4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		0F2C1139193D305C00CD3CE4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0FABABA8194B936700B4A397 /* camera2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera2.png; sourceTree = "<group>"; };
+		0FABABAA194F4CE000B4A397 /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
+		0FABABAB194F4CE000B4A397 /* bg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg1.png; sourceTree = "<group>"; };
+		0FABABAC194F4CE000B4A397 /* bg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg2.png; sourceTree = "<group>"; };
+		0FABABAD194F4CE000B4A397 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +199,7 @@
 		0F0D5AF0193231DE002443F8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0F2C1129193D2FC600CD3CE4 /* Parse.framework */,
 				0F19C0F019463A8F00178BB2 /* Crashlytics.framework */,
 				0F2C1139193D305C00CD3CE4 /* SystemConfiguration.framework */,
 				0F2C1137193D304E00CD3CE4 /* StoreKit.framework */,
@@ -240,8 +249,11 @@
 		0F0D5AF8193231DE002443F8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0FABABAA194F4CE000B4A397 /* add.png */,
+				0FABABAB194F4CE000B4A397 /* bg1.png */,
+				0FABABAC194F4CE000B4A397 /* bg2.png */,
+				0FABABAD194F4CE000B4A397 /* search.png */,
 				0F19C17C194793D300178BB2 /* launch.png */,
-				0F2C1129193D2FC600CD3CE4 /* Parse.framework */,
 				0F2C102D1937653300CD3CE4 /* photos@2x.png */,
 				0FABABA8194B936700B4A397 /* camera2.png */,
 				0F0D5B351932328B002443F8 /* folder.png */,
@@ -395,7 +407,10 @@
 				0F19C17D194793D400178BB2 /* launch.png in Resources */,
 				0F2C10D9193A6DEB00CD3CE4 /* Delete.png in Resources */,
 				0F0D5AFC193231DE002443F8 /* InfoPlist.strings in Resources */,
+				0FABABB1194F4CE000B4A397 /* search.png in Resources */,
+				0FABABB0194F4CE000B4A397 /* bg2.png in Resources */,
 				0F0D5B3A1932328B002443F8 /* new.png in Resources */,
+				0FABABAF194F4CE000B4A397 /* bg1.png in Resources */,
 				0F0D5B04193231DE002443F8 /* Images.xcassets in Resources */,
 				0F2C10D8193A6DEB00CD3CE4 /* arrow_undo.png in Resources */,
 				0F0D5B3219323279002443F8 /* currentuser.png in Resources */,
@@ -404,6 +419,7 @@
 				0F2C102E1937653300CD3CE4 /* photos@2x.png in Resources */,
 				0F2C10D7193A6DEB00CD3CE4 /* Toggle.png in Resources */,
 				0F0D5B391932328B002443F8 /* folder.png in Resources */,
+				0FABABAE194F4CE000B4A397 /* add.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

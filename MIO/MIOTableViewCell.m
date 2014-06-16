@@ -22,8 +22,7 @@
     
     NSString * sectionKey;
     
-   // UILabel * attentionLabel;
-    
+
     UITextField * attentionLabel;
     
     
@@ -34,9 +33,9 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
       
-        comment = [[UITextField alloc] initWithFrame:CGRectMake(0,1,400,40)];
+        comment = [[UITextField alloc] initWithFrame:CGRectMake(0,1.5,430,40)];
         comment.backgroundColor = [UIColor colorWithWhite:0.90 alpha:1.0];
-        comment.placeholder = @"comment";
+        comment.placeholder = @"enter comment, select 'return' to complete";
         comment.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a set amt right of the textfield
         comment.leftViewMode = UITextFieldViewModeAlways;
         comment.keyboardAppearance = UIKeyboardAppearanceDark;
@@ -44,7 +43,7 @@
         comment.delegate = self;
         [self.contentView addSubview:comment];
         
-        cost = [[UITextField alloc] initWithFrame:CGRectMake(580,1,100,40)];
+        cost = [[UITextField alloc] initWithFrame:CGRectMake(580,1.5,100,40)];
         cost.backgroundColor = [UIColor colorWithWhite:0.90 alpha:1.0];
         cost.placeholder = @"cost";
         cost.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a set amt right of the textfield
@@ -55,7 +54,7 @@
         cost.delegate = self;
         [self.contentView addSubview:cost];
         
-        attentionLabel = [[UITextField alloc] initWithFrame:CGRectMake(410, 1, 160, 40)];
+        attentionLabel = [[UITextField alloc] initWithFrame:CGRectMake(430, 1.5, 150, 40)];
         attentionLabel.userInteractionEnabled = NO;
         attentionLabel.delegate = self;
         attentionLabel.textAlignment = NSTextAlignmentCenter;
