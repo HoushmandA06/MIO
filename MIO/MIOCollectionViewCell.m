@@ -23,13 +23,21 @@
     self = [super initWithFrame:frame];
     if (self) {
 
-        self.photoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10,25,350,290)];
+        self.photoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10,1,350,309)];
        
-        self.labelComment = [[UILabel alloc] initWithFrame:CGRectMake(10,295,180,20)];
-        self.labelComment.textColor = [UIColor whiteColor];
+        self.labelSection = [[UILabel alloc] initWithFrame:CGRectMake(10,1,350,19)];
+        self.labelSection.textColor = [UIColor whiteColor];
+        self.labelSection.backgroundColor = [UIColor blackColor];
+        self.labelSection.alpha = .40;
         
-        self.labelSection = [[UILabel alloc] initWithFrame:CGRectMake(10,5,180,20)];
-        self.labelSection.textColor = [UIColor blackColor];
+        
+        self.labelComment = [[UILabel alloc] initWithFrame:CGRectMake(11,290,349,20)];
+        self.labelComment.textColor = [UIColor whiteColor];
+        self.labelComment.backgroundColor = [UIColor blackColor];
+        self.labelComment.alpha = .40;
+        
+        
+      
         
         
         [self.contentView addSubview:self.photoImageView];
@@ -71,16 +79,5 @@
 
 
 
-
-
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

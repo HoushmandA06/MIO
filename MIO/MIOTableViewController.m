@@ -304,15 +304,21 @@
         [[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey][photoIndexPath.row][@"image"] = imageToSave;
 
     }
-      
-    [picker dismissViewControllerAnimated:YES completion:NULL];
-
+    
+   
+    [picker dismissViewControllerAnimated:NO completion:NULL];
+    
+    [collectionVC.collectionView reloadData];
+    
+    [self.navigationController pushViewController:collectionVC animated:NO];
   
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+    
 }
 
 

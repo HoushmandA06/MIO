@@ -145,14 +145,11 @@
 
     MIOCollectionViewCell * cell = (MIOCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCell" forIndexPath:indexPath];
   
-      cell.backgroundColor = [UIColor colorWithWhite:0.50 alpha:.90];
+     // cell.backgroundColor = [UIColor colorWithWhite:0.50 alpha:.90];
     
       cell.item = indexPath.item;
       cell.section = indexPath.section;
-      cell.layer.cornerRadius = 5;
-      [cell.layer setBorderWidth:1];
-      [cell.layer setBorderColor:[UIColor lightGrayColor].CGColor];
-
+     
 
     return cell;
     
