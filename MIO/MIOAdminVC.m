@@ -34,6 +34,8 @@
     BOOL moveOutIsSelected;
     
     UILabel * moveDateLabel;
+    UILabel * instructions;
+    
     UIDatePicker * moveDate;
     
     UIView * datePickerView;
@@ -57,7 +59,6 @@
     self.navigationItem.leftBarButtonItem = back;
     self.navigationItem.rightBarButtonItem = saveData;
         
-        
     UIImageView *backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH,SCREEN_HEIGHT)];
     backgroundImage.contentMode = UIViewContentModeScaleToFill;
     [backgroundImage setImage:[UIImage imageNamed:@"bg2.png"]];
@@ -79,13 +80,15 @@
 
     
     ///// ADMIN SECTION       
-    UILabel * adminTitle = [[UILabel alloc] initWithFrame:CGRectMake(100, 200, 568, 60)];
-    adminTitle.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:50];
+    UILabel * adminTitle = [[UILabel alloc] initWithFrame:CGRectMake(95, 200, 568, 60)];
+    adminTitle.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:55];
     adminTitle.textAlignment = NSTextAlignmentLeft;
     adminTitle.textColor = BLUE_COLOR;
     adminTitle.text = @"Resident Information";
     [self.view addSubview:adminTitle];
     
+    
+
     fieldNames = @[@"Resident", @"Phone", @"Email", @"Property",@"Unit#"];
  
 
@@ -166,7 +169,14 @@
 -(void)viewWillAppear:(BOOL)animated
 {
   
-    self.navigationController.toolbarHidden = YES;  
+    instructions = [[UILabel alloc] initWithFrame:CGRectMake(100, 280, 568, 30)];
+    instructions.font = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:20];
+    instructions.textAlignment = NSTextAlignmentLeft;
+    instructions.textColor = [UIColor colorWithWhite:0.95 alpha:0.90];
+    instructions.text = @"Enter info below, select 'return' to complete field";
+    
+    
+    self.navigationController.toolbarHidden = YES;
     
     animated = NO;
     
@@ -366,17 +376,24 @@
  }
 
 
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    [self.view addSubview:instructions];
+
+    return YES;
+}
+
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    
     
     [textField resignFirstResponder];
     int index = [fields indexOfObject:textField];
     NSString * key = fieldNames[index];
     [[MIOSingleton mainData] currentResident][@"adminDetails"][key] = textField.text;
 
-    
+    [instructions removeFromSuperview];
+
     return YES;
 }
 
