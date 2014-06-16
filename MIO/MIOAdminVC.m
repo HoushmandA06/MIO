@@ -101,6 +101,7 @@
         textField.layer.cornerRadius = 10;
         textField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a set amt right of the textfield
         textField.leftViewMode = UITextFieldViewModeAlways;
+        textField.keyboardAppearance = UIKeyboardAppearanceDark;
         textField.placeholder = name;
         textField.autocorrectionType = FALSE;
         

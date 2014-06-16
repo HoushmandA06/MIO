@@ -178,8 +178,9 @@
 
 -(void)takeAScreenShot
 {
-    [self.collectionView reloadData];
-
+ 
+    
+    
     CGRect origFrame = self.collectionView.frame;
     
     CGRect frame = self.collectionView.frame;

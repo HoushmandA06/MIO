@@ -108,7 +108,6 @@
     
     [collectionVC.collectionView reloadData];
     
-    
     [self takeAScreenShot];
     
     [collectionVC takeAScreenShot];
@@ -395,7 +394,7 @@
     }
     
     //// EMAIL COMPONENTS FOR VC:
-    NSString * subjectString = [NSString stringWithFormat:@" %@ -- Resident: %@ | Property: %@ | Unit: %@", emailArray[0],emailArray[1],emailArray[4],emailArray[5]];
+    NSString * subjectString = [NSString stringWithFormat:@" %@ -- Name: %@ | Property: %@ | Unit: %@", emailArray[0],emailArray[1],emailArray[4],emailArray[5]];
     
     NSString * bodyString = [NSString stringWithFormat:@" Resident: %@ | Phone: %@ | Email: %@ | Property: %@ | Unit: %@ | MI/O: %@ | Date: %@",emailArray[1],emailArray[2],emailArray[3], emailArray[4],emailArray[5], emailArray[6], emailArray[7]];
     
@@ -404,7 +403,7 @@
     UIImage * pulledCheckList = [[MIOSingleton mainData] currentResident][@"screenShot2"][@"checkListScreenshot"];
     UIImage * pulledCollection = [[MIOSingleton mainData] currentResident][@"screenShot3"][@"collectionScreenshot"];
     
-    NSArray * arrayOfActivityItems = [NSArray arrayWithObjects:@"Admin. Details:",@"", bodyString,@"",pulledCheckList, pulledCollection, nil];
+    NSArray * arrayOfActivityItems = [NSArray arrayWithObjects:@"Resident Information",@"", bodyString,@"",pulledCheckList, pulledCollection, nil];
     
     //// ACTIVITY VC:
     UIActivityViewController * activityVC = [[UIActivityViewController alloc] initWithActivityItems: arrayOfActivityItems applicationActivities:nil];

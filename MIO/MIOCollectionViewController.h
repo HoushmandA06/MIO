@@ -10,6 +10,9 @@
 
 @interface MIOCollectionViewController : UICollectionViewController
 
+
+-(id)initWithCollectionViewLayout:(UICollectionViewFlowLayout *)layout;
+
 -(void)takeAScreenShot;
 
 

@@ -39,6 +39,7 @@
         comment.placeholder = @"comment";
         comment.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a set amt right of the textfield
         comment.leftViewMode = UITextFieldViewModeAlways;
+        comment.keyboardAppearance = UIKeyboardAppearanceDark;
         comment.autocorrectionType = FALSE;
         comment.delegate = self;
         [self.contentView addSubview:comment];
@@ -48,6 +49,7 @@
         cost.placeholder = @"cost";
         cost.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a set amt right of the textfield
         cost.leftViewMode = UITextFieldViewModeAlways;
+        cost.keyboardAppearance = UIKeyboardAppearanceDark;
         cost.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
         cost.autocorrectionType = FALSE;
         cost.delegate = self;
@@ -117,8 +119,6 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField   //now any textField will allow resign keyboard
 {
-
-
     
     sectionKey = [MIOSingleton mainData].sectionNames[self.section];
     [[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey][self.row][@"comment"] = comment.text;
