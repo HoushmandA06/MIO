@@ -68,7 +68,7 @@
 {
     [super viewDidLoad];
     
-    startNew = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-250, 580, 150, 150)];
+    startNew = [[UIButton alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-240, 580, 150, 150)];
     [startNew setImage:[UIImage imageNamed:@"add.png"] forState:UIControlStateNormal];
     startNew.backgroundColor = [UIColor colorWithWhite:0.95 alpha:.60];
     startNew.layer.cornerRadius = 75;
@@ -82,13 +82,13 @@
     [editSaved addTarget:self action:@selector(launchEditSaved) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:editSaved];
     
-    UILabel * startNewFile = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-250+45, 720, 300, 50)];
+    UILabel * startNewFile = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-250+60, 720, 300, 50)];
     startNewFile.text = @"new";
     startNewFile.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:30];
     startNewFile.textColor = [UIColor lightTextColor];
     [self.view addSubview:startNewFile];
     
-    UILabel * editLastSaved = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)+90, 720, 300, 50)];
+    UILabel * editLastSaved = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)+82, 720, 300, 50)];
     editLastSaved.text = @"edit previous";
     editLastSaved.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:30];
     editLastSaved.textColor = [UIColor lightTextColor];
@@ -130,8 +130,8 @@
  
     if (buttonIndex == 0)
     {
+             
         [[MIOSingleton mainData] addNewResident];
-
         
         MIOAdminVC  * adminVC = [[MIOAdminVC alloc] initWithNibName:nil bundle:nil];
         
@@ -149,19 +149,9 @@
 -(void)launchStartNew
 {
     
-
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"A new MIO will erase last saved, continue?" message:nil delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Cancel", nil];
 
     [alertView show];
-    
-
-//    [[MIOSingleton mainData] addNewResident];
-//    
-//    MIOAdminVC  * adminVC = [[MIOAdminVC alloc] initWithNibName:nil bundle:nil];
-//    
-//    MIONavVC * newNavVC = [[MIONavVC alloc] initWithRootViewController:adminVC];
-//    [self presentViewController:newNavVC animated:NO completion:^{
-//    }];
 
 }
 
@@ -169,10 +159,7 @@
 {
     
     NSLog(@"%lu",(unsigned long)[[[MIOSingleton mainData] allResidentItems] count]);
-    NSLog(@"%@",[[MIOSingleton mainData] allResidentItems]);
-    
-    
-
+    //NSLog(@"%@",[[MIOSingleton mainData] allResidentItems]);
     
     MIOAdminVC  * adminVC = [[MIOAdminVC alloc] initWithNibName:nil bundle:nil];
     

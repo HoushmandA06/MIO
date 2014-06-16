@@ -45,6 +45,9 @@
 
     collectionVC = [[MIOCollectionViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
         
+        [self.view addSubview:collectionVC.collectionView];
+        collectionVC.collectionView.frame = CGRectOffset(collectionVC.collectionView.frame, SCREEN_WIDTH, 0);
+        
     back = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backToStartNew)];
         
     saveData = [[UIBarButtonItem alloc] initWithTitle:@"Save & Generate Report" style:UIBarButtonItemStylePlain target:self action:@selector(saveAction)];
@@ -105,11 +108,7 @@
 
 -(void)saveAction
 {
-    
-    [collectionVC.collectionView reloadData];
-    
     [self takeAScreenShot];
-    
     [collectionVC takeAScreenShot];
   
     UIActivityIndicatorView *ai = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -229,7 +228,7 @@
     delRow.tag = section;
     
     UIView* customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 600, 50)];
-    customView.backgroundColor = BLUE_COLOR
+    customView.backgroundColor = BLUE2_COLOR;
     [customView addSubview:headerLabel];
     [customView addSubview:addRow];
     [customView addSubview:delRow];

@@ -41,8 +41,9 @@
     
     self.sectionNames = @[@"Front Entrance",@"Living Room",@"Kitchen",@"Bedroom #1",@"Bedroom #2",@"Bedroom #3",@"Bathroom #1",@"Bathroom #2",@"Rear Entrance",@"Washer/Dryer",@"Patio",@"Balcony",@"HVAC",@"Storage Room"];
         
-    if ( self.residentItems == nil )  // will show blank template, "launch new" will result in this if true
+    if (self.residentItems == nil )  // will show blank template, "launch new" will result in this if true
         {
+            
             self.residentItems = [@[] mutableCopy];
             [self addNewResident];
         }
@@ -57,7 +58,9 @@
 - (void)addNewResident
 {
  
-    //// screenShot is a key value for the "Admin page" screenshot. Currently not using, may enable in future. 
+    [self.residentItems removeAllObjects];
+
+    //// screenShot is a key value for the "Admin page" screenshot. Currently not using, may enable in future.
     
     NSMutableDictionary * newResident = [@{
                                            @"screenShot":[@{}mutableCopy],
@@ -103,6 +106,7 @@
 
 -(void)addResidentItem:(NSMutableDictionary *)residentItem
 {
+    
     [self.residentItems addObject:residentItem];
     
     self.currentResident = residentItem;

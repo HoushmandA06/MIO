@@ -45,13 +45,14 @@
         
         self.collectionView.backgroundColor = [UIColor clearColor];
         
-        UIBarButtonItem * submit = [[UIBarButtonItem alloc] initWithTitle:@"Screen Shot" style:UIBarButtonItemStylePlain target:self action:@selector(takeAScreenShot)];
-        
-        UIBarButtonItem * flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-        
         collectionScreenshot = [[NSMutableDictionary alloc] init];
         
-        [self setToolbarItems:@[flexible, submit, flexible]];
+        [self.collectionView registerClass:[MIOCollectionViewCell class] forCellWithReuseIdentifier:@"PhotoCell"];
+
+        
+//        UIBarButtonItem * submit = [[UIBarButtonItem alloc] initWithTitle:@"Screen Shot" style:UIBarButtonItemStylePlain target:self action:@selector(takeAScreenShot)];
+//        UIBarButtonItem * flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+//        [self setToolbarItems:@[flexible, submit, flexible]];
         
         self.navigationController.toolbarHidden = YES;
     
@@ -158,9 +159,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self.collectionView registerClass:[MIOCollectionViewCell class] forCellWithReuseIdentifier:@"PhotoCell"];
-
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -174,8 +172,7 @@
 
 -(void)takeAScreenShot
 {
- 
-    
+    if (self.collectionView) [self.collectionView reloadData];
     
     CGRect origFrame = self.collectionView.frame;
     
@@ -183,13 +180,15 @@
     frame.size.height = self.collectionView.contentSize.height;//the most important line
     self.collectionView.frame = frame;
     
+    NSLog(@"%@",self.collectionView.layer);
+    
     UIGraphicsBeginImageContext(self.collectionView.bounds.size);
     [self.collectionView.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
     
-    [collectionScreenshot setObject:image forKey:@"collectionScreenshot"];
+    if (image) [collectionScreenshot setObject:image forKey:@"collectionScreenshot"];
     [[MIOSingleton mainData] currentResident][@"screenShot3"] = collectionScreenshot;
     NSLog(@"%@",[[[MIOSingleton mainData] currentResident][@"screenShot3"] allKeys]);
     

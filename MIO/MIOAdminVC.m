@@ -115,16 +115,12 @@
         {
             case 0:
                 textField.keyboardType = UIKeyboardTypeDefault;
-                
+
                 break;
-         
             case 1:
                 textField.keyboardType = UIKeyboardTypePhonePad;
-                
                 textField.tag = 99;
-                
                 textField.frame = CGRectMake(100,(1 * 70)+320,261,60);
-
                 
                 break;
             case 2:
@@ -143,19 +139,16 @@
             
                 
             default:break;
-                
+    
         }
-        
         
         textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
         textField.delegate = self;
- 
         [textField resignFirstResponder];
         [fields addObject:textField];
         [self.view addSubview:textField];
     }
     
-
     ///// SUBMIT BUTTON
     submit = [[UIButton alloc] initWithFrame:CGRectMake(100,800,568,60)];
     submit.backgroundColor = [UIColor colorWithWhite:0.95 alpha:.65];
@@ -176,7 +169,7 @@
     instructions.font = [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:20];
     instructions.textAlignment = NSTextAlignmentLeft;
     instructions.textColor = [UIColor colorWithWhite:0.95 alpha:0.90];
-    instructions.text = @"Enter info below, select 'return' to complete field";
+    instructions.text = @"Select 'return' to complete field";
     
     
     self.navigationController.toolbarHidden = YES;
@@ -449,6 +442,14 @@
     }
     
     return YES;
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{   if(textField.tag == 99)
+        { if([textField.text isEqualToString:@"1 "])
+            { textField.text = nil;
+            }
+        }
 }
 
 

@@ -25,19 +25,33 @@
 
         self.photoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10,1,350,309)];
        
-        self.labelSection = [[UILabel alloc] initWithFrame:CGRectMake(10,1,350,19)];
+        
+        UILabel * labelSectionInset = [[UILabel alloc] initWithFrame:CGRectMake(10, 1, 10, 19)];
+        labelSectionInset.backgroundColor = [UIColor blackColor];
+        labelSectionInset.alpha = .40;
+        
+        self.labelSection = [[UILabel alloc] initWithFrame:CGRectMake(20,1,340,19)];
         self.labelSection.textColor = [UIColor whiteColor];
         self.labelSection.backgroundColor = [UIColor blackColor];
         self.labelSection.alpha = .40;
         
-        self.labelComment = [[UILabel alloc] initWithFrame:CGRectMake(11,290,349,20)];
+        UILabel * labelCommentInset = [[UILabel alloc] initWithFrame:CGRectMake(10, 290, 10, 20)];
+        labelCommentInset.backgroundColor = [UIColor blackColor];
+        labelCommentInset.alpha = .40;
+
+        self.labelComment = [[UILabel alloc] initWithFrame:CGRectMake(20,290,340,20)];
         self.labelComment.textColor = [UIColor whiteColor];
-        self.labelComment.backgroundColor = [UIColor blackColor];
+         self.labelComment.backgroundColor = [UIColor blackColor];
         self.labelComment.alpha = .40;
         
         [self.contentView addSubview:self.photoImageView];
         [self.contentView addSubview:self.labelComment];
         [self.contentView addSubview:self.labelSection];
+       
+        [self.contentView addSubview:labelSectionInset];
+        [self.contentView addSubview:labelCommentInset];
+
+
         
     }
     return self;
