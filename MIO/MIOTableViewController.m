@@ -8,10 +8,12 @@
 
 #import "MIOTableViewController.h"
 #import "MIOCollectionViewController.h" // collection view for photos
-#import "DLAViewController.h"  // draw app, will proxy for signature page
 #import "MIOSingleton.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <QuartzCore/QuartzCore.h>
+
+// #import "DLAViewController.h"  // draw app, will proxy for signature page
+
 
 @interface MIOTableViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 

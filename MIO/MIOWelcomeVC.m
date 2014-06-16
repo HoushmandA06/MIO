@@ -32,7 +32,7 @@
  
         self.view.backgroundColor = BLUE_COLOR;
 
-        welcomeTitle = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-305, 900, 600, 85)];
+        welcomeTitle = [[UILabel alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-305, 50, 600, 85)];
         welcomeTitle.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:75];
         welcomeTitle.textAlignment = NSTextAlignmentCenter;
         [self.view addSubview:welcomeTitle];
@@ -100,23 +100,23 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     
-    welcomeTitle.textColor = [UIColor lightTextColor];
+   // welcomeTitle.textColor = [UIColor lightTextColor];
     welcomeTitle.text = @"Welcome";
     
-    [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    [UIView animateWithDuration:2.0 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         
-        welcomeTitle.alpha = 0;
+        welcomeTitle.alpha = 1;
         
     } completion:^(BOOL finished) {
         
         welcomeTitle.textColor = BLUE_COLOR;
-        welcomeTitle.text =  [[UIDevice currentDevice] name];
+//      welcomeTitle.text =  [[UIDevice currentDevice] name];
         
        
         
-    [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+    [UIView animateWithDuration:2.0 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
             
-        welcomeTitle.alpha = 1;
+        welcomeTitle.alpha = 0;
             
     } completion:nil];
         

@@ -445,7 +445,12 @@
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
-{   if(textField.tag == 99)
+{
+    int index = [fields indexOfObject:textField];
+    NSString * key = fieldNames[index];
+    [[MIOSingleton mainData] currentResident][@"adminDetails"][key] = textField.text;
+    
+    if(textField.tag == 99)
         { if([textField.text isEqualToString:@"1 "])
             { textField.text = nil;
             }
