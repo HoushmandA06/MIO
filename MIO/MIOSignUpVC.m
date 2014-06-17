@@ -65,7 +65,7 @@
     nameField = [[UITextField alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-150,200,300,50)];
     nameField.backgroundColor = [UIColor colorWithWhite:.90 alpha:1.0];
     nameField.layer.cornerRadius = 10;
-    nameField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a set amt right of the textfield
+    nameField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)];
     nameField.leftViewMode = UITextFieldViewModeAlways;
     nameField.placeholder = @"Enter username";
     nameField.autocorrectionType = FALSE;
@@ -73,18 +73,18 @@
     [nameField.layer setBorderColor: [[UIColor lightGrayColor] CGColor]];
     [nameField.layer setBorderWidth: 2.0];
     [self.view addSubview:nameField];
-    [nameField resignFirstResponder]; //this is what makes keyboard go away
+    [nameField resignFirstResponder];
     nameField.delegate = self;
     
     pwField = [[UITextField alloc] initWithFrame:CGRectMake((SCREEN_WIDTH/2)-150,300,300,50)];
     pwField.backgroundColor = [UIColor colorWithWhite:.90 alpha:1.0];
     pwField.layer.cornerRadius = 10;
     pwField.secureTextEntry = YES;
-    pwField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a set amt right of the textfield
+    pwField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)];
     pwField.leftViewMode = UITextFieldViewModeAlways;
     [pwField.layer setBorderColor: [[UIColor lightGrayColor] CGColor]];
     [pwField.layer setBorderWidth: 2.0];
-    pwField.placeholder = @"Confirm password";    //// HOW TO TEST
+    pwField.placeholder = @"Confirm password";
     [self.view addSubview:pwField];
     [pwField resignFirstResponder];
     pwField.delegate = self;
@@ -94,7 +94,7 @@
     pwConfirm.backgroundColor = [UIColor colorWithWhite:.90 alpha:1.0];
     pwConfirm.layer.cornerRadius = 10;
     pwConfirm.secureTextEntry = YES;
-    pwConfirm.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a set amt right of the textfield
+    pwConfirm.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)];
     pwConfirm.leftViewMode = UITextFieldViewModeAlways;
     [pwConfirm.layer setBorderColor: [[UIColor lightGrayColor] CGColor]];
     [pwConfirm.layer setBorderWidth: 2.0];
@@ -157,7 +157,7 @@
 
 -(void)submit
 {
-    //// NEED TO CONNECT TO PARSE
+ 
     PFUser * user = [PFUser user];
     user.username = nameField.text;
     user.password = pwConfirm.text;
@@ -183,7 +183,6 @@
         }
     }];
     
-    NSLog(@"Submit selected");
     
 }
 

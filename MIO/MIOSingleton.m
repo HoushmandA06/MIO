@@ -152,7 +152,6 @@
 {
     NSString *path = [self listArchivePath];
     
-    NSLog(@"%@",path);
     
     
     if([[NSFileManager defaultManager] fileExistsAtPath:path])

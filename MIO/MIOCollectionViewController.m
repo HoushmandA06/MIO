@@ -180,7 +180,6 @@
     frame.size.height = self.collectionView.contentSize.height;//the most important line
     self.collectionView.frame = frame;
     
-    NSLog(@"%@",self.collectionView.layer);
     
     UIGraphicsBeginImageContext(self.collectionView.bounds.size);
     [self.collectionView.layer renderInContext:UIGraphicsGetCurrentContext()];
@@ -190,7 +189,6 @@
     
     if (image) [collectionScreenshot setObject:image forKey:@"collectionScreenshot"];
     [[MIOSingleton mainData] currentResident][@"screenShot3"] = collectionScreenshot;
-    NSLog(@"%@",[[[MIOSingleton mainData] currentResident][@"screenShot3"] allKeys]);
     
     self.collectionView.frame = origFrame;
 }

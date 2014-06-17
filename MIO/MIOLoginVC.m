@@ -106,13 +106,11 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    //// create second label for MIO
     logInTitle.text = @"MoveInOut";
     
     [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         
         logInTitle.alpha = 0;
-        // secondlabel.alpha = 1;
         
     } completion:^(BOOL finished) {
         

@@ -141,7 +141,7 @@
     }
     else
     {
-        NSLog(@"cancel");
+
     }
 }
 
@@ -159,7 +159,7 @@
 {
     
     NSLog(@"%lu",(unsigned long)[[[MIOSingleton mainData] allResidentItems] count]);
-    //NSLog(@"%@",[[MIOSingleton mainData] allResidentItems]);
+ 
     
     MIOAdminVC  * adminVC = [[MIOAdminVC alloc] initWithNibName:nil bundle:nil];
     

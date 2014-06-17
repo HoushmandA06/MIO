@@ -12,7 +12,6 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <QuartzCore/QuartzCore.h>
 
-// #import "DLAViewController.h"  // draw app, will proxy for signature page
 
 
 @interface MIOTableViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
@@ -151,11 +150,7 @@
     
     }
     
-//    else  {
-//   
-//        DLAViewController * signatureVC = [[DLAViewController alloc] initWithNibName:nil bundle:nil];
-//        [self.navigationController pushViewController:signatureVC animated:NO];
-//    }
+
 
 }
 
@@ -454,8 +449,7 @@
     NSMutableDictionary * checkListScreenshot = [[NSMutableDictionary alloc] init];
     [checkListScreenshot setObject:image forKey:@"checkListScreenshot"];
     [[MIOSingleton mainData] currentResident][@"screenShot2"] = checkListScreenshot;
-    NSLog(@"%@",[[[MIOSingleton mainData] currentResident][@"screenShot2"] allKeys]);
-
+ 
     self.tableView.frame = origFrame;
     
 }

@@ -28,21 +28,21 @@
         
         UILabel * labelSectionInset = [[UILabel alloc] initWithFrame:CGRectMake(10, 1, 10, 19)];
         labelSectionInset.backgroundColor = [UIColor blackColor];
-        labelSectionInset.alpha = .40;
+        labelSectionInset.alpha = .45;
         
         self.labelSection = [[UILabel alloc] initWithFrame:CGRectMake(20,1,340,19)];
         self.labelSection.textColor = [UIColor whiteColor];
         self.labelSection.backgroundColor = [UIColor blackColor];
-        self.labelSection.alpha = .40;
+        self.labelSection.alpha = .45;
         
         UILabel * labelCommentInset = [[UILabel alloc] initWithFrame:CGRectMake(10, 290, 10, 20)];
         labelCommentInset.backgroundColor = [UIColor blackColor];
-        labelCommentInset.alpha = .40;
+        labelCommentInset.alpha = .45;
 
         self.labelComment = [[UILabel alloc] initWithFrame:CGRectMake(20,290,340,20)];
         self.labelComment.textColor = [UIColor whiteColor];
          self.labelComment.backgroundColor = [UIColor blackColor];
-        self.labelComment.alpha = .40;
+        self.labelComment.alpha = .45;
         
         [self.contentView addSubview:self.photoImageView];
         [self.contentView addSubview:self.labelComment];

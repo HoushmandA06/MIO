@@ -261,7 +261,6 @@
 
     [[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"] = myDate;
     
-     NSLog(@"%@ from singleton",[[MIOSingleton mainData] currentResident][@"adminDetails"][@"date"]);
 }
 
 

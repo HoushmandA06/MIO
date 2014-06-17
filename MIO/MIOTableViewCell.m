@@ -35,7 +35,7 @@
       
         comment = [[UITextField alloc] initWithFrame:CGRectMake(0,1.5,430,40)];
         comment.backgroundColor = [UIColor colorWithWhite:0.90 alpha:1.0];
-        comment.placeholder = @"enter comment, select 'return' to complete";
+        comment.placeholder = @"comment";
         comment.leftView = [[UIView alloc] initWithFrame:CGRectMake(0,0,10,30)]; // puts the cursor a set amt right of the textfield
         comment.leftViewMode = UITextFieldViewModeAlways;
         comment.keyboardAppearance = UIKeyboardAppearanceDark;
@@ -102,10 +102,7 @@
     {
         attentionLabel.text = @"All Clear";
         attentionLabel.textColor = GREEN_COLOR;
-        
     }
-        
-    
 }
 
 - (void)setSection:(int)section
@@ -116,19 +113,27 @@
     
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField   //now any textField will allow resign keyboard
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    
     sectionKey = [MIOSingleton mainData].sectionNames[self.section];
     [[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey][self.row][@"comment"] = comment.text;
     [[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey][self.row][@"cost"] = cost.text;
     [textField resignFirstResponder];
-    
-    [self.delegate refreshCell:self];
 
-    
+    [self.delegate refreshCell:self];
     return YES;
 }
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    sectionKey = [MIOSingleton mainData].sectionNames[self.section];
+    [[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey][self.row][@"comment"] = comment.text;
+    [[MIOSingleton mainData] currentResident][@"adminDetails"][@"sectionLists"][sectionKey][self.row][@"cost"] = cost.text;
+    
+    [self.delegate refreshCell:self];
+    
+}
+
 
 
 - (void)awakeFromNib
